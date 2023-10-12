@@ -1,0 +1,128 @@
+/* Rules page */
+
+.rules {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.rules div > h1 {
+  margin-bottom: 20px;
+}
+
+.rules::-webkit-scrollbar {
+  display: none;
+}
+
+.rules-content {
+  overflow: auto;
+  padding: 50px 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+}
+
+.rules-content-schedule-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.rules-content-schedule-header {
+  text-align: center;
+}
+
+.rules-content-schedule {
+  min-height: calc(30px + 6em);
+  font-size: 20px;
+}
+
+.rules-content-schedule-bar {
+  position: relative;
+  border: rgb(97, 113, 134) solid 2px;
+
+  transform: translate(0, calc((30px + 6em) / 2));
+}
+
+.rules-content-schedule-bar > div {
+  position: absolute;
+  top: -15px;
+
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background-color: #ffffff;
+
+  box-shadow: 0px 0px 50px 10px rgba(224, 58, 221, 1);
+  -webkit-box-shadow: 0px 0px 50px 10px rgba(224, 58, 221, 1);
+  -moz-box-shadow: 0px 0px 50px 10px rgba(224, 58, 221, 1);
+}
+
+.rules-content-schedule-bar > div:nth-child(1) {
+  left: calc(0%);
+}
+.rules-content-schedule-bar > div:nth-child(2) {
+  left: calc((100% - 30px) / 3);
+}
+.rules-content-schedule-bar > div:nth-child(3) {
+  left: calc((100% - 30px) * 2 / 3);
+}
+.rules-content-schedule-bar > div:nth-child(4) {
+  left: calc(100% - 30px);
+}
+
+.rules-content-schedule-bar > div p {
+  width: min-content;
+  white-space: nowrap;
+}
+
+.rules-content-schedule-bar > div p:first-child {
+  position: relative;
+  top: -3em;
+}
+.rules-content-schedule-bar > div p:last-child {
+  position: relative;
+  top: 2em;
+}
+.rules-content-schedule-bar > div:nth-child(2) p,
+.rules-content-schedule-bar > div:nth-child(3) p {
+  transform: translate(-50%, 0);
+}
+
+.rules-content-schedule-bar > div:last-child p {
+  transform: translate(-100%, 0);
+}
+.rules-content-schedule-bar > div:first-child p {
+  transform: translate(0, 0);
+}
+
+.rules-content-competition-rules ol > li {
+  font-size: 20px;
+  margin: 0 0 1em calc(1.3em);
+}
+
+.rules-content-reward {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.rules-content-reward-table {
+  font-size: 20px;
+}
+.rules-content-reward-table tr td {
+  width: 50%;
+  padding: 5px 10px;
+}
+
+.rules-content-reward-table tr {
+  font-size: 20px;
+}
+
+.rules-content-reward-table tr td:nth-child(1) {
+  text-align: right;
+}
+.rules-content-reward-table tr td:nth-child(2) {
+  text-align: left;
+}

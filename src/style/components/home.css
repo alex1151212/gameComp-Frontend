@@ -1,0 +1,33 @@
+/* Home page  */
+
+.home-logo {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+.home-logo img {
+  width: 100%;
+}
+.home-content {
+  text-shadow: 0 0 5px rgba(244, 41, 255, 0.83);
+  font-stretch: normal;
+  font-style: normal;
+  text-align: center;
+  color: #fff;
+}
+
+.home-content .text {
+  font-family: MicrosoftJhengHeiUI;
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: 24px;
+}
+
+.home-content .money {
+  font-family: AgencyFB-Reg;
+  font-size: 120px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: normal;
+}

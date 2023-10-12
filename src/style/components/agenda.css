@@ -1,0 +1,26 @@
+/* Agenda page */
+
+.agenda-content {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  padding: 50px 0;
+}
+
+.agenda-content-table {
+  border-radius: 25px;
+  border: 6px solid #fff;
+  padding: 25px;
+
+  font-size: 20px;
+}
+.agenda-content-table tr td {
+  width: 50%;
+  padding: 5px 10px;
+}
+.agenda-content-table tr td:nth-child(1) {
+  text-align: right;
+}
+.agenda-content-table tr td:nth-child(2) {
+  text-align: left;
+}
