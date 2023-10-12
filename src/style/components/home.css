@@ -25,9 +25,37 @@
 }
 
 .home-content .money {
+  position: relative;
+
   font-family: AgencyFB-Reg;
   font-size: 120px;
   font-weight: 400;
   line-height: 1;
   letter-spacing: normal;
+}
+
+.home-content-money-mask-layout {
+  position: absolute;
+
+  background-image: url("../../assets/images/BG.jpg");
+  background-position: 50% 50%;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+
+  top: 0;
+  left: 0;
+  width: calc(75vw - 11vw);
+  height: 1em;
+  /* background-color: blueviolet; */
+  animation: animationMaskLayout 4s linear 0s infinite;
+}
+
+@keyframes animationMaskLayout {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: calc(75vw - 11vw);
+  }
 }
