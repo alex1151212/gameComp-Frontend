@@ -1,7 +1,8 @@
 /* Games page */
 .games {
+  padding: 60px 50px;
   height: 100%;
-  overflow: auto;
+  /* overflow: auto; */
 }
 .games::-webkit-scrollbar {
   display: none;
@@ -11,17 +12,17 @@
   height: 100%;
   margin: 30px 20px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-auto-rows: minmax(200px, auto);
   gap: 20px;
 }
 @media (max-width: 1440px) {
   .games-content {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 @media (max-width: 900px) {
   .games-content {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }

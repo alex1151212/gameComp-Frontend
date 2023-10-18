@@ -38,7 +38,7 @@ const NavBarMenu: React.FC<NavBarMenuProps> = () => {
   };
 
   useEffect(() => {
-    console.log(location.pathname);
+    console.log("/home" == location.pathname);
   }, [location]);
 
   return (

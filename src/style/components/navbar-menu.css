@@ -42,10 +42,10 @@
 }
 
 .navbar-menu-nav-item > a {
+  color: inherit;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.83);
-  color: #fff;
 }
 
-.navbar-menu .active {
+.navbar-menu-nav-item.active {
   color: yellow;
 }
