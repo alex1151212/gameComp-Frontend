@@ -1,13 +1,20 @@
 import { Outlet } from "react-router-dom";
 import "./style/App.css";
-import AsideMenu from "./components/layout/AsideMenu";
+import NavBarMenu from "./components/layout/NavBarMenu";
 
 function App() {
   return (
     <div className="layout">
-      <AsideMenu />
+      <NavBarMenu />
       <div className="content">
-        <Outlet />
+        <div className="content-body">
+          <Outlet />
+        </div>
+        <div className="content-footer">
+          <div className="content-footer-dot"></div>
+          <div className="content-footer-line"></div>
+          <div className="content-footer-dot"></div>
+        </div>
       </div>
     </div>
   );
