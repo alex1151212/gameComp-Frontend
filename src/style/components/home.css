@@ -1,23 +1,39 @@
 /* Home page  */
 
+.home {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+
+  gap: 2em;
+}
+
 .home-logo {
-  width: 50%;
-  margin: 0 auto;
-  margin-top: 30px;
-}
-.home-logo img {
-  width: 100%;
-}
-.home-content {
-  text-shadow: 0 0 5px rgba(244, 41, 255, 0.83);
-  font-stretch: normal;
-  font-style: normal;
+  width: fit-content;
+  font-family: SpaceAge;
   text-align: center;
-  color: #fff;
+  font-size: 68px;
+  text-wrap: nowrap;
+}
+
+.home-logo > div {
+  display: flex;
+  gap: 0.5em;
+}
+
+.home-logo-yello {
+  color: rgba(255, 255, 0, 0.9);
+}
+
+.home-content {
+  text-align: center;
 }
 
 .home-content .text {
-  font-family: MicrosoftJhengHeiUI;
+  font-family: Cubic;
   font-size: 48px;
   font-weight: 300;
   line-height: 1.2;
@@ -27,8 +43,8 @@
 .home-content .money {
   position: relative;
 
-  font-family: AgencyFB-Reg;
-  font-size: 120px;
+  font-family: Cubic;
+  font-size: 100px;
   font-weight: 400;
   line-height: 1;
   letter-spacing: normal;
