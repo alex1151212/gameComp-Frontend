@@ -7,8 +7,12 @@ const Home: React.FC<HomeProps> = () => {
       <div className="home-logo">
         <p>Innovation</p>
         <div>
-          <span className="home-logo-yello">Game</span>
-          <span>Design</span>
+          <span className="home-logo-yello">
+            <p>Game</p>
+          </span>
+          <span>
+            <p>Design</p>
+          </span>
         </div>
       </div>
       <div className="home-content">

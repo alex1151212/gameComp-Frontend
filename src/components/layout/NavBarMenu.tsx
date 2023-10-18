@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 interface NavBarMenuProps {}
@@ -36,10 +36,6 @@ const NavBarMenu: React.FC<NavBarMenuProps> = () => {
   const linkHandler = (path: string) => {
     navigate(path);
   };
-
-  useEffect(() => {
-    console.log("/home" == location.pathname);
-  }, [location]);
 
   return (
     <div className="navbar-menu">

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-interface HomeProps {}
+interface AgendaProps {}
 
-const Agenda: React.FC<HomeProps> = () => {
+const Agenda: React.FC<AgendaProps> = () => {
   const [agenda, setAgenda] = useState<{ [key: string]: string }>({}); // [games, setGames
   const getAgenda = async () => {
     const response = await fetch("./fakeAgendaData.json");

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 interface RulesProps {}
 
 const Rules: React.FC<RulesProps> = () => {
-  const [rewardList, setRewardList] = useState<{ [key: string]: string }>({}); // [games, setGames
+  const [rewardList, setRewardList] = useState<{ [key: string]: string }>({});
   const getAgenda = async () => {
     const response = await fetch("./fakeRuleData.json");
     const rewardListData = await response.json();
@@ -14,29 +14,30 @@ const Rules: React.FC<RulesProps> = () => {
       setRewardList(item);
     });
   }, []);
+
   return (
     <div className="rules">
       <div className="rules-content">
         <div className="rules-content-schedule-wrapper">
           <h1 className="rules-content-schedule-header">重要日程</h1>
           <div className="rules-content-schedule">
+            <div className="rules-content-schedule-date">
+              <p>2021/12/01</p>
+              <p>2021/12/30</p>
+              <p>2022/01/10</p>
+              <p>2022/01/18</p>
+            </div>
             <div className="rules-content-schedule-bar">
-              <div>
-                <p>2021/12/01</p>
-                <p>網頁上線及隊伍帳戶建構</p>
-              </div>
-              <div>
-                <p>2021/12/30</p>
-                <p>初賽上傳截止日期(上傳影片及文件)</p>
-              </div>
-              <div>
-                <p>2022/01/10</p>
-                <p>公告複賽入選隊伍</p>
-              </div>
-              <div>
-                <p>2022/01/18</p>
-                <p>複賽隊伍DEMO日</p>
-              </div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <div className="rules-content-schedule-describe">
+              <p>網頁上線及隊伍帳戶建構</p>
+              <p>初賽上傳截止日期(上傳影片及文件)</p>
+              <p>公告複賽入選隊伍</p>
+              <p>複賽隊伍DEMO日</p>
             </div>
           </div>
         </div>

@@ -4,7 +4,10 @@
   display: flex;
   text-align: center;
   flex-direction: column;
-  padding: 50px 0;
+  padding: 30px 50px 60px 50px;
+}
+.agenda-content > h1 {
+  margin-bottom: 20px;
 }
 
 .agenda-content-table {

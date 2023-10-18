@@ -4,6 +4,8 @@
   width: 100%;
   height: 100%;
   overflow: auto;
+
+  font-size: 16px;
 }
 
 .rules div > h1 {
@@ -16,7 +18,7 @@
 
 .rules-content {
   overflow: auto;
-  padding: 50px 5%;
+  padding: 30px 50px 60px 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,15 +35,21 @@
 }
 
 .rules-content-schedule {
-  min-height: calc(30px + 6em);
-  font-size: 20px;
+  
+}
+
+.rules-content-schedule-date,
+.rules-content-schedule-describe {
+  display: flex;
+  justify-content: space-between;
+
+  gap:1em
 }
 
 .rules-content-schedule-bar {
   position: relative;
   border: rgb(97, 113, 134) solid 2px;
-
-  transform: translate(0, calc((30px + 6em) / 2));
+  margin: 20px 0;
 }
 
 .rules-content-schedule-bar > div {
@@ -53,13 +61,13 @@
   border-radius: 8px;
   background-color: #ffffff;
 
-  box-shadow: 0px 0px 50px 10px rgba(224, 58, 221, 1);
-  -webkit-box-shadow: 0px 0px 50px 10px rgba(224, 58, 221, 1);
-  -moz-box-shadow: 0px 0px 50px 10px rgba(224, 58, 221, 1);
+  box-shadow: 0px 0px 30px 2px rgba(255, 255, 0, 1);
+  -webkit-box-shadow: 0px 0px 30px 2px rgba(255, 255, 0, 1);
+  -moz-box-shadow: 0px 0px 30px 2px rgba(255, 255, 0, 1);
 }
 
 .rules-content-schedule-bar > div:nth-child(1) {
-  left: calc(0%);
+  left: calc(0% - 1px);
 }
 .rules-content-schedule-bar > div:nth-child(2) {
   left: calc((100% - 30px) / 3);
@@ -68,7 +76,7 @@
   left: calc((100% - 30px) * 2 / 3);
 }
 .rules-content-schedule-bar > div:nth-child(4) {
-  left: calc(100% - 30px);
+  left: calc(100% - 30px + 1px);
 }
 
 .rules-content-schedule-bar > div p {
@@ -97,7 +105,7 @@
 }
 
 .rules-content-competition-rules ol > li {
-  font-size: 20px;
+  /* font-size: 20px; */
   margin: 0 0 1em calc(1.3em);
 }
 
@@ -109,7 +117,7 @@
 }
 
 .rules-content-reward-table {
-  font-size: 20px;
+  /* font-size: 20px; */
 }
 .rules-content-reward-table tr td {
   width: 50%;
@@ -117,7 +125,7 @@
 }
 
 .rules-content-reward-table tr {
-  font-size: 20px;
+  /* font-size: 20px; */
 }
 
 .rules-content-reward-table tr td:nth-child(1) {

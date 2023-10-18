@@ -35,6 +35,7 @@
   text-decoration: none;
   /* text-wrap: nowrap; */
   list-style: none;
+  transition-duration: 0.5s ;
 }
 
 .navbar-menu-nav-item:hover {
