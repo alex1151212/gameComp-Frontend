@@ -1,74 +1,18 @@
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import "./style/App.css";
+import { Outlet, useLocation } from "react-router-dom";
 import NavBarMenu from "./components/layout/NavBarMenu";
+import NavBarMobileMenu from "./components/layout/NavBarMobileMenu";
 import useRwd from "./hook/useRwd";
-import MenuIcon from "./assets/images/svg/menu-icon";
 import router from "./routers";
-import { useState } from "react";
+import "./style/App.css";
 
 function App() {
   const { isMobile } = useRwd();
 
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
-  const linkHandler = (path: string) => {
-    navigate(path);
-  };
 
   return (
     <div className="layout">
-      {isMobile ? (
-        <div className="navbar-menu-mobile">
-          <div
-            className="navbar-menu-mobile-menu-icon"
-            onClick={() => {
-              setIsMobileMenuOpen(true);
-            }}
-          >
-            {isMobileMenuOpen || <MenuIcon />}
-          </div>
-          <div
-            className={`navbar-menu-nav-mobile ${isMobileMenuOpen || "close"}`}
-          >
-            <div
-              className="navbar-menu-mobile-close-icon"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-              }}
-            >
-              ×
-            </div>
-            <ul>
-              {router.map((item) => (
-                <li
-                  key={item.path}
-                  className={`navbar-menu-nav-mobile-item ${
-                    item.path == location.pathname ? "active" : ""
-                  }`}
-                >
-                  <a
-                    href="#"
-                    onClick={(event) => {
-                      event.preventDefault();
-                      linkHandler(item.path);
-                    }}
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div
-            className={`navbar-menu-nav-mobile-mask ${
-              isMobileMenuOpen || "close"
-            }`}
-          ></div>
-        </div>
-      ) : (
-        <NavBarMenu />
-      )}
+      {isMobile ? <NavBarMobileMenu /> : <NavBarMenu />}
 
       <div className={`content ${isMobile ? "mobile" : ""}`}>
         <div className={`content-body ${isMobile ? "mobile" : ""}`}>

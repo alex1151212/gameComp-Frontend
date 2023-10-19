@@ -3,14 +3,14 @@ interface RulesProps {}
 
 const Rules: React.FC<RulesProps> = () => {
   const [rewardList, setRewardList] = useState<{ [key: string]: string }>({});
-  const getAgenda = async () => {
+  const getRewardList = async () => {
     const response = await fetch("./fakeRuleData.json");
     const rewardListData = await response.json();
     return rewardListData;
   };
 
   useEffect(() => {
-    getAgenda().then((item) => {
+    getRewardList().then((item) => {
       setRewardList(item);
     });
   }, []);
@@ -22,10 +22,10 @@ const Rules: React.FC<RulesProps> = () => {
           <h1 className="rules-content-schedule-header">重要日程</h1>
           <div className="rules-content-schedule">
             <div className="rules-content-schedule-date">
-              <p>2021/12/01</p>
-              <p>2021/12/30</p>
-              <p>2022/01/10</p>
-              <p>2022/01/18</p>
+              <p>2023/11/29</p>
+              <p>2023/12/20</p>
+              <p>2024/12/25</p>
+              <p>2024/01/06</p>
             </div>
             <div className="rules-content-schedule-bar">
               <div></div>
