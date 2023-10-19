@@ -27,13 +27,10 @@
 }
 
 .navbar-menu-nav-item {
-  /* text-shadow: 0 0 5px rgba(244, 41, 255, 0.83); */
   font-family: Cubic;
 
-  background-color: black;
   color: #fff;
   text-decoration: none;
-  /* text-wrap: nowrap; */
   list-style: none;
   transition-duration: 0.5s;
 }
