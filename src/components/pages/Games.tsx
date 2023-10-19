@@ -6,7 +6,7 @@ interface HomeProps {}
 const Home: React.FC<HomeProps> = () => {
   const [games, setGames] = useState<GamesType[]>([]); // [games, setGames
   const getGames = async () => {
-    const response = await fetch("data/fakeGamesData.json");
+    const response = await fetch("assets/data/fakeGamesData.json");
     const games = await response.json();
     return games;
   };
