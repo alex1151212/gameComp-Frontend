@@ -2,9 +2,9 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
-import NTUImage from "../../assets/GameNTU_01.jpg";
 interface GameCardProps {
   name: string;
+  imgLink: string;
   reward?: string;
   pdfLink: string;
   youtubeLink: string;
@@ -13,13 +13,14 @@ interface GameCardProps {
 const GameCard: React.FC<GameCardProps> = ({
   name,
   reward,
+  imgLink,
   pdfLink,
   youtubeLink,
 }) => {
   return (
     <div className="game-card">
       <div className="game-card-image">
-        <img src={NTUImage} alt="" />
+        <img src={`assets/images/game/${imgLink}`} alt="" />
       </div>
       <div className="game-card-content">
         <p>{name}</p>

@@ -16,9 +16,9 @@
   width: fit-content;
   font-family: SpaceAge;
   text-align: center;
-  font-size: 5.5rem;
+  font-size: 4rem;
   text-wrap: nowrap;
-  -webkit-box-reflect: below -42px linear-gradient(transparent, transparent, #0004);
+  -webkit-box-reflect: below -3rem linear-gradient(transparent, transparent, #0004);
 }
 
 .home-logo > div {
@@ -36,7 +36,7 @@
 
 .home-content .text {
   font-family: Cubic;
-  font-size: 5rem;
+  font-size: 3rem;
   font-weight: 300;
   line-height: 1.2;
   letter-spacing: 1.2rem;
@@ -45,14 +45,14 @@
 .home-content .money {
   position: relative;
   font-family: Cubic;
-  font-size: 7rem;
+  font-size: 4rem;
   font-weight: 400;
   line-height: 1;
   letter-spacing: normal;
 }
 
 .home-content-prize-pool {
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 /* .home-content-money-mask-layout {
@@ -90,6 +90,18 @@
 }
 .home-logo div span:nth-child(even) p {
   animation-delay: 1.2s;
+}
+
+@media screen and (max-width: 480px) {
+  .home-logo {
+    font-size: 5.5rem;
+  }
+  .home-content .text {
+    font-size: 5rem;
+  }
+  .home-content .money {
+    font-size: 7rem;
+  }
 }
 
 @keyframes logoAnimateYello {
