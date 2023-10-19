@@ -4,7 +4,7 @@ interface RulesProps {}
 const Rules: React.FC<RulesProps> = () => {
   const [rewardList, setRewardList] = useState<{ [key: string]: string }>({});
   const getRewardList = async () => {
-    const response = await fetch("./fakeRuleData.json");
+    const response = await fetch("data/fakeRuleData.json");
     const rewardListData = await response.json();
     return rewardListData;
   };

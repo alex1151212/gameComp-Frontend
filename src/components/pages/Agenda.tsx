@@ -4,7 +4,7 @@ interface AgendaProps {}
 const Agenda: React.FC<AgendaProps> = () => {
   const [agenda, setAgenda] = useState<string[]>([]); // [games, setGames
   const getAgenda = async () => {
-    const response = await fetch("./awardList.json");
+    const response = await fetch("data/awardList.json");
     const agendaData = await response.json();
     return agendaData;
   };
