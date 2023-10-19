@@ -25,6 +25,7 @@ const Home: React.FC<HomeProps> = () => {
             key={game.name}
             name={game.name}
             reward={game.reward}
+            imgLink={game.imgLink}
             pdfLink={game.pdfLink}
             youtubeLink={game.youtubeLink}
           />

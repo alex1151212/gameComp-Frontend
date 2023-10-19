@@ -4,7 +4,7 @@ interface AgendaProps {}
 const Agenda: React.FC<AgendaProps> = () => {
   const [agenda, setAgenda] = useState<string[]>([]); // [games, setGames
   const getAgenda = async () => {
-    const response = await fetch("data/awardList.json");
+    const response = await fetch("assets/data/awardList.json");
     const agendaData = await response.json();
     return agendaData;
   };
@@ -20,16 +20,20 @@ const Agenda: React.FC<AgendaProps> = () => {
       <div className="agenda-content">
         <h1>比賽結果</h1>
         <table className="agenda-content-table">
-          <tr>
-            <td>獎項</td>
-            <td>隊名</td>
-          </tr>
-          {agenda.map((awardName) => (
+          <thead>
             <tr>
-              <td>{awardName}</td>
-              <td>{"尚未公布"}</td>
+              <td>獎項</td>
+              <td>隊名</td>
             </tr>
-          ))}
+          </thead>
+          <tbody>
+            {agenda.map((awardName) => (
+              <tr key={awardName}>
+                <td>{awardName}</td>
+                <td>{"尚未公布"}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </div>
