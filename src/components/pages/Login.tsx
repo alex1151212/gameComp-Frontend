@@ -6,9 +6,14 @@ const Login: React.FC<HomeProps> = () => {
   return (
     <div className="login">
       <div className="login-content">
-        <div className="login-content-body">
-          <h2>Login</h2>
-          {/*  <div className="login-content-body-input">
+        <div className="login-content-body-wrapper">
+          <div className="login-content-body">
+            <div className="login-content-body-display">
+              <h2>Login</h2>
+              <h1>施工中</h1>
+            </div>
+            <div className="abc"></div>
+            {/*  <div className="login-content-body-input">
             <div className="login-content-body-input-item">
               <label htmlFor="username"></label>
               <input type="text" name="username" />
@@ -18,10 +23,10 @@ const Login: React.FC<HomeProps> = () => {
               <input type="password" name="password" />
             </div>
           </div> */}
-          <h1>施工中</h1>
-        </div>
-        <div className="login-content-cube">
-          <Cube />
+          </div>
+          <div className="login-content-cube">
+            <Cube />
+          </div>
         </div>
       </div>
     </div>
