@@ -1,5 +1,7 @@
 /* GameCard Component */
 .game-card {
+  font-family: Cubic;
+  font-size: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,6 +20,7 @@
   width: 100%;
   transition-duration: 0.3s;
   cursor: pointer;
+  
 }
 
 .game-card:hover {

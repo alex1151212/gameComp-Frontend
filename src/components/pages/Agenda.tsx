@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 interface AgendaProps {}
 
 const Agenda: React.FC<AgendaProps> = () => {
-  const [agenda, setAgenda] = useState<{ [key: string]: string }>({}); // [games, setGames
+  const [agenda, setAgenda] = useState<string[]>([]); // [games, setGames
   const getAgenda = async () => {
-    const response = await fetch("./fakeAgendaData.json");
+    const response = await fetch("./awardList.json");
     const agendaData = await response.json();
     return agendaData;
   };
@@ -24,10 +24,10 @@ const Agenda: React.FC<AgendaProps> = () => {
             <td>獎項</td>
             <td>隊名</td>
           </tr>
-          {Object.entries(agenda).map(([key, value]) => (
+          {agenda.map((awardName) => (
             <tr>
-              <td>{key}</td>
-              <td>{value}</td>
+              <td>{awardName}</td>
+              <td>{"尚未公布"}</td>
             </tr>
           ))}
         </table>

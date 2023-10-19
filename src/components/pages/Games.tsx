@@ -22,6 +22,7 @@ const Home: React.FC<HomeProps> = () => {
       <div className="games-content">
         {games.map((game) => (
           <GameCard
+            key={game.name}
             name={game.name}
             reward={game.reward}
             pdfLink={game.pdfLink}

@@ -6,8 +6,9 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5),
+    0 0 8px rgba(255, 255, 255, 0.5);
+  padding: 30px 50px 60px 50px;
   gap: 2em;
 }
 
@@ -15,13 +16,14 @@
   width: fit-content;
   font-family: SpaceAge;
   text-align: center;
-  font-size: 68px;
+  font-size: 5.5rem;
   text-wrap: nowrap;
+  -webkit-box-reflect: below -42px linear-gradient(transparent, transparent, #0004);
 }
 
 .home-logo > div {
   display: flex;
-  gap: 0.5em;
+  gap: 0.5rem;
 }
 
 .home-logo-yello {
@@ -34,25 +36,27 @@
 
 .home-content .text {
   font-family: Cubic;
-  font-size: 48px;
+  font-size: 5rem;
   font-weight: 300;
   line-height: 1.2;
-  letter-spacing: 24px;
+  letter-spacing: 1.2rem;
 }
 
 .home-content .money {
   position: relative;
-
   font-family: Cubic;
-  font-size: 100px;
+  font-size: 7rem;
   font-weight: 400;
   line-height: 1;
   letter-spacing: normal;
 }
 
-.home-content-money-mask-layout {
-  position: absolute;
+.home-content-prize-pool {
+  margin-top: 50px;
+}
 
+/* .home-content-money-mask-layout {
+  position: absolute;
   background-image: url("../../assets/images/BG.jpg");
   background-position: 50% 50%;
   background-size: 100% 100%;
@@ -62,16 +66,116 @@
   left: 0;
   width: calc(75vw - 11vw);
   height: 1em;
-  /* background-color: blueviolet; */
   animation: animationMaskLayout 4s linear 0s infinite;
-}
+} */
 
-@keyframes animationMaskLayout {
+/* @keyframes animationMaskLayout {
   0% {
     width: 0;
   }
 
   100% {
     width: calc(75vw - 11vw);
+  }
+} */
+.home-logo p {
+  animation: logoAnimate 5s infinite;
+}
+.home-logo p:nth-child(1) {
+  animation-delay: 0.4s;
+}
+.home-logo div span:nth-child(odd) p {
+  animation: logoAnimateYello 5s infinite;
+  animation-delay: 0.8s;
+}
+.home-logo div span:nth-child(even) p {
+  animation-delay: 1.2s;
+}
+
+@keyframes logoAnimateYello {
+  0%,
+  18%,
+  20%,
+  50.1%,
+  60%,
+  65.1%,
+  80%,
+  90.1%,
+  92% {
+    color: #42410e;
+    text-shadow: none;
+  }
+
+  18.1%,
+  20.1%,
+  30%,
+  50%,
+  60.1%,
+  65%,
+  80.1%,
+  90%,
+  92.1%,
+  100% {
+    color: #fff;
+    text-shadow: 0 0 10px #f4f403, 0 0 20px #f4ec03, 0 0 40px #f4ec03,
+      0 0 80px #f4ec03, 0 0 160px #f4ec03, 0 0 400px #f4ec03;
+  }
+}
+@keyframes logoAnimate {
+  0%,
+  18%,
+  20%,
+  50.1%,
+  60%,
+  65.1%,
+  80%,
+  90.1%,
+  92% {
+    color: #0e3742;
+    text-shadow: none;
+  }
+
+  18.1%,
+  20.1%,
+  30%,
+  50%,
+  60.1%,
+  65%,
+  80.1%,
+  90%,
+  92.1%,
+  100% {
+    color: #fff;
+    text-shadow: 0 0 10px #03bcf4, 0 0 20px #03bcf4, 0 0 40px #03bcf4,
+      0 0 80px #03bcf4, 0 0 160px #03bcf4, 0 0 400px #03bcf4;
+  }
+}
+@keyframes animate {
+  0%,
+  18%,
+  20%,
+  50.1%,
+  60%,
+  65.1%,
+  80%,
+  90.1%,
+  92% {
+    color: #0e3742;
+    text-shadow: none;
+  }
+
+  18.1%,
+  20.1%,
+  30%,
+  50%,
+  60.1%,
+  65%,
+  80.1%,
+  90%,
+  92.1%,
+  100% {
+    color: #fff;
+    text-shadow: 0 0 10px #03bcf4, 0 0 20px #03bcf4, 0 0 40px #03bcf4,
+      0 0 80px #03bcf4, 0 0 160px #03bcf4, 0 0 400px #03bcf4;
   }
 }

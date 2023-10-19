@@ -1,6 +1,8 @@
 .sponsor-card {
+  font-size: 16px;
+  font-family: Cubic;
   position: relative;
-  width: 150px;
+  width: 200px;
   height: 250px;
   background-color: #111;
 
@@ -31,7 +33,7 @@
 }
 .sponsor-card-content h3 {
   font-weight: 600;
-  letter-spacing: 0.1em;
+  /* letter-spacing: 0.1em; */
   color: var(--clr);
 }
 .sponsor-card-content p {
@@ -46,7 +48,6 @@
   display: inline-block;
   margin-top: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
 }
 
 .sponsor-card-imgbox,
@@ -85,8 +86,8 @@
 
 .sponsor-card-textbox h3 {
   color: #111;
-  font-size: 1.25em;
-  letter-spacing: 0.15em;
+  font-size: 16px;
+  letter-spacing: 2.4px;
   font-weight: 500;
   text-transform: uppercase;
   background: #fff;

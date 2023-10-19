@@ -1,34 +1,8 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import router from "../../routers";
 
 interface NavBarMenuProps {}
-
-const navbar = [
-  {
-    path: "/home",
-    name: "HOME",
-  },
-  {
-    path: "/games",
-    name: "GAMES",
-  },
-  {
-    path: "/rules",
-    name: "RULES",
-  },
-  {
-    path: "/agenda",
-    name: "AGENDA",
-  },
-  {
-    path: "/sponsors",
-    name: "SPONSORS",
-  },
-  {
-    path: "/login",
-    name: "LOGIN",
-  },
-];
 
 const NavBarMenu: React.FC<NavBarMenuProps> = () => {
   const navigate = useNavigate();
@@ -40,7 +14,7 @@ const NavBarMenu: React.FC<NavBarMenuProps> = () => {
   return (
     <div className="navbar-menu">
       <ul className="navbar-menu-nav">
-        {navbar.map((item) => (
+        {router.map((item) => (
           <li
             className={`navbar-menu-nav-item ${
               item.path == location.pathname ? "active" : ""
@@ -59,7 +33,8 @@ const NavBarMenu: React.FC<NavBarMenuProps> = () => {
           </li>
         ))}
       </ul>
-      <div className="navbar-menu-nav-line"></div>
+
+      {/* <div className="navbar-menu-nav-line"></div> */}
     </div>
   );
 };

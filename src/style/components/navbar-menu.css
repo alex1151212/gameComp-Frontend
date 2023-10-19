@@ -1,6 +1,6 @@
 .navbar-menu {
   position: relative;
-  font-size: 30px;
+  font-size: 1.8rem;
   z-index: 1;
 }
 
@@ -35,15 +35,18 @@
   text-decoration: none;
   /* text-wrap: nowrap; */
   list-style: none;
-  transition-duration: 0.5s ;
+  transition-duration: 0.5s;
 }
 
-.navbar-menu-nav-item:hover {
-  color: yellow;
+.navbar-menu-nav-item:hover a {
+  color: 03bcf4;
+  text-shadow: 0 0 10px #03bcf4, 0 0 20px #03bcf4, 0 0 40px #03bcf4,
+    0 0 80px #03bcf4, 0 0 160px #03bcf4, 0 0 400px #03bcf4;
 }
 
-.navbar-menu-nav-item > a {
+.navbar-menu-nav-item a {
   color: inherit;
+  text-transform: uppercase;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.83);
 }
 

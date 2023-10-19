@@ -59,16 +59,20 @@ const Rules: React.FC<RulesProps> = () => {
         <div className="rules-content-reward">
           <h1>獎項</h1>
           <table className="rules-content-reward-table">
-            <tr>
-              <td>獎項</td>
-              <td>隊名</td>
-            </tr>
-            {Object.entries(rewardList).map(([key, value]) => (
+            <thead>
               <tr>
-                <td>{key}</td>
-                <td>{value}</td>
+                <td>獎項</td>
+                <td>隊名</td>
               </tr>
-            ))}
+            </thead>
+            <tbody>
+              {Object.entries(rewardList).map(([key, value]) => (
+                <tr key={key}>
+                  <td>{key}</td>
+                  <td>{value}</td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       </div>
