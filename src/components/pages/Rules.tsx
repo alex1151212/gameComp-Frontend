@@ -34,7 +34,7 @@ const Rules: React.FC<RulesProps> = () => {
               <div></div>
             </div>
             <div className="rules-content-schedule-describe">
-              <p>網頁上線及隊伍帳戶建構</p>
+              <p>報名開始日期</p>
               <p>初賽上傳截止日期(上傳影片及文件)</p>
               <p>公告複賽入選隊伍</p>
               <p>複賽隊伍DEMO日</p>
