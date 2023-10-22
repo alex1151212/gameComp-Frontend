@@ -1,0 +1,19 @@
+.info {
+  font-family: Cubic;
+}
+.info-content {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  padding: 2rem 3rem 0.5rem 3rem;
+}
+
+.info-content > h1 {
+  margin-bottom: 1.5rem;
+  font-size: 3rem;
+}
+
+.info-content-card-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 2fr));
+}

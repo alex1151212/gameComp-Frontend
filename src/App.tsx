@@ -31,9 +31,52 @@ function App() {
         </div>
 
         <div className={`content-footer ${isMobile ? "mobile" : ""}`}>
-          <div className="content-footer-dot"></div>
-          <div className="content-footer-line"></div>
-          <div className="content-footer-dot"></div>
+          <div className="content-footer-border">
+            <div className="dot"></div>
+            <div className="line"></div>
+            <div className="dot"></div>
+          </div>
+        </div>
+      </div>
+      <div className="footer">
+        {isMobile && (
+          <div className="footer-border">
+            <div className="dot"></div>
+            <div className="line"></div>
+            <div className="dot"></div>
+          </div>
+        )}
+
+        <div className="footer-content">
+          <div>
+            <p>2024創意遊戲設計競賽</p>
+            <div className="footer-logo">
+              <p>Innovation</p>
+              <div>
+                <span className="footer-logo-yello">
+                  <p>Game</p>
+                </span>
+                <span>
+                  <p>Design</p>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <table>
+              <tbody>
+                <tr>
+                  <td>主辦單位：</td>
+                  <td>臺灣科技大學</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div className="footer-border">
+          <div className="dot"></div>
+          <div className="line"></div>
+          <div className="dot"></div>
         </div>
       </div>
     </div>
