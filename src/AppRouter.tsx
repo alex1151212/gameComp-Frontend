@@ -7,6 +7,7 @@ import Sponsors from "./components/pages/Sponsors";
 import Rules from "./components/pages/Rules";
 import Agenda from "./components/pages/Agenda";
 import Login from "./components/pages/Login";
+import Info from "./components/pages/Info";
 const { PUBLIC_URL } = import.meta.env;
 
 const AppRoutes: FC = () => {
@@ -17,8 +18,10 @@ const AppRoutes: FC = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/games" element={<Games />} />
           <Route path="/rules" element={<Rules />} />
-          <Route path="/sponsors" element={<Sponsors />} />
           <Route path="/agenda" element={<Agenda />} />
+          <Route path="/info" element={<Info />} />
+          <Route path="/sponsors" element={<Sponsors />} />
+
           <Route path="/login" element={<Login />} />
 
           <Route index path="/" element={<Navigate to={"/home"} />} />

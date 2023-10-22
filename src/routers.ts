@@ -11,9 +11,14 @@ const router = [
     path: "/rules",
     name: "rules",
   },
+
   {
     path: "/agenda",
     name: "agenda",
+  },
+  {
+    path: "/info",
+    name: "info",
   },
   {
     path: "/sponsors",
@@ -23,5 +28,13 @@ const router = [
     path: "/login",
     name: "login",
   },
+  // {
+  //   path: "/logout",
+  //   name: "logout",
+  // },
+  // {
+  //   path: "/upload",
+  //   name: "upload",
+  // },
 ];
 export default router;

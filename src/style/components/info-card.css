@@ -1,0 +1,99 @@
+.info-card {
+  font-family: Cubic;
+  position: relative;
+  width: 300px;
+  padding: 20px;
+  margin: 20px;
+  background: #222;
+  transition-duration: 0.5s;
+  box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #03bcf4;
+}
+.info-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 20px solid transparent;
+  border-top: 20px solid #0000ff;
+  border-right: 20px solid #0000ff;
+}
+.info-card.active::before {
+  border-top: 20px solid #ffff00;
+  border-right: 20px solid #ffff00;
+}
+
+.info-card-icon {
+  margin-bottom: 10px;
+  max-width: 90px;
+}
+
+.info-card-icon > svg {
+  fill: #0000ff;
+  width: 100%;
+  height: 100%;
+}
+.info-card.active .info-card-icon > svg {
+  fill: #ffff00;
+  width: 100%;
+  height: 100%;
+}
+
+.info-card-content {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+.info-card.active .info-card-content {
+  min-height: 150px;
+  height: auto;
+}
+.info-card-content::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(transparent, #222);
+}
+.info-card.active .info-card-content::before {
+  display: none;
+}
+
+.info-card-content h3 {
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.info-card-content p {
+  color: #ccc;
+  font-size: 1em;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.info-card .info-card-content-more {
+  position: relative;
+  padding: 10px 15px;
+  background: #0000ff;
+  margin-top: 15px;
+  display: inline-block;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 2px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.info-card.active .info-card-content-more {
+  background: #ffff00;
+  color: #222;
+}
+.info-card .info-card-content-more::before {
+  content: "Read more";
+}
+.info-card.active .info-card-content-more::before {
+  content: "Read less";
+}
