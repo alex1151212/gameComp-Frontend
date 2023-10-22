@@ -10,7 +10,7 @@
 }
 @font-face {
   font-family: "SpaceAge";
-  src: url("../assets/font/spaceAge.ttf") format("truetype");
+  src: url("../assets/font/Exan-Regular.ttf") format("truetype");
 }
 
 * {
@@ -22,7 +22,7 @@ html {
   font-size: 1.6vw;
 }
 body {
-  overflow: hidden;
+  overflow: auto;
 }
 a:hover {
   text-decoration: none;
@@ -42,7 +42,7 @@ a:hover {
   height: 100%;
 
   background-color: black;
-  padding: 1rem 3rem 1rem 3rem;
+  padding: 1rem 3rem 0.5rem 3rem;
 
   overflow-y: scroll;
 }
@@ -52,7 +52,7 @@ a:hover {
   display: flex;
   flex-direction: column;
 
-  height: 100%;
+  flex: 1;
 }
 /* .content.mobile {
   padding-top: 30%;
@@ -70,7 +70,10 @@ a:hover {
   flex-grow: 1;
   padding-top: 20rem;
   border: 5px solid blue;
-  border-radius: 40px;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  border-bottom: none;
+  margin-bottom: 10px;
 }
 
 .content-body-mobile-logo {
@@ -109,10 +112,6 @@ a:hover {
 }
 
 .content-footer {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-
   padding-top: 10px;
   padding-bottom: 10px;
 
@@ -120,17 +119,76 @@ a:hover {
 }
 
 .content-footer.mobile {
-  padding-bottom: 10px;
+  display: none;
 }
 
-.content-footer:not(.mobile) .content-footer-line {
+.content-footer-border {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.footer-border:not(.mobile) .line,
+.content-footer:not(.mobile) .line {
   width: 100%;
   height: 5px;
   background-color: blue;
 }
 
-.content-footer:not(.mobile) .content-footer-dot {
+.footer-border:not(.mobile) .dot,
+.content-footer:not(.mobile) .dot {
   width: 5px;
   height: 5px;
-  background-color: blue;
+  background-color: #ff0;
+}
+
+.footer {
+  width: 100%;
+  background: rgb(0, 0, 0);
+  /* border: blue 5px solid; */
+}
+
+.footer-border {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.footer-content {
+  font-family: Cubic;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  flex: 1;
+  border: #0000ff 5px solid;
+  font-size: 0.5rem;
+
+  padding: 0.5rem;
+  margin-bottom: 10px;
+
+  border-top: none;
+  border-bottom: none;
+}
+
+.footer-logo {
+  padding-top: 1rem;
+  font-family: SpaceAge;
+  font-size: 0.7rem;
+  text-align: center;
+}
+.footer-logo > div {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.footer-logo p {
+  color: #fff;
+  text-shadow: 0 0 10px #03bcf4, 0 0 20px #03bcf4;
+}
+
+.footer-logo-yello p {
+  color: rgba(255, 255, 0, 0.9);
+  text-shadow: 0 0 10px #f4f403, 0 0 20px #f4ec03;
 }
