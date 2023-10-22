@@ -2,7 +2,7 @@
 
 .home {
   display: flex;
-  height: 100%;
+  height: calc(100vh - 4.5rem);
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -16,7 +16,7 @@
   width: fit-content;
   font-family: SpaceAge;
   text-align: center;
-  font-size: 4rem;
+  font-size: 5rem;
   text-wrap: nowrap;
   -webkit-box-reflect: below -3rem linear-gradient(transparent, transparent, #0004);
 }
@@ -134,35 +134,6 @@
   }
 }
 @keyframes logoAnimate {
-  0%,
-  18%,
-  20%,
-  50.1%,
-  60%,
-  65.1%,
-  80%,
-  90.1%,
-  92% {
-    color: #0e3742;
-    text-shadow: none;
-  }
-
-  18.1%,
-  20.1%,
-  30%,
-  50%,
-  60.1%,
-  65%,
-  80.1%,
-  90%,
-  92.1%,
-  100% {
-    color: #fff;
-    text-shadow: 0 0 10px #03bcf4, 0 0 20px #03bcf4, 0 0 40px #03bcf4,
-      0 0 80px #03bcf4, 0 0 160px #03bcf4, 0 0 400px #03bcf4;
-  }
-}
-@keyframes animate {
   0%,
   18%,
   20%,
