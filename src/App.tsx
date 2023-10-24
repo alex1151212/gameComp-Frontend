@@ -17,10 +17,13 @@ function App() {
       <div className={`content ${isMobile ? "mobile" : ""}`}>
         <div className={`content-body ${isMobile ? "mobile" : ""}`}>
           {isMobile && (
-            <div className="content-body-mobile-logo">
-              <p>Innovation</p>
-              <p className="yellow">Game</p>
-              <p>Design</p>
+            <div className="content-body-mobile-logo-wrapper">
+              <div className="content-body-mobile-logo">
+                <span>I</span>
+                <span className="yellow">G</span>
+                <span>D</span>
+              </div>
+
               <div className="content-body-mobile-logo-path">
                 {router.find((route) => route.path === location.pathname)?.name}
               </div>
