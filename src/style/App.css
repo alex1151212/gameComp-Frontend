@@ -76,7 +76,7 @@ a:hover {
   margin-bottom: 10px;
 }
 
-.content-body-mobile-logo {
+.content-body-mobile-logo-wrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -95,6 +95,10 @@ a:hover {
   padding: 8px 10px 10px 15px;
 
   text-shadow: 0 0 10px #03bcf4;
+}
+.content-body-mobile-logo {
+  display: flex;
+  gap: 10px;
 }
 .content-body-mobile-logo-path {
   font-size: 3rem;
