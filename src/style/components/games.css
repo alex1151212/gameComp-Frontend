@@ -1,8 +1,5 @@
 /* Games page */
 .games {
-  padding: 5vh 2vw 50px 2vw;
-  /* height: calc(100vh - 4.5rem); */
-  height: 100%;
 }
 .games::-webkit-scrollbar {
   display: none;
@@ -10,9 +7,18 @@
 
 .games-content {
   height: 100%;
-  margin: 30px 20px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+.games-content > h1 {
+  margin-bottom: 1.5rem;
+  font-size: 3rem;
+}
+
+.games-content-card-wrapper {
   display: grid;
-  
+
   grid-template-columns: repeat(auto-fill, minmax(250px, 2fr));
   /* grid-template-columns: minmax(250px); */
   grid-gap: 30px;
