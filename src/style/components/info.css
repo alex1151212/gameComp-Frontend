@@ -1,11 +1,9 @@
 .info {
-  font-family: Cubic;
 }
 .info-content {
   display: flex;
   text-align: center;
   flex-direction: column;
-  padding: 2rem 3rem 0.5rem 3rem;
 }
 
 .info-content > h1 {

@@ -1,8 +1,6 @@
 .login {
-  width: 100%;
-  height: var(--page-height);
-  padding: 2rem 3rem 0.5rem 3rem;
 }
+
 .login h1 {
   font-size: 3rem;
 }
@@ -17,8 +15,6 @@
 
   display: flex;
   justify-content: center;
-
-  /* padding-top: 50px; */
 }
 .login-content-body-wrapper {
   height: 100%;

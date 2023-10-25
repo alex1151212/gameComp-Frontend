@@ -29,8 +29,9 @@ function App() {
               </div>
             </div>
           )}
-
-          <Outlet />
+          <div className="content-page">
+            <Outlet />
+          </div>
         </div>
 
         <div className={`content-footer ${isMobile ? "mobile" : ""}`}>
