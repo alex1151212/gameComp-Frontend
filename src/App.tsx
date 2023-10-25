@@ -19,9 +19,9 @@ function App() {
           {isMobile && (
             <div className="content-body-mobile-logo-wrapper">
               <div className="content-body-mobile-logo">
-                <span>I</span>
-                <span className="yellow">G</span>
-                <span>D</span>
+                <div>I</div>
+                <div className="yellow">G</div>
+                <div>D</div>
               </div>
 
               <div className="content-body-mobile-logo-path">
@@ -41,7 +41,7 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="footer">
+      <div className={`footer ${isMobile ? "mobile" : ""}`}>
         {isMobile && (
           <div className="footer-border">
             <div className="dot"></div>
