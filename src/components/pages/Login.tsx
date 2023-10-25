@@ -1,28 +1,55 @@
 import React from "react";
+import useRwd from "../../hook/useRwd";
 import Cube from "../cube3d";
+import { Formik } from "formik";
 interface HomeProps {}
 
 const Login: React.FC<HomeProps> = () => {
+  const { isMobile } = useRwd();
+
   return (
-    <div className="login">
+    <div className={`login ${isMobile && "mobile"}`}>
       <div className="login-content">
         <div className="login-content-body-wrapper">
           <div className="login-content-body">
-            <div className="login-content-body-display">
-              <h2>Login</h2>
-              <h1>施工中</h1>
-            </div>
-            <div className="abc"></div>
-            {/*  <div className="login-content-body-input">
-            <div className="login-content-body-input-item">
-              <label htmlFor="username"></label>
-              <input type="text" name="username" />
-            </div>
-            <div className="login-content-body-input-item">
-              <label htmlFor="password"></label>
-              <input type="password" name="password" />
-            </div>
-          </div> */}
+            <Formik
+              initialValues={{ username: "", password: "" }}
+              onSubmit={(values) => {
+                console.log(values);
+              }}
+            >
+              {({ handleSubmit, setFieldValue }) => (
+                <form
+                  className="login-content-body-form"
+                  onSubmit={handleSubmit}
+                >
+                  <h2>Login</h2>
+                  <div className="login-content-body-input">
+                    <input
+                      type="text"
+                      required
+                      onChange={(e) => {
+                        setFieldValue("username", e.target.value);
+                      }}
+                    />
+                    <span>Username</span>
+                  </div>
+                  <div className="login-content-body-input">
+                    <input
+                      type="password"
+                      required
+                      onChange={(e) => {
+                        setFieldValue("password", e.target.value);
+                      }}
+                    />
+                    <span>Password</span>
+                  </div>
+                  <button type="submit" className="login-content-body-button">
+                    Login
+                  </button>
+                </form>
+              )}
+            </Formik>
           </div>
           <div className="login-content-cube">
             <Cube />
