@@ -1,6 +1,6 @@
 :root {
   --base-font-size: 1.6vw;
-  
+
   --mobile-page-height: calc(100vh - var(--base-font-size) * 31.5);
   --page-height: calc(100vh - var(--base-font-size) * 4.5);
 }

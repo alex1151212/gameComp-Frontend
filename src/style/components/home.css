@@ -1,15 +1,10 @@
 /* Home page  */
 
 .home {
-  display: flex;
-  height: var(--page-height);
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  text-align: center;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.5),
     0 0 8px rgba(255, 255, 255, 0.5);
-  padding: 30px 50px 60px 50px;
-  gap: 2em;
+  gap: 1em;
 }
 
 .home-logo {
@@ -31,6 +26,11 @@
 }
 
 .home-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   text-align: center;
 }
 
