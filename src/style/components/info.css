@@ -13,7 +13,7 @@
 
 .info-content-card-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   place-items: start center;
   grid-gap: 30px;
 }

@@ -6,8 +6,11 @@ import Games from "./components/pages/Games";
 import Sponsors from "./components/pages/Sponsors";
 import Rules from "./components/pages/Rules";
 import Agenda from "./components/pages/Agenda";
-import Login from "./components/pages/Login";
 import Info from "./components/pages/Info";
+import Login from "./components/pages/Login";
+import AuthLayout from "./components/layout/AuthLayout";
+import Logout from "./components/pages/Logout";
+import Register from "./components/pages/Register";
 const { PUBLIC_URL } = import.meta.env;
 
 const AppRoutes: FC = () => {
@@ -23,6 +26,12 @@ const AppRoutes: FC = () => {
           <Route path="/sponsors" element={<Sponsors />} />
 
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
+          <Route path="/auth" element={<AuthLayout />}>
+            <Route path="/auth/upload" element={<>Upload</>} />
+            <Route path="/auth/logout" element={<Logout />} />
+          </Route>
 
           <Route index path="/" element={<Navigate to={"/home"} />} />
         </Route>

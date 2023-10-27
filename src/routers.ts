@@ -28,13 +28,18 @@ const router = [
     path: "/login",
     name: "login",
   },
-  // {
-  //   path: "/logout",
-  //   name: "logout",
-  // },
-  // {
-  //   path: "/upload",
-  //   name: "upload",
-  // },
+  {
+    path: "/register",
+    name: "register",
+    visible: true,
+  },
+  {
+    path: "/auth/upload",
+    name: "upload",
+  },
+  {
+    path: "/auth/logout",
+    name: "logout",
+  },
 ];
 export default router;
