@@ -53,7 +53,7 @@ function App() {
 
         <div className="footer-content">
           <div>
-            <p>2024創意遊戲設計競賽</p>
+            <p>112 臺灣大專院校創意遊戲設計競賽 </p>
             <div className="footer-logo">
               <p>Innovation</p>
               <div>
@@ -70,8 +70,8 @@ function App() {
             <table>
               <tbody>
                 <tr>
-                  <td>主辦單位：</td>
-                  <td>臺灣科技大學</td>
+                  <td>主辦單位：臺灣科技大學數位娛樂科技研究中心</td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
