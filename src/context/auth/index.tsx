@@ -3,7 +3,7 @@ import { AuthContextProps } from "./type";
 
 const initAuthContextPropsState = {
   auth: localStorage.getItem("token")
-    ? { token: localStorage.getItem("token") ?? "" }
+    ? localStorage.getItem("token") ?? ""
     : undefined,
   saveAuth: () => {},
   currentUser: undefined,
