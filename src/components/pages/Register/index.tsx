@@ -49,8 +49,12 @@ const Register: React.FC<RegisterProps> = () => {
                   username: string;
                   confirmPassword: string;
                 }> = {};
+                if (values.email === "") errors.email = "Email is required";
+                if (values.username === "")
+                  errors.username = "Username is required";
+                if (values.password === "")
+                  errors.password = "Password is required";
                 if (!(values.password === values.confirmPassword)) {
-                  errors.password = "Password not match";
                   errors.confirmPassword = "Password not match";
                 }
 
@@ -84,7 +88,7 @@ const Register: React.FC<RegisterProps> = () => {
                 );
               }}
             >
-              {({ handleSubmit, setFieldValue }) => (
+              {({ handleSubmit, setFieldValue, errors }) => (
                 <form
                   className="login-content-body-form"
                   onSubmit={handleSubmit}
@@ -93,42 +97,54 @@ const Register: React.FC<RegisterProps> = () => {
                   <div className="login-content-body-input">
                     <input
                       type="text"
-                      required
+                      // required
                       onChange={(e) => {
                         setFieldValue("email", e.target.value);
                       }}
                     />
                     <span>Email</span>
+                    <p className="login-content-body-input-error">
+                      {errors.email}
+                    </p>
                   </div>
                   <div className="login-content-body-input">
                     <input
                       type="text"
-                      required
+                      // required
                       onChange={(e) => {
                         setFieldValue("username", e.target.value);
                       }}
                     />
                     <span>Username</span>
+                    <p className="login-content-body-input-error">
+                      {errors.username}
+                    </p>
                   </div>
                   <div className="login-content-body-input">
                     <input
                       type="password"
-                      required
+                      // required
                       onChange={(e) => {
                         setFieldValue("password", e.target.value);
                       }}
                     />
                     <span>Password</span>
+                    <p className="login-content-body-input-error">
+                      {errors.password}
+                    </p>
                   </div>
                   <div className="login-content-body-input">
                     <input
                       type="password"
-                      required
+                      // required
                       onChange={(e) => {
                         setFieldValue("confirmPassword", e.target.value);
                       }}
                     />
                     <span>Confirm Password</span>
+                    <p className="login-content-body-input-error">
+                      {errors.confirmPassword}
+                    </p>
                   </div>
                   <button type="submit" className="login-content-body-button">
                     Comfirm

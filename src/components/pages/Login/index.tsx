@@ -37,7 +37,17 @@ const Login: React.FC<LoginProps> = () => {
           <div className="login-content-body">
             <Formik
               initialValues={{ email: "", password: "" }}
-              onSubmit={async (values) => {
+              validate={(values) => {
+                const errors: Partial<{
+                  email: string;
+                  password: string;
+                }> = {};
+                if (values.email === "") errors.email = "Email is required";
+                if (values.password === "")
+                  errors.password = "Password is required";
+                return errors;
+              }}
+              onSubmit={async (values, errors) => {
                 // const token = await handleReCaptchaVerify();
                 // await axios
                 //   .post(import.meta.env.VITE_RECAPTCHA_VERIFY, {
@@ -60,11 +70,18 @@ const Login: React.FC<LoginProps> = () => {
                     const { data } = response;
                     saveAuth(data.data.token);
                     navigate("/auth/upload");
+                  },
+                  (error) => {
+                    error.response?.status === 401 &&
+                      errors.setErrors({
+                        password: "Wrong password or username",
+                        email: "Wrong password or username",
+                      });
                   }
                 );
               }}
             >
-              {({ handleSubmit, setFieldValue }) => (
+              {({ handleSubmit, setFieldValue, errors }) => (
                 <form
                   className="login-content-body-form"
                   onSubmit={handleSubmit}
@@ -79,6 +96,9 @@ const Login: React.FC<LoginProps> = () => {
                       }}
                     />
                     <span>Username</span>
+                    <p className="login-content-body-input-error">
+                      {errors.email}
+                    </p>
                   </div>
                   <div className="login-content-body-input">
                     <input
@@ -89,6 +109,17 @@ const Login: React.FC<LoginProps> = () => {
                       }}
                     />
                     <span>Password</span>
+                    <p className="login-content-body-input-error">
+                      {errors.password}
+                    </p>
+                  </div>
+                  <div
+                    className="login-content-body-register"
+                    onClick={() => {
+                      navigate("/register");
+                    }}
+                  >
+                    register
                   </div>
                   <button type="submit" className="login-content-body-button">
                     Login

@@ -124,6 +124,12 @@
   border-radius: 2px;
 }
 
+.login-content-body-register {
+  width: 50%;
+  padding-left: 0.6rem;
+  cursor: pointer;
+}
+
 .login-content-body-button {
   position: relative;
   font-size: 1rem;
@@ -160,12 +166,36 @@
   align-items: center;
 }
 
+.login-content-body-input-error {
+  font-size: 0.8rem;
+  color: #ff0000;
+}
+
 @media screen and (max-width: 480px) {
   .login {
     height: 100%;
   }
+  .login h2 {
+    font-size: 3rem;
+  }
   .login-content-body {
     width: 90%;
     height: 50%;
+  }
+  .login-content-body-input input {
+    font-size: 2rem;
+  }
+  .login-content-body-input span {
+    font-size: 1.5rem;
+  }
+  .login-content-body-input input:valid ~ span,
+  .login-content-body-input input:focus ~ span {
+    font-size: 1rem;
+  }
+  .login-content-body-register {
+    font-size: 1.5rem;
+  }
+  .login-content-body-input-error {
+    font-size: 1.5rem;
   }
 }
