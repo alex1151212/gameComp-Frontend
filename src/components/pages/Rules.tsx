@@ -34,7 +34,7 @@ const Rules: React.FC<RulesProps> = () => {
               <div></div>
             </div>
             <div className="rules-content-schedule-describe">
-              <p>報名開始日期</p>
+              <p>開放報名上傳文件</p>
               <p>初賽上傳截止日期(上傳影片及文件)</p>
               <p>公告複賽入選隊伍</p>
               <p>複賽隊伍DEMO日</p>
@@ -50,7 +50,7 @@ const Rules: React.FC<RulesProps> = () => {
             <li>
               入選隊伍於比賽當日(詳見Agenda分頁)9:00以前至台科大IB大樓一樓報到(暫定)，領取參賽獎金、張貼海報及準備設備
             </li>
-            <li>於9:30 - 17:00間進行擺攤</li>
+            <li>於2024/01/06（六）9:30 ~ 17:00間進行擺攤</li>
             <li>
               依序報告(每組10分鐘，時間到請直接進行5分鐘Q&A)，報告順序詳見Agenda分頁
             </li>

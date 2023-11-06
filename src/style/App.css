@@ -172,6 +172,7 @@ a:hover {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  text-align: center;
 
   flex: 1;
   border: #0000ff 5px solid;

@@ -1,28 +1,45 @@
 import { Formik } from "formik";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import UploadIcon from "../../assets/images/svg/upload-icon";
 
 interface Props {}
 
 const Upload: React.FC<Props> = () => {
   const fileRef = useRef<HTMLInputElement>(null);
+  const [fileDragState, setFileDragState] = useState<boolean>(false);
   return (
     <div className="upload">
       <div className="upload-content">
         <h1>檔案上傳</h1>
         <Formik
-          initialValues={{ pdfFile: null, ytlink: "" }}
+          initialValues={
+            { pdfFile: null, ytlink: "" } as {
+              pdfFile: File | null;
+              ytlink: string;
+            }
+          }
           onSubmit={(values) => {
             console.log(values);
           }}
+          validate={(values) => {
+            const errors: Partial<{
+              pdfFile: string;
+              ytlink: string;
+            }> = {};
+
+            if (values.pdfFile && values.pdfFile.type !== "application/pdf")
+              errors.pdfFile = "Please upload a pdf file";
+
+            return errors;
+          }}
         >
-          {({ setFieldValue, submitForm }) => (
+          {({ setFieldValue, submitForm, values, errors }) => (
             <form action="" className="upload-content-form">
               <h1 className="upload-content-form-header">Upload</h1>
               <div className="upload-content-form-link">
                 <input
                   type="text"
-                  required
+                  value={values.ytlink}
                   onChange={(e) => {
                     setFieldValue("ytlink", e.target.value);
                   }}
@@ -33,9 +50,33 @@ const Upload: React.FC<Props> = () => {
                     </p> */}
               </div>
               <div
-                className="upload-content-form-file"
+                className={`upload-content-form-file ${
+                  fileDragState ? "upload-drag" : ""
+                }`}
                 onClick={() => {
                   fileRef.current?.click();
+                }}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setFileDragState(false);
+
+                  const dt = e.dataTransfer;
+                  const files = dt.files;
+
+                  setFieldValue("pdfFile", files[0]);
+                }}
+                onDragEnter={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
+                onDragOver={(e) => {
+                  setFileDragState(true);
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
+                onDragLeave={() => {
+                  setFileDragState(false);
                 }}
               >
                 <input
@@ -48,7 +89,12 @@ const Upload: React.FC<Props> = () => {
                   }}
                 />
                 <UploadIcon className="upload-icon" />
-                <p>Borwse File to upload PDF</p>
+                <p>
+                  {values.pdfFile && !errors.pdfFile
+                    ? values.pdfFile.name
+                    : "Borwse File to upload PDF"}
+                </p>
+                <p className="error">{errors.pdfFile}</p>
               </div>
 
               <button
@@ -64,21 +110,6 @@ const Upload: React.FC<Props> = () => {
           )}
         </Formik>
       </div>
-
-      {/* <div className="progress-area">
-        <li>
-          <i></i>
-          <div className="content">
-            <div className="details">
-              <span className="name">image_01.png ● Uploading </span>
-              <span className="parent">50%</span>
-            </div>
-            <div className="progress-bar">
-              <div className="progress"></div>
-            </div>
-          </div>
-        </li>
-      </div> */}
     </div>
   );
 };
