@@ -44,6 +44,9 @@
 .upload-content-form-file:hover {
   color: #00dfc4;
 }
+.upload-content-form-file.upload-drag {
+  background: rgba(54, 81, 114, 0.294);
+}
 .upload-content-form-file .upload-icon {
   width: 10rem;
   height: 7rem;
@@ -52,9 +55,6 @@
 .upload-content-form-file p {
   font-size: 1.5rem;
 }
-.upload-content-form-link {
-}
-
 .upload-content-form-link {
   position: relative;
   width: 50%;
@@ -109,4 +109,8 @@
 }
 .upload-content-form-button:hover {
   color: #00dfc4;
+}
+
+.upload-content-form-file .error {
+  color: #ff0000;
 }

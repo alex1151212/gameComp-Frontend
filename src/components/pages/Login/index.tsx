@@ -90,7 +90,6 @@ const Login: React.FC<LoginProps> = () => {
                   <div className="login-content-body-input">
                     <input
                       type="text"
-                      required
                       onChange={(e) => {
                         setFieldValue("email", e.target.value);
                       }}
@@ -103,7 +102,6 @@ const Login: React.FC<LoginProps> = () => {
                   <div className="login-content-body-input">
                     <input
                       type="password"
-                      required
                       onChange={(e) => {
                         setFieldValue("password", e.target.value);
                       }}
