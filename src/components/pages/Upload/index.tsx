@@ -1,10 +1,13 @@
 import { Formik } from "formik";
 import React, { useRef, useState } from "react";
-import UploadIcon from "../../assets/images/svg/upload-icon";
+import { api } from "../../../api";
+import UploadIcon from "../../../assets/images/svg/upload-icon";
+import useAxios from "../../../hook/useAxios";
 
 interface Props {}
 
 const Upload: React.FC<Props> = () => {
+  const { sendRequest: uploadRequest } = useAxios();
   const fileRef = useRef<HTMLInputElement>(null);
   const [fileDragState, setFileDragState] = useState<boolean>(false);
   return (
@@ -19,6 +22,23 @@ const Upload: React.FC<Props> = () => {
             }
           }
           onSubmit={(values) => {
+            const formData = new FormData();
+            formData.append("videoLink", values.ytlink);
+            formData.append("pdf", values.pdfFile as File);
+
+            uploadRequest(
+              {
+                url: api.uploadFile.url(),
+                method: api.uploadFile.method,
+                data: formData,
+              },
+              (response) => {
+                console.log(response);
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
             console.log(values);
           }}
           validate={(values) => {
