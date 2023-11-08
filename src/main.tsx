@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AuthProvider>
       <GoogleReCaptchaProvider
-        reCaptchaKey={import.meta.env.VITE_RECAPTCHA_KEY}
+        reCaptchaKey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
         language="zh-TW"
       >
         <AppRoutes />
