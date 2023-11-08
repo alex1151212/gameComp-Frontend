@@ -1,34 +1,36 @@
 import { AxiosResponse } from "axios";
 import { Formik } from "formik";
-import React from "react";
+import React, { useCallback } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { Navigate, useNavigate } from "react-router-dom";
 import { api } from "../../../api";
 import useAuth from "../../../hook/auth/useAuth";
 import useAxios from "../../../hook/useAxios";
 import useRwd from "../../../hook/useRwd";
 import Cube from "../../cube3d";
 import { LoginResponse } from "./type";
-import { Navigate, useNavigate } from "react-router-dom";
 
 interface LoginProps {}
 
 const Login: React.FC<LoginProps> = () => {
-  // const { executeRecaptcha } = useGoogleReCaptcha();
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const navigate = useNavigate();
   const { isMobile } = useRwd();
-  const { sendRequest: loginRequest } = useAxios();
+  const { sendRequest: loginRequest, sendRequest: recaptchaRequest } =
+    useAxios();
   const { auth, saveAuth } = useAuth();
 
-  // const handleReCaptchaVerify = useCallback(async () => {
-  //   if (!executeRecaptcha) {
-  //     console.log("Execute recaptcha not yet available");
-  //     return;
-  //   }
+  const handleReCaptchaVerify = useCallback(async () => {
+    if (!executeRecaptcha) {
+      console.log("Execute recaptcha not yet available");
+      return;
+    }
 
-  //   const token = await executeRecaptcha("LOGIN");
+    const token = await executeRecaptcha("LOGIN");
 
-  //   return token;
-  //   // Do whatever you want with the token
-  // }, [executeRecaptcha]);
+    return token;
+    // Do whatever you want with the token
+  }, [executeRecaptcha]);
   if (auth) return <Navigate to={"/auth/upload"} />;
   return (
     <div className={`login ${isMobile ? "mobile" : ""}`}>
@@ -48,35 +50,42 @@ const Login: React.FC<LoginProps> = () => {
                 return errors;
               }}
               onSubmit={async (values, errors) => {
-                // const token = await handleReCaptchaVerify();
-                // await axios
-                //   .post(import.meta.env.VITE_RECAPTCHA_VERIFY, {
-                //     secret: import.meta.env.VITE_RECAPTCHA_KEY,
-                //     response: token,
-                //   })
-                //   .then((res) => {
-                //     console.log(res);
-                //   });
-                loginRequest(
+                const token = await handleReCaptchaVerify();
+                recaptchaRequest(
                   {
-                    url: api.login.url(),
-                    method: api.login.method,
+                    url: api.recaptcha.url(),
+                    method: api.recaptcha.method,
                     data: {
-                      email: values.email,
-                      password: values.password,
+                      secret: import.meta.env.VITE_RECAPTCHA_SECRET_KEY,
+                      response: token,
                     },
                   },
-                  (response: AxiosResponse<LoginResponse>) => {
+                  (response: AxiosResponse<{ success: boolean }>) => {
                     const { data } = response;
-                    saveAuth(data.data.token);
-                    navigate("/auth/upload");
-                  },
-                  (error) => {
-                    error.response?.status === 401 &&
-                      errors.setErrors({
-                        password: "Wrong password or username",
-                        email: "Wrong password or username",
-                      });
+                    if (data.success) {
+                      loginRequest(
+                        {
+                          url: api.login.url(),
+                          method: api.login.method,
+                          data: {
+                            email: values.email,
+                            password: values.password,
+                          },
+                        },
+                        (response: AxiosResponse<LoginResponse>) => {
+                          const { data } = response;
+                          saveAuth(data.data.token);
+                          navigate("/auth/upload");
+                        },
+                        (error) => {
+                          error.response?.status === 401 &&
+                            errors.setErrors({
+                              password: "Wrong password or username",
+                              email: "Wrong password or username",
+                            });
+                        }
+                      );
+                    }
                   }
                 );
               }}
