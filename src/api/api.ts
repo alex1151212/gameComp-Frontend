@@ -15,4 +15,6 @@ export const api = {
   //login
   login: { url: () => "/login", method: Method.POST },
   register: { url: () => "/createUser", method: Method.POST },
+
+  uploadFile: { url: () => "/auth/upload", method: Method.POST },
 };
