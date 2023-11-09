@@ -1,12 +1,12 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+
 interface GameCardProps {
   name: string;
   imgLink: string;
   reward?: string;
-  pdfLink: string;
+  pdfLink?: string;
   youtubeLink: string;
 }
 
@@ -14,7 +14,6 @@ const GameCard: React.FC<GameCardProps> = ({
   name,
   reward,
   imgLink,
-  pdfLink,
   youtubeLink,
 }) => {
   return (
@@ -23,13 +22,10 @@ const GameCard: React.FC<GameCardProps> = ({
         <img src={`assets/images/game/${imgLink}`} alt="" />
       </div>
       <div className="game-card-content">
-        <p>{name}</p>
-        <p>{reward}</p>
+        <h2>{name}</h2>
+        <h2>{reward}</h2>
         <div className="game-card-content-icon-wrapper">
-          <a href={pdfLink}>
-            <FontAwesomeIcon icon={faLink} />
-          </a>
-          <a href={youtubeLink}>
+          <a href={youtubeLink} target="_blank">
             <FontAwesomeIcon icon={faYoutube} />
           </a>
         </div>

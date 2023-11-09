@@ -15,14 +15,14 @@
 
 .sponsors-content-card-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
 
   justify-content: space-evenly;
   justify-items: center;
   align-content: space-evenly;
   align-items: center;
 
-  grid-gap: 30px;
+  grid-gap: 50px;
 }
 
 /* @media (max-width: 1440px) {

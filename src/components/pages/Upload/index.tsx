@@ -112,7 +112,7 @@ const Upload: React.FC<Props> = () => {
                 <p>
                   {values.pdfFile && !errors.pdfFile
                     ? values.pdfFile.name
-                    : "Borwse File to upload PDF"}
+                    : "Browse File to upload PDF"}
                 </p>
                 <p className="error">{errors.pdfFile}</p>
               </div>
