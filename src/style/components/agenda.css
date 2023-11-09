@@ -1,10 +1,14 @@
 /* Agenda page */
 .agenda {
 }
+
 .agenda-content {
   display: flex;
   text-align: center;
   flex-direction: column;
+}
+.agenda-content > div {
+  margin-bottom: 1.5rem;
 }
 .agenda-content h1 {
   text-align: center;
@@ -17,8 +21,7 @@
 .agenda-content-comp {
   text-align: start;
 }
-.agenda-content-comp > h1 {
-}
+
 .agenda-content-comp ol > li {
   margin: 0 0 1rem 2rem;
 }
@@ -58,5 +61,16 @@
     border-radius: 1.5rem;
     border: none;
     font-size: 2rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  .agenda div > h1 {
+    font-size: 5rem;
+  }
+  .agenda-content {
+    font-size: 2rem;
+  }
+  .agenda-content-comp ol > li {
+    margin: 0 0 2rem 4rem;
   }
 }
