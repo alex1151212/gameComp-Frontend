@@ -1,5 +1,7 @@
 import React from "react";
 import InfoCard from "../Info-card";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
 interface InfoProps {}
 
 const Info: React.FC<InfoProps> = () => {
@@ -8,16 +10,20 @@ const Info: React.FC<InfoProps> = () => {
       <div className="info-content">
         <h1>相關資訊</h1>
         <div className="info-content-card-wrapper">
-          <InfoCard />
-          <InfoCard />
-          <InfoCard />
-          <InfoCard />
-          <InfoCard />
-          <InfoCard />
-          <InfoCard />
-          <InfoCard />
-          <InfoCard />
-          <InfoCard />
+          <InfoCard
+            title={"創意遊戲設計競賽規程（總則）"}
+            content={
+              <div>
+                <p>112台灣大專院校創意遊戲設計競賽規程(總則)</p>
+                <a
+                  href="assets/files/112台灣大專院校創意遊戲設計競賽規程(總則).pdf"
+                  style={{ color: "#fff", fontSize: "32px" }}
+                >
+                  <FontAwesomeIcon icon={faDownload} />
+                </a>
+              </div>
+            }
+          />
         </div>
       </div>
     </div>
