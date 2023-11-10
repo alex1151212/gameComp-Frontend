@@ -17,7 +17,10 @@ const Info: React.FC<InfoProps> = () => {
                 <p>112台灣大專院校創意遊戲設計競賽規程(總則)</p>
                 <a
                   href="assets/files/112台灣大專院校創意遊戲設計競賽規程(總則).pdf"
-                  style={{ color: "#fff", fontSize: "32px" }}
+                  style={{
+                    color: "#00f",
+                    fontSize: "42px",
+                  }}
                 >
                   <FontAwesomeIcon icon={faDownload} />
                 </a>

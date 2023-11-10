@@ -22,7 +22,6 @@ const Agenda: React.FC<AgendaProps> = () => {
           <h1>複賽相關事項</h1>
           <ol type="A">
             <li>各組組長提供電話、mail</li>
-            <li>各組參與人員姓名、葷素數量以方便訂餐</li>
             <li>
               所有複賽入選者都會有攤位可以做展示和DEMO，並上台報告角逐後續獎項
             </li>

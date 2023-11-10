@@ -14,7 +14,7 @@
     transparent 100%
   );
   background-size: 15px 15px;
-  box-shadow: 0 0 30px #000, 0 0 20px 10px var(--clr);
+  box-shadow: 0 0 5px 1px var(--clr);
   /* filter: hue-rotate(calc(var(--i) * 60deg)); */
   animation: animate 0.5s linear infinite;
 }
@@ -52,7 +52,7 @@
   gap: 20px;
 }
 .sponsor-card-tier-a-content > a {
-    color: var(--clr);
+  color: var(--clr);
 }
 .sponsor-card-tier-a-content-title {
   display: flex;

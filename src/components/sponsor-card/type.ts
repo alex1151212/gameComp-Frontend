@@ -4,7 +4,7 @@ export interface SponsorCardBaseProps {
   title: string;
   content: string;
   link: string;
-  tier : SponsorCardTier;
+  tier: SponsorCardTier;
 }
 
 export type SponsorType = {
@@ -15,4 +15,4 @@ export type SponsorType = {
   tier: string;
   color: string;
 };
-export type SponsorCardTier = "S" | "A" | "B";
+export type SponsorCardTier = "S" | "A" | "B" | "C";
