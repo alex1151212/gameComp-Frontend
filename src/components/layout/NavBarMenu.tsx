@@ -39,7 +39,6 @@ const NavBarMenu: React.FC<NavBarMenuProps> = () => {
                 onClick={(event) => {
                   event.preventDefault();
                   linkHandler(item.path);
-                  console.log(item.path);
                 }}
               >
                 {item.name}

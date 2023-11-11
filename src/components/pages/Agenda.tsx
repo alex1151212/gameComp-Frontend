@@ -40,11 +40,11 @@ const Agenda: React.FC<AgendaProps> = () => {
             <li>
               協辦單位：
               <ul>
-                <li>台灣大學</li>
-                <li>清華大學</li>
-                <li>政治大學</li>
-                <li>海洋大學</li>
-                <li>華梵大學</li>
+                <li>國立台灣大學</li>
+                <li>國立清華大學</li>
+                <li>龍華科技大學</li>
+                <li>國立政治大學</li>
+                <li>國立台灣海洋大學</li>
               </ul>
             </li>
 
