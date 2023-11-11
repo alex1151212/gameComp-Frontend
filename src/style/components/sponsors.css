@@ -35,3 +35,9 @@
     grid-template-columns: repeat(3, 1fr);
   }
 } */
+@media screen and (max-width: 480px) {
+  .sponsors-content > h1 {
+    margin-bottom: 3rem;
+    font-size: 5rem;
+  }
+}

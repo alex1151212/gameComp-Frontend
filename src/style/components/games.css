@@ -23,3 +23,9 @@
   grid-auto-rows: 300px;
   grid-gap: 30px;
 }
+@media screen and (max-width: 480px) {
+  .games-content > h1 {
+    margin-bottom: 1.5rem;
+    font-size: 5rem;
+  }
+}
