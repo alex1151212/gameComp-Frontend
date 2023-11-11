@@ -10,7 +10,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  z-index: 0;
 }
 .sponsor-card-tier-s .mask {
   position: absolute;
@@ -49,7 +48,6 @@
   animation: borderAnimate 3.5s linear infinite;
   animation-delay: -2s;
   transition-delay: 2s;
-  z-index: -1;
 }
 .sponsor-card-tier-s:hover::before,
 .sponsor-card-tier-s:hover::after {
@@ -69,7 +67,6 @@
   transition-delay: 0.3s;
   transition: 0.3s;
   opacity: 0;
-  z-index: 1;
 }
 
 .sponsor-card-tier-s:hover .sponsor-card-tier-s-content {
@@ -102,8 +99,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
   transition: 0.3s;
-  z-index: 1;
 }
 
 .sponsor-card-tier-s-imgbox {
@@ -157,8 +154,6 @@
   background: #fff;
   border-bottom-left-radius: 80px;
   border-bottom-right-radius: 80px;
-
-  z-index: 1;
 }
 
 .sponsor-card-tier-s .sponsor-card-tier-s-imgbox img {

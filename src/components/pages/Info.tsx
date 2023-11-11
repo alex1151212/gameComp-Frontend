@@ -1,7 +1,6 @@
 import React from "react";
 import InfoCard from "../Info-card";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { IoCloudDownloadSharp } from "react-icons/io5";
 interface InfoProps {}
 
 const Info: React.FC<InfoProps> = () => {
@@ -17,12 +16,16 @@ const Info: React.FC<InfoProps> = () => {
                 <p>112台灣大專院校創意遊戲設計競賽規程(總則)</p>
                 <a
                   href="assets/files/112台灣大專院校創意遊戲設計競賽規程(總則).pdf"
+                  target="_blank"
                   style={{
-                    color: "#00f",
                     fontSize: "42px",
                   }}
                 >
-                  <FontAwesomeIcon icon={faDownload} />
+                  <IoCloudDownloadSharp
+                    style={{
+                      color: "#00f",
+                    }}
+                  />
                 </a>
               </div>
             }

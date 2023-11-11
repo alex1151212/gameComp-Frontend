@@ -23,7 +23,6 @@ export const InfoCard: React.FC<Props> = ({ title, content }) => {
           setIsOpen(!isOpen);
         }}
       ></div> */}
-
       <svg>
         <filter id="wavy">
           <feTurbulence

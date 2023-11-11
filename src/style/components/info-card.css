@@ -57,6 +57,9 @@
   text-align: center;
   transition: 0.5s;
 }
+.info-card:hover .info-card-content {
+  color: #000;
+}
 
 /* .info-card::before {
   content: "";
@@ -110,14 +113,12 @@
 } */
 
 .info-card-content h3 {
-  /* color: #fff; */
   font-size: 28px;
   font-weight: 600;
   margin-bottom: 10px;
 }
 
 .info-card-content p {
-  /* color: #ccc; */
   font-size: 20px;
   font-weight: 300;
   margin-bottom: 10px;
