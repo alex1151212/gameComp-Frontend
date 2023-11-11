@@ -65,7 +65,7 @@
 }
 @media screen and (max-width: 480px) {
   .agenda div > h1 {
-    font-size: 5rem;
+    font-size: 4rem;
   }
   .agenda-content {
     font-size: 2rem;
