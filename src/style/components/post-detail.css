@@ -1,0 +1,37 @@
+/* Agenda page */
+.posts-detail {
+  font-size: 28px;
+}
+
+.posts-detail-content {
+  display: flex;
+  /* text-align: center; */
+  flex-direction: column;
+}
+.posts-detail-content > div {
+  margin-bottom: 1.5rem;
+}
+.posts-detail-content > h1 {
+  /* text-align: center; */
+  margin-bottom: 1.5rem;
+}
+.posts-detail-content-breadcrumb-pre {
+  cursor: pointer;
+  transition: 0.3s;
+}
+.posts-detail-content-breadcrumb-pre:hover {
+  color: #00f;
+}
+.posts-detail-content-breadcrumb-current {
+  color: #ff0;
+  font-weight: bold;
+}
+.posts-detail-content-body-title {
+    text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+
+.posts-detail .divider {
+  border: #fff 2px solid;
+}

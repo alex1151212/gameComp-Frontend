@@ -17,6 +17,10 @@ const router = [
     name: "agenda",
   },
   {
+    path: "/posts",
+    name: "Posts",
+  },
+  {
     path: "/info",
     name: "info",
   },

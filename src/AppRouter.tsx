@@ -12,6 +12,8 @@ import AuthLayout from "./components/layout/AuthLayout";
 import Logout from "./components/pages/Logout";
 import Register from "./components/pages/Register";
 import Upload from "./components/pages/Upload";
+import Posts from "./components/pages/Post/Posts";
+import PostDetail from "./components/pages/Post/PostDetail";
 const { PUBLIC_URL } = import.meta.env;
 
 const AppRoutes: FC = () => {
@@ -24,7 +26,10 @@ const AppRoutes: FC = () => {
           <Route path="/rules" element={<Rules />} />
           <Route path="/agenda" element={<Agenda />} />
           <Route path="/info" element={<Info />} />
+          <Route path="/post" element={<Info />} />
           <Route path="/sponsors" element={<Sponsors />} />
+          <Route path="/posts" element={<Posts />} />
+          <Route path="/posts/detail/:postId" element={<PostDetail />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
