@@ -1,36 +1,12 @@
 [
   {
-    "id": 3,
+    "id": 1,
     "type": "測試",
-    "title": "測試公告3",
+    "title": "測試公告",
     "content": "我個人認為義大利麵就應該拌42號混泥土，因為這個螺絲釘的長度很容易直接影響到挖掘機的扭矩。你往裡砸的時候，一瞬間他就會產生大量的高能蛋白，俗稱UFO，會嚴重影響經濟的發展，以至於對整個太平洋，和充電器的核污染。再或者說透過這勾股定理很容易推斷出人工飼養的東條英機，他是可以捕獲野生的三角函數，所以說不管這秦始皇的切面是否具有放射性，川普的N次方是否有沈澱物，都不會影響到沃爾瑪跟維爾康在南極匯合。",
     "imgSrc": [
-      "https://fountain.org.tw/upload/upload/repository/74a7f73b7f18d193ddebff71c0b8afeaimage_normal.jpg",
-      "https://fountain.org.tw/upload/upload/repository/74a7f73b7f18d193ddebff71c0b8afeaimage_normal.jpg",
       "https://fountain.org.tw/upload/upload/repository/74a7f73b7f18d193ddebff71c0b8afeaimage_normal.jpg"
     ],
     "createdAt": "2023-11-15"
-  },
-  {
-    "id": 2,
-    "type": "測試",
-    "title": "測試公告2",
-    "content": "生活中，若遊戲比賽出現了，我們就不得不考慮它出現了的事實。遊戲比賽似乎是一種巧合，但如果我們從一個更大的角度看待問題，這似乎是一種不可避免的事實。管子說過一句著名的話，善氣迎人，親如兄弟; 惡氣迎人，害於戈兵。這段話看似複雜，其中的邏輯思路卻清晰可見。柯蒂斯講過一段耐人尋思的話，健康勝於富貴。這句話幾乎解讀出了問題的根本。我以為我了解遊戲比賽，但我真的了解遊戲比賽嗎？仔細想想，我對遊戲比賽的理解只是皮毛而已。一般來說，如果別人做得到，那我也可以做到。",
-    "imgSrc": [
-      "./assets/images/post/IU/iu_ig1.jpg",
-      "./assets/images/post/IU/iu_ig2.jpg",
-      "./assets/images/post/IU/iu_ig3.jpg",
-      "./assets/images/post/IU/iu_ig4.jpg",
-      "./assets/images/post/IU/iu1.jpg"
-    ],
-    "createdAt": "2023-11-14"
-  },
-  {
-    "id": 1,
-    "type": "測試",
-    "title": "測試公告1",
-    "content": "生活中，若遊戲比賽出現了，我們就不得不考慮它出現了的事實。遊戲比賽似乎是一種巧合，但如果我們從一個更大的角度看待問題，這似乎是一種不可避免的事實。管子說過一句著名的話，善氣迎人，親如兄弟; 惡氣迎人，害於戈兵。這段話看似複雜，其中的邏輯思路卻清晰可見。柯蒂斯講過一段耐人尋思的話，健康勝於富貴。這句話幾乎解讀出了問題的根本。我以為我了解遊戲比賽，但我真的了解遊戲比賽嗎？仔細想想，我對遊戲比賽的理解只是皮毛而已。一般來說，如果別人做得到，那我也可以做到。",
-    "imgSrc": [],
-    "createdAt": "2023-11-13"
   }
 ]
