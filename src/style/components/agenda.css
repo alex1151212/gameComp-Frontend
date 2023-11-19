@@ -33,7 +33,7 @@
   margin: 0 0 1rem 2rem;
 }
 
-.agenda-content-result-table {
+.agenda-content-result-table > table {
   width: 100%;
   border-radius: 1.5rem;
   border: 0.3rem solid #fff;
@@ -41,28 +41,17 @@
 
   font-size: 1.5rem;
 }
-.agenda-content-result-table tr td {
+.agenda-content-result-table > table tr td {
   width: 50%;
   padding: 5px 10px;
 }
-.agenda-content-result-table tr td:nth-child(1) {
+.agenda-content-result-table > table tr td:nth-child(1) {
   text-align: right;
 }
-.agenda-content-result-table tr td:nth-child(2) {
+.agenda-content-result-table > table tr td:nth-child(2) {
   text-align: left;
 }
 
-@media screen and (max-width: 480px) {
-  .agenda-content > h1 {
-    margin-bottom: 1.5rem;
-    font-size: 5rem;
-  }
-  .agenda-content-result-table {
-    border-radius: 1.5rem;
-    border: none;
-    font-size: 2rem;
-  }
-}
 @media screen and (max-width: 480px) {
   .agenda div > h1 {
     font-size: 5rem;
@@ -72,5 +61,14 @@
   }
   .agenda-content-comp ol > li {
     margin: 0 0 2rem 4rem;
+  }
+  .agenda-content > h1 {
+    margin-bottom: 1.5rem;
+    font-size: 5rem;
+  }
+  .agenda-content-result-table {
+    border-radius: 1.5rem;
+    border: none;
+    font-size: 2rem;
   }
 }

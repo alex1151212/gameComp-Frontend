@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 interface AgendaProps {}
 
 const Agenda: React.FC<AgendaProps> = () => {
+  const isAnnounceResults = false;
   const [agenda, setAgenda] = useState<string[]>([]); // [games, setGames
   const getAgenda = async () => {
     const response = await fetch("assets/data/awardList.json");
@@ -54,22 +55,29 @@ const Agenda: React.FC<AgendaProps> = () => {
         </div>
         <div className="agenda-content-result">
           <h1>比賽結果</h1>
-          <table className="agenda-content-result-table">
-            <thead>
-              <tr>
-                <td>獎項</td>
-                <td>隊名</td>
-              </tr>
-            </thead>
-            <tbody>
-              {agenda.map((awardName) => (
-                <tr key={awardName}>
-                  <td>{awardName}</td>
-                  <td>{"尚未公布"}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="agenda-content-result-table">
+            {isAnnounceResults ? (
+              <table>
+                <thead>
+                  <tr>
+                    <td>獎項</td>
+                    <td>隊名</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {agenda.map((awardName) => (
+                    <tr key={awardName}>
+                      <td>{awardName}</td>
+                      <td>{"尚未公布"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <h1>Coming Soon !!</h1>
+            )}
+          </div>
+
           {/* <table cellSpacing={0} cellPadding="5" border={2}>
             <tr>
               <td className="session-width">Session</td>
