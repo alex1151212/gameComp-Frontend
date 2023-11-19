@@ -44,6 +44,13 @@ const PostDetail: React.FC<PostDetailProps> = () => {
           <div className="posts-detail-content-body-content">
             {post?.content}
           </div>
+          <div className="posts-detail-content-body-imglist">
+            {post?.imgSrc.map((img, index) => (
+              <div className="posts-detail-content-body-imglist-item">
+                <img key={index} src={img} alt="" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

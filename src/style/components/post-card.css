@@ -21,16 +21,27 @@
   flex-direction: column;
 
   background: #00f;
-  width: 30%;
+  padding: 1rem 0;
+  width: 24%;
   height: 100%;
 }
 .post-card-right {
+  display: flex;
+
   text-align: start;
   width: 70%;
 
-  padding: 0 2rem 0 5rem;
+  /* padding: 0 2rem 0 5rem; */
 }
+.post-card-right-type {
+  padding: 0 0 0 50px;
+}
+.post-card-right-type > span {
+  color: #ff0;
+}
+
 .post-card-right-content {
+  padding: 0 0 0 50px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

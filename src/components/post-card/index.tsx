@@ -20,6 +20,9 @@ const PostCard: React.FC<PostCardProps> = ({ data }) => {
         <p>{dayjs(data.createdAt).format("MMM")}</p>
       </div>
       <div className="post-card-right">
+        <h2 className="post-card-right-type">
+          [<span>{data.type}</span>]
+        </h2>
         <h2 className="post-card-right-content">{data.title}</h2>
       </div>
       <div className="post-card-mask"></div>

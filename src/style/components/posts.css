@@ -14,8 +14,9 @@
   margin-bottom: 1.5rem;
 }
 .posts-content-card-wrapper {
-  grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
-  grid-gap: 30px;
+  font-size: 28px;
+  /* grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
+  grid-gap: 30px; */
 }
 
 @media screen and (max-width: 480px) {
