@@ -179,7 +179,6 @@ a:hover {
   border: #0000ff 5px solid;
   font-size: 0.8rem;
 
-  padding: 0.5rem;
   margin-bottom: 10px;
 
   border-top: none;
@@ -187,7 +186,6 @@ a:hover {
 }
 
 .footer-logo {
-  padding-top: 1rem;
   font-family: SpaceAge;
   font-size: 1rem;
   text-align: center;
@@ -208,12 +206,16 @@ a:hover {
   text-shadow: 0 0 10px #f4f403, 0 0 20px #f4ec03;
 }
 .footer-society {
+  margin-top: 3px;
   display: flex;
-  justify-content: space-around;
-
-  margin-top: 1rem;
+  gap: 30px;
+  justify-content: center;
+  /* justify-content: space-around; */
 }
 .footer-society > a {
+  display: inline-block;
+  height: 2.2rem;
+  cursor: pointer;
   text-decoration: none;
   font-size: 2.2rem;
 }

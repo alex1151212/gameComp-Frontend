@@ -1,4 +1,5 @@
 .sponsor-card-tier-a {
+  
   display: block;
   font-size: 16px;
   position: relative;
@@ -17,8 +18,9 @@
   background-size: 15px 15px;
   box-shadow: 0 0 5px 1px var(--clr);
   /* filter: hue-rotate(calc(var(--i) * 60deg)); */
+  border-radius: 20px;
   cursor: pointer;
-  animation: animate 0.5s linear infinite;
+  animation: animate 1.9s linear infinite;
 }
 .sponsor-card-tier-a::before {
   content: "";
@@ -72,7 +74,7 @@
 .sponsor-card-tier-a-content-title-text {
   color: var(--clr);
 }
-.sponsor-card-tier-a-content-body{
+.sponsor-card-tier-a-content-body {
   color: #fff;
 }
 .sponsor-card-tier-a-content > p {

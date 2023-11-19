@@ -66,6 +66,14 @@ function App() {
                 </span>
               </div>
             </div>
+            <div className="footer-society">
+              <a style={{ color: "rgb(24,119,242)" }}>
+                <FaFacebookSquare />
+              </a>
+              <a style={{ color: "#833ab4" }}>
+                <FaInstagram />
+              </a>
+            </div>
           </div>
           <div>
             <table>
@@ -76,14 +84,6 @@ function App() {
                 </tr>
               </tbody>
             </table>
-            <div className="footer-society">
-              <a style={{ color: "rgb(24,119,242)" }}>
-                <FaFacebookSquare />
-              </a>
-              <a style={{ color: "#833ab4" }}>
-                <FaInstagram />
-              </a>
-            </div>
           </div>
         </div>
         <div className="footer-border">
