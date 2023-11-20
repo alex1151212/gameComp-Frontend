@@ -67,10 +67,18 @@ function App() {
               </div>
             </div>
             <div className="footer-society">
-              <a style={{ color: "rgb(24,119,242)" }}>
+              <a
+                href="https://www.facebook.com/profile.php?id=61552178682390"
+                target="_blank"
+                style={{ color: "rgb(24,119,242)" }}
+              >
                 <FaFacebookSquare />
               </a>
-              <a style={{ color: "#833ab4" }}>
+              <a
+                href="https://www.instagram.com/igd.gamelab/"
+                target="_blank"
+                style={{ color: "#833ab4" }}
+              >
                 <FaInstagram />
               </a>
             </div>

@@ -55,7 +55,10 @@ const Agenda: React.FC<AgendaProps> = () => {
         </div>
         <div className="agenda-content-result">
           <h1>比賽結果</h1>
-          <div className="agenda-content-result-table">
+          <div
+            className="agenda-content-result-table"
+            style={{ minHeight: `${agenda.length * 1.5}rem` }}
+          >
             {isAnnounceResults ? (
               <table>
                 <thead>

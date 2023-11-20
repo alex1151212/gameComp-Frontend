@@ -32,11 +32,16 @@
 .agenda-content-about ul > li {
   margin: 0 0 1rem 2rem;
 }
-
-.agenda-content-result-table > table {
-  width: 100%;
+.agenda-content-result-table {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 1.5rem;
   border: 0.3rem solid #fff;
+}
+.agenda-content-result-table > table {
+  width: 100%;
+
   /* padding: 0.64rem; */
 
   font-size: 1.5rem;
