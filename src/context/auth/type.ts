@@ -8,6 +8,7 @@ export type AuthContextProps = {
 export interface UserModel {
   email: string;
   username: string;
+  phone: string;
 }
 
 export type AuthModel = string;

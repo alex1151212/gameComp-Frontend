@@ -1,17 +1,25 @@
-.upload {
-}
-.upload-content {
+.profile-content {
   text-align: center;
+}
+.profile-content > div {
+  margin-bottom: 3rem;
+}
+.profile-content > div > h1 {
+  margin-bottom: 1.5rem;
+  font-size: 3rem;
+}
+.profile-content-upload,
+.profile-content-info {
   display: flex;
   align-items: center;
   flex-direction: column;
   height: 100%;
 }
-.upload-content > h1 {
+/* .profile-content-upload > h1 {
   margin-bottom: 1.5rem;
   font-size: 3rem;
-}
-.upload-content-form {
+} */
+.profile-content-upload-form {
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -25,9 +33,9 @@
 
   box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #03bcf4;
 }
-.upload-content-form-header {
+.profile-content-upload-form-header {
 }
-.upload-content-form-file {
+.profile-content-upload-form-file {
   border: 2px dashed #fff;
   border-radius: 20px;
   width: 100%;
@@ -41,25 +49,25 @@
 
   padding: 2rem;
 }
-.upload-content-form-file:hover {
+.profile-content-upload-form-file:hover {
   color: #00dfc4;
 }
-.upload-content-form-file.upload-drag {
+.profile-content-upload-form-file.upload-drag {
   background: rgba(54, 81, 114, 0.294);
 }
-.upload-content-form-file .upload-icon {
+.profile-content-upload-form-file .upload-icon {
   width: 10rem;
   height: 7rem;
   fill: #fff;
 }
-.upload-content-form-file p {
+.profile-content-upload-form-file p {
   font-size: 1.5rem;
 }
-.upload-content-form-link {
+.profile-content-upload-form-link {
   position: relative;
   width: 50%;
 }
-.upload-content-form-link input {
+.profile-content-upload-form-link input {
   font-family: Cubic;
   width: 100%;
   padding: 10px;
@@ -70,7 +78,7 @@
   font-size: 0.8em;
   transition: 0.3s;
 }
-.upload-content-form-link span {
+.profile-content-upload-form-link span {
   position: absolute;
   left: 0;
   padding: 10px;
@@ -80,8 +88,8 @@
   text-transform: uppercase;
   transition: 0.3s;
 }
-.upload-content-form-link input:valid ~ span,
-.upload-content-form-link input:focus ~ span {
+.profile-content-upload-form-link input:valid ~ span,
+.profile-content-upload-form-link input:focus ~ span {
   color: #00dfc4;
   transform: translateX(0.5rem) translateY(calc(-0.6rem + 2px));
   font-size: 0.55rem;
@@ -91,26 +99,26 @@
   border-right: 1px solid #00dfc4;
   letter-spacing: 0.2em;
 }
-.upload-content-form-link input:valid,
-.upload-content-form-link input:focus {
+.profile-content-upload-form-link input:valid,
+.profile-content-upload-form-link input:focus {
   border: 1px solid #00dfc4;
 }
 
-.upload-content-form-link:nth-child(3) input:valid ~ span,
-.upload-content-form-link:nth-child(3) input:focus ~ span {
+.profile-content-upload-form-link:nth-child(3) input:valid ~ span,
+.profile-content-upload-form-link:nth-child(3) input:focus ~ span {
   background: #00dfc4;
   color: #1d2b3c;
   border-radius: 2px;
 }
 
-.upload-content-form-button {
+.profile-content-upload-form-button {
   border: none;
   transition: 0.5s;
 }
-.upload-content-form-button:hover {
+.profile-content-upload-form-button:hover {
   color: #00dfc4;
 }
 
-.upload-content-form-file .error {
+.profile-content-upload-form-file .error {
   color: #ff0000;
 }

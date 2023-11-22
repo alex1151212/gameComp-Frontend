@@ -11,6 +11,16 @@ function App() {
 
   const location = useLocation();
 
+  // function matchPath(path: string): { name: string; path: string } | null {
+  //   const pattern = /^\/posts\/detail\/(\d+)$/;
+  //   const match = path.match(pattern);
+  //   if (match) {
+  //     const name = match[1];
+  //     return { name, path };
+  //   }
+  //   return null;
+  // }
+
   return (
     <div className="layout">
       {isMobile ? <NavBarMobileMenu /> : <NavBarMenu />}

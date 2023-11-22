@@ -14,7 +14,6 @@ const AuthProvider: FC<{
   const [auth, setAuth] = useState<AuthModel | undefined>(authHelper.getAuth());
   const [currentUser, setCurrentUser] = useState<UserModel | undefined>();
   const saveAuth = (auth: AuthModel | undefined) => {
-    
     if (auth) {
       authHelper.setAuth(auth);
       userHandler(auth);

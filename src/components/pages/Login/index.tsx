@@ -41,6 +41,23 @@ const Login: React.FC<LoginProps> = () => {
         <div className="login-content-body-wrapper">
           <div className="login-content-body">
             {inProgress ? (
+              <div
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                  flexDirection: "column",
+                }}
+              >
+                <h1>工作中</h1>
+                <FontAwesomeIcon
+                  icon={faWrench}
+                  style={{ fontSize: "2.8rem" }}
+                />
+              </div>
+            ) : (
               <Formik
                 initialValues={{ email: "", password: "" }}
                 validate={(values) => {
@@ -79,7 +96,7 @@ const Login: React.FC<LoginProps> = () => {
                           (response: AxiosResponse<LoginResponse>) => {
                             const { data } = response;
                             saveAuth(data.data.token);
-                            navigate("/auth/upload");
+                            navigate("/auth/profile");
                           },
                           (error) => {
                             error.response?.status === 401 &&
@@ -138,23 +155,6 @@ const Login: React.FC<LoginProps> = () => {
                   </form>
                 )}
               </Formik>
-            ) : (
-              <div
-                style={{
-                  height: "100%",
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "space-around",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <h1>工作中</h1>
-                <FontAwesomeIcon
-                  icon={faWrench}
-                  style={{ fontSize: "2.8rem" }}
-                />
-              </div>
             )}
           </div>
           <div className="login-content-cube">

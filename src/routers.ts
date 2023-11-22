@@ -38,8 +38,8 @@ const router = [
     visible: true,
   },
   {
-    path: "/auth/upload",
-    name: "upload",
+    path: "/auth/profile",
+    name: "profile",
   },
   {
     path: "/auth/logout",
