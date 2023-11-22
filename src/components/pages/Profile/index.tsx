@@ -71,7 +71,12 @@ const Profile: React.FC<Props> = () => {
               if (values.username === "") errors.username = "Username required";
               if (values.email === "") errors.email = "Email required";
               if (values.phone === "") errors.phone = "Phone required";
-
+              if (values.phone) {
+                const taiwanPhoneNumberRegex = /^(09|\+8869)\d{8}$/;
+                console.log(!taiwanPhoneNumberRegex.test(values.phone));
+                if (!taiwanPhoneNumberRegex.test(values.phone))
+                  errors.phone = "Phone number format error";
+              }
               if (values.confirmPassword !== values.password)
                 errors.confirmPassword = "confirm password not match";
 
@@ -116,9 +121,9 @@ const Profile: React.FC<Props> = () => {
                     }}
                   />
                   <span>Phone</span>
-                  {/* <p className="login-content-body-input-error">
-                      {errors.email}
-                    </p> */}
+                  <p className="login-content-body-input-error">
+                    {errors.phone}
+                  </p>
                 </div>
                 <div className="profile-content-upload-form-link">
                   <input
@@ -209,6 +214,13 @@ const Profile: React.FC<Props> = () => {
               if (values.ytlink === "") {
                 errors.ytlink = "Please enter a youtube link";
               }
+
+              if (values.ytlink) {
+                const youtubeLinkRegex =
+                  /^(https?:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/;
+                if (!youtubeLinkRegex.test(values.ytlink))
+                  errors.ytlink = "Youtube link format error";
+              }
               if (values.pdfFile && values.pdfFile.type !== "application/pdf")
                 errors.pdfFile = "Please upload a pdf file";
 
@@ -232,9 +244,9 @@ const Profile: React.FC<Props> = () => {
                       }}
                     />
                     <span>Youtube 影片連結</span>
-                    {/* <p className="login-content-body-input-error">
-                        {errors.email}
-                      </p> */}
+                    <p className="login-content-body-input-error">
+                      {errors.ytlink}
+                    </p>
                   </div>
                   <div
                     className={`profile-content-upload-form-file ${

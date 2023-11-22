@@ -122,3 +122,6 @@
 .profile-content-upload-form-file .error {
   color: #ff0000;
 }
+.login-content-body-input-error {
+  text-align: start;
+}
