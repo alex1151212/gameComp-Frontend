@@ -43,7 +43,9 @@ const AuthProvider: FC<{
   }, []);
 
   return (
-    <AuthContext.Provider value={{ auth, saveAuth, currentUser, logout }}>
+    <AuthContext.Provider
+      value={{ auth, saveAuth, currentUser, logout, setCurrentUser }}
+    >
       {children}
     </AuthContext.Provider>
   );

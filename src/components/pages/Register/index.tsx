@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import { Formik } from "formik";
 import React from "react";
 import { api } from "../../../api";
@@ -8,33 +8,21 @@ import useRwd from "../../../hook/useRwd";
 import Cube from "../../cube3d";
 import { RegisterResponse } from "./type";
 import { Navigate, useNavigate } from "react-router-dom";
+import { ICommonError } from "../../../api/axios";
 
 interface RegisterProps {}
 
 const Register: React.FC<RegisterProps> = () => {
-  // const { executeRecaptcha } = useGoogleReCaptcha();
   const navigate = useNavigate();
   const { isMobile } = useRwd();
   const { sendRequest: registerRequest } = useAxios();
   const { auth, saveAuth } = useAuth();
-
-  // const handleReCaptchaVerify = useCallback(async () => {
-  //   if (!executeRecaptcha) {
-  //     console.log("Execute recaptcha not yet available");
-  //     return;
-  //   }
-
-  //   const token = await executeRecaptcha("LOGIN");
-
-  //   return token;
-  //   // Do whatever you want with the token
-  // }, [executeRecaptcha]);
   if (auth) return <Navigate to={"/auth/upload"} />;
   return (
-    <div className={`login ${isMobile && "mobile"}`}>
-      <div className="login-content">
-        <div className="login-content-body-wrapper">
-          <div className="login-content-body">
+    <div className={`register ${isMobile && "mobile"}`}>
+      <div className="register-content">
+        <div className="register-content-body-wrapper">
+          <div className="register-content-body">
             <Formik
               initialValues={{
                 email: "",
@@ -60,20 +48,11 @@ const Register: React.FC<RegisterProps> = () => {
 
                 return errors;
               }}
-              onSubmit={async (values) => {
-                // const token = await handleReCaptchaVerify();
-                // await axios
-                //   .post(import.meta.env.VITE_RECAPTCHA_VERIFY, {
-                //     secret: import.meta.env.VITE_RECAPTCHA_KEY,
-                //     response: token,
-                //   })
-                //   .then((res) => {
-                //     console.log(res);
-                //   });
+              onSubmit={async (values, errors) => {
                 registerRequest(
                   {
-                    url: api.login.url(),
-                    method: api.login.method,
+                    url: api.register.url(),
+                    method: api.register.method,
                     data: {
                       email: values.email,
                       username: values.username,
@@ -83,18 +62,26 @@ const Register: React.FC<RegisterProps> = () => {
                   (response: AxiosResponse<RegisterResponse>) => {
                     const { data } = response;
                     saveAuth(data.data.token);
-                    navigate("/auth/upload");
+                    navigate("/auth/profile");
+                  },
+                  (error: AxiosError) => {
+                    const { response } = error;
+                    response &&
+                      errors.setErrors({
+                        confirmPassword:
+                          (response.data as ICommonError).Msg ?? "",
+                      });
                   }
                 );
               }}
             >
               {({ handleSubmit, setFieldValue, errors }) => (
                 <form
-                  className="login-content-body-form"
+                  className="register-content-body-form"
                   onSubmit={handleSubmit}
                 >
                   <h2>Register</h2>
-                  <div className="login-content-body-input">
+                  <div className="register-content-body-input">
                     <input
                       type="text"
                       // required
@@ -103,11 +90,11 @@ const Register: React.FC<RegisterProps> = () => {
                       }}
                     />
                     <span>Email</span>
-                    <p className="login-content-body-input-error">
+                    <p className="register-content-body-input-error">
                       {errors.email}
                     </p>
                   </div>
-                  <div className="login-content-body-input">
+                  <div className="register-content-body-input">
                     <input
                       type="text"
                       // required
@@ -116,11 +103,11 @@ const Register: React.FC<RegisterProps> = () => {
                       }}
                     />
                     <span>Username</span>
-                    <p className="login-content-body-input-error">
+                    <p className="register-content-body-input-error">
                       {errors.username}
                     </p>
                   </div>
-                  <div className="login-content-body-input">
+                  <div className="register-content-body-input">
                     <input
                       type="password"
                       // required
@@ -129,11 +116,11 @@ const Register: React.FC<RegisterProps> = () => {
                       }}
                     />
                     <span>Password</span>
-                    <p className="login-content-body-input-error">
+                    <p className="register-content-body-input-error">
                       {errors.password}
                     </p>
                   </div>
-                  <div className="login-content-body-input">
+                  <div className="register-content-body-input">
                     <input
                       type="password"
                       // required
@@ -142,18 +129,21 @@ const Register: React.FC<RegisterProps> = () => {
                       }}
                     />
                     <span>Confirm Password</span>
-                    <p className="login-content-body-input-error">
+                    <p className="register-content-body-input-error">
                       {errors.confirmPassword}
                     </p>
                   </div>
-                  <button type="submit" className="login-content-body-button">
+                  <button
+                    type="submit"
+                    className="register-content-body-button"
+                  >
                     Comfirm
                   </button>
                 </form>
               )}
             </Formik>
           </div>
-          <div className="login-content-cube">
+          <div className="register-content-cube">
             <Cube />
           </div>
         </div>
