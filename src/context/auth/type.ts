@@ -9,6 +9,8 @@ export interface UserModel {
   email: string;
   username: string;
   phone: string;
+
+  isUpload: boolean;
 }
 
 export type AuthModel = string;

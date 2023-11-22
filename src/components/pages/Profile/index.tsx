@@ -37,6 +37,8 @@ const Profile: React.FC<Props> = () => {
               }
             }
             onSubmit={(values) => {
+              console.log(values);
+
               // const formData = new FormData();
               // formData.append("videoLink", values.ytlink);
               // formData.append("pdf", values.pdfFile as File);
@@ -63,6 +65,10 @@ const Profile: React.FC<Props> = () => {
                 password: string;
                 confirmPassword: string;
               }> = {};
+
+              if (values.username === "") errors.username = "Username required";
+              if (values.email === "") errors.email = "Email required";
+              if (values.phone === "") errors.phone = "Phone required";
 
               if (values.confirmPassword === values.password)
                 errors.confirmPassword = "confirm password not match";
@@ -200,76 +206,81 @@ const Profile: React.FC<Props> = () => {
             {({ setFieldValue, submitForm, values, errors }) => (
               <form action="" className="profile-content-upload-form">
                 {/* <h1 className="profile-content-upload-form-header">上傳</h1> */}
-                <div className="profile-content-upload-form-link">
-                  <input
-                    type="text"
-                    value={values.ytlink}
-                    onChange={(e) => {
-                      setFieldValue("ytlink", e.target.value);
-                    }}
-                  />
-                  <span>Youtube 影片連結</span>
-                  {/* <p className="login-content-body-input-error">
-                      {errors.email}
-                    </p> */}
-                </div>
-                <div
-                  className={`profile-content-upload-form-file ${
-                    fileDragState ? "upload-drag" : ""
-                  }`}
-                  onClick={() => {
-                    fileRef.current?.click();
-                  }}
-                  onDrop={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setFileDragState(false);
+                {!currentUser?.isUpload ? (
+                  <h1>已上傳</h1>
+                ) : (
+                  <>
+                    <div className="profile-content-upload-form-link">
+                      <input
+                        type="text"
+                        value={values.ytlink}
+                        onChange={(e) => {
+                          setFieldValue("ytlink", e.target.value);
+                        }}
+                      />
+                      <span>Youtube 影片連結</span>
+                      {/* <p className="login-content-body-input-error">
+                        {errors.email}
+                      </p> */}
+                    </div>
+                    <div
+                      className={`profile-content-upload-form-file ${
+                        fileDragState ? "upload-drag" : ""
+                      }`}
+                      onClick={() => {
+                        fileRef.current?.click();
+                      }}
+                      onDrop={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setFileDragState(false);
 
-                    const dt = e.dataTransfer;
-                    const files = dt.files;
+                        const dt = e.dataTransfer;
+                        const files = dt.files;
 
-                    setFieldValue("pdfFile", files[0]);
-                  }}
-                  onDragEnter={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                  }}
-                  onDragOver={(e) => {
-                    setFileDragState(true);
-                    e.preventDefault();
-                    e.stopPropagation();
-                  }}
-                  onDragLeave={() => {
-                    setFileDragState(false);
-                  }}
-                >
-                  <input
-                    type="file"
-                    ref={fileRef}
-                    name="pdfFile"
-                    hidden
-                    onChange={(e) => {
-                      setFieldValue("pdfFile", e.currentTarget.files?.[0]);
-                    }}
-                  />
-                  <UploadIcon className="upload-icon" />
-                  <p>
-                    {values.pdfFile && !errors.pdfFile
-                      ? values.pdfFile.name
-                      : "Browse File to upload PDF"}
-                  </p>
-                  <p className="error">{errors.pdfFile}</p>
-                </div>
-
-                <button
-                  className="profile-content-upload-form-button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    submitForm();
-                  }}
-                >
-                  確認上傳
-                </button>
+                        setFieldValue("pdfFile", files[0]);
+                      }}
+                      onDragEnter={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }}
+                      onDragOver={(e) => {
+                        setFileDragState(true);
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }}
+                      onDragLeave={() => {
+                        setFileDragState(false);
+                      }}
+                    >
+                      <input
+                        type="file"
+                        ref={fileRef}
+                        name="pdfFile"
+                        hidden
+                        onChange={(e) => {
+                          setFieldValue("pdfFile", e.currentTarget.files?.[0]);
+                        }}
+                      />
+                      <UploadIcon className="upload-icon" />
+                      <p>
+                        {values.pdfFile && !errors.pdfFile
+                          ? values.pdfFile.name
+                          : "Browse File to upload PDF"}
+                      </p>
+                      <p className="error">{errors.pdfFile}</p>
+                    </div>
+                    <button
+                      className="profile-content-upload-form-button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        submitForm();
+                      }}
+                    >
+                      確認上傳
+                    </button>
+                  </>
+                )}
               </form>
             )}
           </Formik>
