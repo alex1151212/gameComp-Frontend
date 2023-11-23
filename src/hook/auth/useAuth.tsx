@@ -13,6 +13,7 @@ const AuthProvider: FC<{
 }> = ({ children }) => {
   const [auth, setAuth] = useState<AuthModel | undefined>(authHelper.getAuth());
   const [currentUser, setCurrentUser] = useState<UserModel | undefined>();
+
   const saveAuth = (auth: AuthModel | undefined) => {
     if (auth) {
       authHelper.setAuth(auth);
@@ -31,7 +32,6 @@ const AuthProvider: FC<{
   const userHandler = (auth: AuthModel | undefined) => {
     if (auth && auth) {
       const user = decodeToken<UserModel>(auth);
-      console.log(user);
 
       if (user) setCurrentUser(user);
       else setCurrentUser(undefined);

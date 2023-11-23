@@ -12,15 +12,7 @@ const getAuth = (): AuthModel | undefined => {
     return;
   }
 
-  try {
-    const auth: AuthModel = JSON.parse(lsValue) as AuthModel;
-    if (auth) {
-      // You can easily check auth_token expiration also
-      return auth;
-    }
-  } catch (error) {
-    console.error("AUTH LOCAL STORAGE PARSE ERROR", error);
-  }
+  return lsValue;
 };
 
 const setAuth = (auth: AuthModel) => {
@@ -29,8 +21,10 @@ const setAuth = (auth: AuthModel) => {
   }
 
   try {
-    const lsValue = JSON.stringify(auth);
-    localStorage.setItem(AUTH_LOCAL_STORAGE_KEY, lsValue);
+    // const lsValue = JSON.stringify(auth);
+    // console.log(auth);
+
+    localStorage.setItem(AUTH_LOCAL_STORAGE_KEY, auth);
     console.log("AUTH LOCAL STORAGE SAVED");
   } catch (error) {
     console.error("AUTH LOCAL STORAGE SAVE ERROR", error);

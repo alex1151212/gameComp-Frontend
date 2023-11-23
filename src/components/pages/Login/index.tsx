@@ -34,7 +34,9 @@ const Login: React.FC<LoginProps> = () => {
     return token;
     // Do whatever you want with the token
   }, [executeRecaptcha]);
-  if (auth) return <Navigate to={"/auth/upload"} />;
+
+  if (auth) return <Navigate to={"/auth/profile"} />;
+
   return (
     <div className={`login ${isMobile ? "mobile" : ""}`}>
       <div className="login-content">

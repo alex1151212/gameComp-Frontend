@@ -1,9 +1,10 @@
 import { Formik } from "formik";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { api } from "../../../api";
 import UploadIcon from "../../../assets/images/svg/upload-icon";
 import useAuth from "../../../hook/auth/useAuth";
 import useAxios from "../../../hook/useAxios";
+import { set } from "lodash";
 interface Props {}
 
 const Profile: React.FC<Props> = () => {
@@ -11,14 +12,11 @@ const Profile: React.FC<Props> = () => {
   const { sendRequest: uploadRequest } = useAxios();
   const fileRef = useRef<HTMLInputElement>(null);
   const [fileDragState, setFileDragState] = useState<boolean>(false);
-  useEffect(() => {
-    console.log(currentUser);
-  }, [currentUser]);
   return (
     <div className="profile">
       <div className="profile-content">
         <div className="profile-content-info">
-          <h1>個人資訊</h1>
+          <h1>帳戶資訊</h1>
           <Formik
             enableReinitialize={true}
             initialValues={
@@ -73,7 +71,6 @@ const Profile: React.FC<Props> = () => {
               if (values.phone === "") errors.phone = "Phone required";
               if (values.phone) {
                 const taiwanPhoneNumberRegex = /^(09|\+8869)\d{8}$/;
-                console.log(!taiwanPhoneNumberRegex.test(values.phone));
                 if (!taiwanPhoneNumberRegex.test(values.phone))
                   errors.phone = "Phone number format error";
               }
@@ -87,6 +84,11 @@ const Profile: React.FC<Props> = () => {
               <form action="" className="profile-content-upload-form">
                 {/* <h1 className="profile-content-upload-form-header">更新</h1> */}
                 <div className="profile-content-upload-form-link">
+                  <input type="text" value={values.email} onChange={() => {}} />
+                  <span>Email</span>
+                  <p className="login-content-body-input-error">{"不可更改"}</p>
+                </div>
+                <div className="profile-content-upload-form-link">
                   <input
                     type="text"
                     value={values.username}
@@ -99,19 +101,13 @@ const Profile: React.FC<Props> = () => {
                       {errors.email}
                     </p> */}
                 </div>
-                <div className="profile-content-upload-form-link">
-                  <input
-                    type="text"
-                    value={values.email}
-                    onChange={(e) => {
-                      setFieldValue("email", e.target.value);
-                    }}
-                  />
+                {/* <div className="profile-content-upload-form-link">
+                  <input type="text" value={values.email} />
                   <span>Email</span>
-                  {/* <p className="login-content-body-input-error">
+                  <p className="login-content-body-input-error">
                       {errors.email}
-                    </p> */}
-                </div>
+                    </p> 
+                </div> */}
                 <div className="profile-content-upload-form-link">
                   <input
                     type="text"
@@ -127,7 +123,7 @@ const Profile: React.FC<Props> = () => {
                 </div>
                 <div className="profile-content-upload-form-link">
                   <input
-                    type="text"
+                    type="password"
                     value={values.password}
                     onChange={(e) => {
                       setFieldValue("password", e.target.value);
@@ -140,7 +136,7 @@ const Profile: React.FC<Props> = () => {
                 </div>
                 <div className="profile-content-upload-form-link">
                   <input
-                    type="text"
+                    type="password"
                     value={values.confirmPassword}
                     onChange={(e) => {
                       setFieldValue("confirmPassword", e.target.value);
@@ -159,6 +155,262 @@ const Profile: React.FC<Props> = () => {
                   }}
                 >
                   確認更新
+                </button>
+              </form>
+            )}
+          </Formik>
+        </div>
+        <div className="profile-content-teaminfo">
+          <h1>隊伍資訊</h1>
+          <Formik
+            enableReinitialize={true}
+            initialValues={
+              {
+                teamName: "",
+                teamMember1: "",
+                teamMember2: "",
+                teamMember3: "",
+                teamMember4: "",
+                teamMember5: "",
+                schoolCertificate: null,
+              } as {
+                teamName: string;
+                teamMember1: string;
+                teamMember2: string;
+                teamMember3: string;
+                teamMember4: string;
+                teamMember5: string;
+                schoolCertificate: FileList | null;
+              }
+            }
+            onSubmit={(values) => {
+              console.log(values);
+
+              // uploadRequest(
+              //   {
+              //     url: api.updateUser.url(),
+              //     method: api.updateUser.method,
+              //     data: {
+              //       email: values.email,
+              //       phone: values.phone,
+              //       username: values.username,
+              //       password: values.password,
+              //     },
+              //   },
+              //   (response) => {
+              //     setCurrentUser({
+              //       email: response.data.data.email,
+              //       phone: response.data.data.phone,
+              //       username: response.data.data.username,
+              //       isUpload: response.data.data.isUpload,
+              //     });
+              //   }
+              // );
+              // console.log(values);
+            }}
+            validate={(values) => {
+              const errors: Partial<{
+                username: string;
+                email: string;
+                phone: string;
+                password: string;
+                confirmPassword: string;
+              }> = {};
+
+              return errors;
+            }}
+          >
+            {({ setFieldValue, submitForm, values, errors }) => (
+              <form action="" className="profile-content-upload-form">
+                {/* <h1 className="profile-content-upload-form-header">已報名</h1> */}
+                <div className="profile-content-upload-form-link">
+                  <input
+                    type="text"
+                    value={values.teamName}
+                    onChange={() => {}}
+                  />
+                  <span>TeamName</span>
+                </div>
+                <div className="profile-content-upload-form-link">
+                  <input
+                    type="text"
+                    value={values.teamMember1}
+                    onChange={(e) => {
+                      setFieldValue("teamMember1", e.target.value);
+                    }}
+                  />
+                  <span>TeamMember1</span>
+                  {/* <p className="login-content-body-input-error">
+                      {errors.email}
+                    </p> */}
+                </div>
+                <div className="profile-content-upload-form-link">
+                  <input
+                    type="text"
+                    value={values.teamMember2}
+                    onChange={(e) => {
+                      setFieldValue("teamMember2", e.target.value);
+                    }}
+                  />
+                  <span>TeamMember2</span>
+                  {/* <p className="login-content-body-input-error">
+                      {errors.email}
+                    </p> */}
+                </div>
+                <div className="profile-content-upload-form-link">
+                  <input
+                    type="text"
+                    value={values.teamMember3}
+                    onChange={(e) => {
+                      setFieldValue("teamMember3", e.target.value);
+                    }}
+                  />
+                  <span>TeamMember3</span>
+                  {/* <p className="login-content-body-input-error">
+                      {errors.email}
+                    </p> */}
+                </div>
+                <div className="profile-content-upload-form-link">
+                  <input
+                    type="text"
+                    value={values.teamMember4}
+                    onChange={(e) => {
+                      setFieldValue("teamMember4", e.target.value);
+                    }}
+                  />
+                  <span>TeamMember4</span>
+                  {/* <p className="login-content-body-input-error">
+                      {errors.email}
+                    </p> */}
+                </div>
+                <div className="profile-content-upload-form-link">
+                  <input
+                    type="text"
+                    value={values.teamMember5}
+                    onChange={(e) => {
+                      setFieldValue("teamMember5", e.target.value);
+                    }}
+                  />
+                  <span>TeamMember5</span>
+                  {/* <p className="login-content-body-input-error">
+                      {errors.email}
+                    </p> */}
+                </div>
+                <div className="profile-content-upload-form-link">
+                  <div
+                    className={`profile-content-upload-form-fileimg ${
+                      fileDragState ? "upload-drag" : ""
+                    }`}
+                    onClick={() => {
+                      fileRef.current?.click();
+                    }}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setFileDragState(false);
+
+                      const dt = e.dataTransfer;
+                      const files = dt.files;
+
+                      setFieldValue("schoolCertificate", files);
+                    }}
+                    onDragEnter={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                    onDragOver={(e) => {
+                      setFileDragState(true);
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                    onDragLeave={() => {
+                      setFileDragState(false);
+                    }}
+                  >
+                    <input
+                      type="file"
+                      ref={fileRef}
+                      name="pdfFile"
+                      hidden
+                      onChange={(e) => {
+                        setFieldValue(
+                          "schoolCertificate",
+                          e.currentTarget.files
+                        );
+                      }}
+                    />
+                    <UploadIcon className="upload-icon" />
+                    <p>上傳學生證正反面或在學證明</p>
+                    {/* <p className="error">{errors.pdfFile}</p> */}
+                  </div>
+                  {/* <p className="login-content-body-input-error">
+                      {errors.email}
+                    </p> */}
+                </div>
+
+                <div className="profile-content-upload-form-link">
+                  <div className="profile-content-upload-form-img-preview-wrapper">
+                    {values.schoolCertificate &&
+                      Array.from(values.schoolCertificate).map(
+                        (file, index) => {
+                          const localUrl = URL.createObjectURL(file);
+                          return (
+                            <div
+                              className={`profile-content-upload-form-img-preview`}
+                              onClick={() => {
+                                // fileRef.current?.click();
+                              }}
+                              key={localUrl}
+                            >
+                              <p
+                                className="close"
+                                onClick={() => {
+                                  if (values.schoolCertificate) {
+                                    const newFileList = Array.from(
+                                      values.schoolCertificate
+                                    );
+                                    newFileList.splice(index, 1);
+                                    setFieldValue(
+                                      "schoolCertificate",
+                                      newFileList
+                                    );
+                                  }
+                                }}
+                              >
+                                ×
+                              </p>
+                              <img src={localUrl} alt="" />
+                            </div>
+                          );
+                        }
+                      )}
+                  </div>
+
+                  {/* <p className="error">{errors.pdfFile}</p> */}
+
+                  {/* <p className="login-content-body-input-error">
+                      {errors.email}
+                    </p> */}
+                </div>
+                <p className="login-content-body-input-error">
+                  {"報名後不可更改"}
+                </p>
+                {/* <div className="profile-content-upload-form-link">
+                  <input type="text" value={values.email} />
+                  <span>Email</span>
+                  <p className="login-content-body-input-error">
+                      {errors.email}
+                    </p> 
+                </div> */}
+
+                <button
+                  className="profile-content-upload-form-button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    submitForm();
+                  }}
+                >
+                  確認報名
                 </button>
               </form>
             )}
@@ -229,8 +481,6 @@ const Profile: React.FC<Props> = () => {
           >
             {({ setFieldValue, submitForm, values, errors }) => (
               <form action="" className="profile-content-upload-form">
-                {/* <h1 className="profile-content-upload-form-header">上傳</h1> */}
-
                 <>
                   <h1>
                     {currentUser?.isUpload || values.isUpload ? "已上傳" : ""}
