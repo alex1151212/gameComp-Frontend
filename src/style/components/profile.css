@@ -113,7 +113,10 @@
   top: 20px;
   right: 20px;
 }
-
+.profile-content-upload-form-pdf-preview {
+  width: 100%;
+  margin-top: 20px;
+}
 .profile-content-upload-form-img-preview > img {
   max-width: 100%; /* 讓圖片寬度最大不超過父元素寬度 */
   height: auto; /* 讓高度自動調整以保持圖片比例 */

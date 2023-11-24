@@ -1,17 +1,85 @@
 import { Formik } from "formik";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { api } from "../../../api";
 import UploadIcon from "../../../assets/images/svg/upload-icon";
 import useAuth from "../../../hook/auth/useAuth";
 import useAxios from "../../../hook/useAxios";
-import { set } from "lodash";
+
+import PdfPreviewer from "../../pdf-preivewer";
+import { ProfileResponse, ProfileType, TeamInfoType, UploadType } from "./type";
+import { AxiosResponse } from "axios";
+
 interface Props {}
 
 const Profile: React.FC<Props> = () => {
-  const { currentUser, setCurrentUser } = useAuth();
+  const { currentUser } = useAuth();
+  const [profileData, setProfileData] = useState<ProfileType>({
+    username: "",
+    email: "",
+    phone: "",
+    password: undefined,
+    confirmPassword: undefined,
+  });
+  const [uploadData, setUploadData] = useState<UploadType>({
+    workVideoLink: "",
+    workPdf: undefined,
+    workPdfUrl: "",
+
+    isUpload: false,
+  });
+  const [teamInfoData, setTeamInfoData] = useState<TeamInfoType>({
+    teamName: "",
+    teamMember: ["", "", "", "", ""],
+    teamSchoolCertificate: [],
+
+    isApplyTeam: false,
+  });
+
   const { sendRequest: uploadRequest } = useAxios();
+  const { sendRequest: getProfileRequest } = useAxios();
   const fileRef = useRef<HTMLInputElement>(null);
   const [fileDragState, setFileDragState] = useState<boolean>(false);
+
+  const getProfile = () => {
+    getProfileRequest(
+      {
+        url: api.getProfile.url(),
+        method: api.getProfile.method,
+      },
+      (response: AxiosResponse<ProfileResponse>) => {
+        const { data } = response.data;
+        setProfileData({
+          username: data.username,
+          email: data.email,
+          phone: data.phone,
+          password: "",
+          confirmPassword: "",
+        });
+        setUploadData({
+          workPdf: undefined,
+          workPdfUrl: data.workPdf,
+          workVideoLink: data.workVideoLink,
+
+          isUpload: data.isUpload,
+        });
+        setTeamInfoData({
+          teamName: data.teamName,
+          teamMember: data.teamMember.map((member) => member.name),
+          teamSchoolCertificate: data.teamSchoolCertificate,
+
+          isApplyTeam: data.isApplyTeam,
+        });
+      }
+    );
+  };
+  useEffect(() => {
+    getProfile();
+  }, []);
+
+  useEffect(() => {
+    console.log(uploadData);
+  }, [uploadData]);
+
   return (
     <div className="profile">
       <div className="profile-content">
@@ -19,21 +87,7 @@ const Profile: React.FC<Props> = () => {
           <h1>帳戶資訊</h1>
           <Formik
             enableReinitialize={true}
-            initialValues={
-              {
-                username: currentUser?.username || "",
-                email: currentUser?.email || "",
-                phone: currentUser?.phone || "",
-                password: undefined,
-                confirmPassword: undefined,
-              } as {
-                username: string;
-                email: string;
-                phone: string;
-                password?: string;
-                confirmPassword?: string;
-              }
-            }
+            initialValues={profileData}
             onSubmit={(values) => {
               uploadRequest(
                 {
@@ -47,12 +101,7 @@ const Profile: React.FC<Props> = () => {
                   },
                 },
                 (response) => {
-                  setCurrentUser({
-                    email: response.data.data.email,
-                    phone: response.data.data.phone,
-                    username: response.data.data.username,
-                    isUpload: response.data.data.isUpload,
-                  });
+                  console.log(response);
                 }
               );
               // console.log(values);
@@ -164,25 +213,7 @@ const Profile: React.FC<Props> = () => {
           <h1>隊伍資訊</h1>
           <Formik
             enableReinitialize={true}
-            initialValues={
-              {
-                teamName: "",
-                teamMember1: "",
-                teamMember2: "",
-                teamMember3: "",
-                teamMember4: "",
-                teamMember5: "",
-                schoolCertificate: null,
-              } as {
-                teamName: string;
-                teamMember1: string;
-                teamMember2: string;
-                teamMember3: string;
-                teamMember4: string;
-                teamMember5: string;
-                schoolCertificate: FileList | null;
-              }
-            }
+            initialValues={teamInfoData}
             onSubmit={(values) => {
               console.log(values);
 
@@ -216,6 +247,7 @@ const Profile: React.FC<Props> = () => {
                 password: string;
                 confirmPassword: string;
               }> = {};
+              console.log(values);
 
               return errors;
             }}
@@ -234,9 +266,11 @@ const Profile: React.FC<Props> = () => {
                 <div className="profile-content-upload-form-link">
                   <input
                     type="text"
-                    value={values.teamMember1}
+                    value={values.teamMember[0]}
                     onChange={(e) => {
-                      setFieldValue("teamMember1", e.target.value);
+                      const buffer = [...values.teamMember];
+                      buffer[0] = e.target.value;
+                      setFieldValue("teamMember", buffer);
                     }}
                   />
                   <span>TeamMember1</span>
@@ -247,9 +281,11 @@ const Profile: React.FC<Props> = () => {
                 <div className="profile-content-upload-form-link">
                   <input
                     type="text"
-                    value={values.teamMember2}
+                    value={values.teamMember[1]}
                     onChange={(e) => {
-                      setFieldValue("teamMember2", e.target.value);
+                      const buffer = [...values.teamMember];
+                      buffer[1] = e.target.value;
+                      setFieldValue("teamMember", buffer);
                     }}
                   />
                   <span>TeamMember2</span>
@@ -260,9 +296,11 @@ const Profile: React.FC<Props> = () => {
                 <div className="profile-content-upload-form-link">
                   <input
                     type="text"
-                    value={values.teamMember3}
+                    value={values.teamMember[2]}
                     onChange={(e) => {
-                      setFieldValue("teamMember3", e.target.value);
+                      const buffer = [...values.teamMember];
+                      buffer[2] = e.target.value;
+                      setFieldValue("teamMember", buffer);
                     }}
                   />
                   <span>TeamMember3</span>
@@ -273,9 +311,11 @@ const Profile: React.FC<Props> = () => {
                 <div className="profile-content-upload-form-link">
                   <input
                     type="text"
-                    value={values.teamMember4}
+                    value={values.teamMember[3]}
                     onChange={(e) => {
-                      setFieldValue("teamMember4", e.target.value);
+                      const buffer = [...values.teamMember];
+                      buffer[3] = e.target.value;
+                      setFieldValue("teamMember", buffer);
                     }}
                   />
                   <span>TeamMember4</span>
@@ -286,9 +326,11 @@ const Profile: React.FC<Props> = () => {
                 <div className="profile-content-upload-form-link">
                   <input
                     type="text"
-                    value={values.teamMember5}
+                    value={values.teamMember[4]}
                     onChange={(e) => {
-                      setFieldValue("teamMember5", e.target.value);
+                      const buffer = [...values.teamMember];
+                      buffer[4] = e.target.value;
+                      setFieldValue("teamMember", buffer);
                     }}
                   />
                   <span>TeamMember5</span>
@@ -312,7 +354,7 @@ const Profile: React.FC<Props> = () => {
                       const dt = e.dataTransfer;
                       const files = dt.files;
 
-                      setFieldValue("schoolCertificate", files);
+                      setFieldValue("teamSchoolCertificate", files);
                     }}
                     onDragEnter={(e) => {
                       e.preventDefault();
@@ -334,7 +376,7 @@ const Profile: React.FC<Props> = () => {
                       hidden
                       onChange={(e) => {
                         setFieldValue(
-                          "schoolCertificate",
+                          "teamSchoolCertificate",
                           e.currentTarget.files
                         );
                       }}
@@ -350,10 +392,16 @@ const Profile: React.FC<Props> = () => {
 
                 <div className="profile-content-upload-form-link">
                   <div className="profile-content-upload-form-img-preview-wrapper">
-                    {values.schoolCertificate &&
-                      Array.from(values.schoolCertificate).map(
+                    {values.teamSchoolCertificate &&
+                      Array.from(values.teamSchoolCertificate).map(
                         (file, index) => {
-                          const localUrl = URL.createObjectURL(file);
+                          let localUrl;
+                          if (typeof file === "string") {
+                            localUrl = file;
+                          } else {
+                            localUrl = URL.createObjectURL(file);
+                          }
+
                           return (
                             <div
                               className={`profile-content-upload-form-img-preview`}
@@ -365,13 +413,13 @@ const Profile: React.FC<Props> = () => {
                               <p
                                 className="close"
                                 onClick={() => {
-                                  if (values.schoolCertificate) {
+                                  if (values.teamSchoolCertificate) {
                                     const newFileList = Array.from(
-                                      values.schoolCertificate
+                                      values.teamSchoolCertificate
                                     );
                                     newFileList.splice(index, 1);
                                     setFieldValue(
-                                      "schoolCertificate",
+                                      "teamSchoolCertificate",
                                       newFileList
                                     );
                                   }
@@ -419,62 +467,53 @@ const Profile: React.FC<Props> = () => {
         <div className="profile-content-upload">
           <h1>檔案上傳</h1>
           <Formik
-            initialValues={
-              {
-                pdfFile: null,
-                ytlink: "",
-                isUpload: currentUser?.isUpload,
-              } as {
-                pdfFile: File | null;
-                ytlink: string;
-                isUpload: boolean;
-              }
-            }
+            enableReinitialize={true}
+            initialValues={uploadData}
             onSubmit={(values) => {
               const formData = new FormData();
-              formData.append("videoLink", values.ytlink);
-              formData.append("pdf", values.pdfFile as File);
+              formData.append("videoLink", values.workVideoLink);
+              formData.append("pdf", values.workPdf as File);
 
-              uploadRequest(
-                {
-                  url: api.uploadFile.url(),
-                  method: api.uploadFile.method,
-                  data: formData,
-                },
-                (response) => {
-                  setCurrentUser({
-                    email: response.data.data.email,
-                    phone: response.data.data.phone,
-                    username: response.data.data.username,
-                    isUpload: response.data.data.isUpload,
-                  });
-                },
-                (error) => {
-                  console.log(error);
-                }
-              );
+              // uploadRequest(
+              //   {
+              //     url: api.uploadFile.url(),
+              //     method: api.uploadFile.method,
+              //     data: formData,
+              //   },
+              //   (response) => {
+              //     setCurrentUser({
+              //       email: response.data.data.email,
+              //       phone: response.data.data.phone,
+              //       username: response.data.data.username,
+              //       isUpload: response.data.data.isUpload,
+              //     });
+              //   },
+              //   (error) => {
+              //     console.log(error);
+              //   }
+              // );
               console.log(values);
             }}
             validate={(values) => {
               const errors: Partial<{
-                pdfFile: string;
-                ytlink: string;
+                workPdf: string;
+                workVideoLink: string;
               }> = {};
-              if (values.pdfFile === null) {
-                errors.pdfFile = "Please upload a pdf file";
+              if (values.workPdf === null) {
+                errors.workPdf = "Please upload a pdf file";
               }
-              if (values.ytlink === "") {
-                errors.ytlink = "Please enter a youtube link";
+              if (values.workVideoLink === "") {
+                errors.workVideoLink = "Please enter a youtube link";
               }
 
-              if (values.ytlink) {
+              if (values.workVideoLink) {
                 const youtubeLinkRegex =
                   /^(https?:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/;
-                if (!youtubeLinkRegex.test(values.ytlink))
-                  errors.ytlink = "Youtube link format error";
+                if (!youtubeLinkRegex.test(values.workVideoLink))
+                  errors.workVideoLink = "Youtube link format error";
               }
-              if (values.pdfFile && values.pdfFile.type !== "application/pdf")
-                errors.pdfFile = "Please upload a pdf file";
+              if (values.workPdf && values.workPdf.type !== "application/pdf")
+                errors.workPdf = "Please upload a pdf file";
 
               return errors;
             }}
@@ -488,14 +527,14 @@ const Profile: React.FC<Props> = () => {
                   <div className="profile-content-upload-form-link">
                     <input
                       type="text"
-                      value={values.ytlink}
+                      value={values.workVideoLink}
                       onChange={(e) => {
-                        setFieldValue("ytlink", e.target.value);
+                        setFieldValue("workVideoLink", e.target.value);
                       }}
                     />
                     <span>Youtube 影片連結</span>
                     <p className="login-content-body-input-error">
-                      {errors.ytlink}
+                      {errors.workVideoLink}
                     </p>
                   </div>
                   <div
@@ -513,7 +552,7 @@ const Profile: React.FC<Props> = () => {
                       const dt = e.dataTransfer;
                       const files = dt.files;
 
-                      setFieldValue("pdfFile", files[0]);
+                      setFieldValue("workPdf", files[0]);
                     }}
                     onDragEnter={(e) => {
                       e.preventDefault();
@@ -531,19 +570,19 @@ const Profile: React.FC<Props> = () => {
                     <input
                       type="file"
                       ref={fileRef}
-                      name="pdfFile"
+                      name="workPdf"
                       hidden
                       onChange={(e) => {
-                        setFieldValue("pdfFile", e.currentTarget.files?.[0]);
+                        setFieldValue("workPdf", e.currentTarget.files?.[0]);
                       }}
                     />
                     <UploadIcon className="upload-icon" />
                     <p>
-                      {values.pdfFile && !errors.pdfFile
-                        ? values.pdfFile.name
+                      {values.workPdf && !errors.workPdf
+                        ? values.workPdf.name
                         : "Browse File to upload PDF"}
                     </p>
-                    <p className="error">{errors.pdfFile}</p>
+                    <p className="error">{errors.workPdf}</p>
                   </div>
                   <button
                     className="profile-content-upload-form-button"
@@ -554,6 +593,14 @@ const Profile: React.FC<Props> = () => {
                   >
                     確認上傳
                   </button>
+                  {true && (
+                    <div className="profile-content-upload-form-pdf-preview">
+                      <h1>文件預覽</h1>
+                      <PdfPreviewer
+                        prfUrl={values.workPdf || values.workPdfUrl}
+                      />
+                    </div>
+                  )}
                 </>
               </form>
             )}
