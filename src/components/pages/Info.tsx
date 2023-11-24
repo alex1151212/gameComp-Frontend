@@ -13,7 +13,7 @@ const Info: React.FC<InfoProps> = () => {
             title={"創意遊戲設計競賽規程（總則）"}
             content={
               <div>
-                <p>112台灣大專院校創意遊戲設計競賽規程(總則)</p>
+                <p>112臺灣大專院校創意遊戲設計競賽規程(總則)</p>
                 <a
                   href="assets/files/112台灣大專院校創意遊戲設計競賽規程(總則).pdf"
                   target="_blank"
