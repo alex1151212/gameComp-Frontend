@@ -282,7 +282,7 @@ const Profile: React.FC<Props> = () => {
                   />
                   <span>隊伍名稱</span>
                 </div>
-                {values.teamTeacher.map((teacher, index) => (
+                {values.teamTeacher.map((_, index) => (
                   <div className="profile-content-upload-form-add-input">
                     <div className="profile-content-upload-form-row">
                       <div className="profile-content-upload-form-link">
@@ -349,7 +349,7 @@ const Profile: React.FC<Props> = () => {
                     )}
                   </div>
                 ))}
-                {values.teamMember.map((member, index) => {
+                {values.teamMember.map((_, index) => {
                   return (
                     <div className="profile-content-upload-form-add-input">
                       <div className="profile-content-upload-form-link">
