@@ -11,10 +11,6 @@ export interface ICommonError {
 const axiosInstance = axios.create({
   baseURL: `${import.meta.env.VITE_BACKEND_URL}`,
   timeout: 60 * 1000 * 60,
-  headers: {
-    // Authorization: "Bearer develop",
-    Authorization: `Bearer ${localStorage.getItem("igd-auth")}`,
-  },
 });
 
 axiosInstance.interceptors.request.use(

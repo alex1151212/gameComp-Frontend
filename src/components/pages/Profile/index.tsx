@@ -29,6 +29,8 @@ const Profile: React.FC<Props> = () => {
   });
   const [teamInfoData, setTeamInfoData] = useState<TeamInfoType>({
     teamName: "",
+    teamTeacherName: "",
+    teamTeacherJobTitle: "",
     teamMember: ["", "", "", "", ""],
     teamSchoolCertificate: [],
 
@@ -37,7 +39,8 @@ const Profile: React.FC<Props> = () => {
 
   const { sendRequest: uploadRequest } = useAxios();
   const { sendRequest: getProfileRequest } = useAxios();
-  const fileRef = useRef<HTMLInputElement>(null);
+  const imgFileRef = useRef<HTMLInputElement>(null);
+  const pdfFileRef = useRef<HTMLInputElement>(null);
   const [fileDragState, setFileDragState] = useState<boolean>(false);
 
   const getProfile = () => {
@@ -65,6 +68,8 @@ const Profile: React.FC<Props> = () => {
         setTeamInfoData({
           teamName: data.teamName,
           teamMember: data.teamMember.map((member) => member.name),
+          teamTeacherName: data.teamTeacher.name,
+          teamTeacherJobTitle: data.teamTeacher.jobTitle,
           teamSchoolCertificate: data.teamSchoolCertificate,
 
           isApplyTeam: data.isApplyTeam,
@@ -75,10 +80,6 @@ const Profile: React.FC<Props> = () => {
   useEffect(() => {
     getProfile();
   }, []);
-
-  useEffect(() => {
-    console.log(uploadData);
-  }, [uploadData]);
 
   return (
     <div className="profile">
@@ -101,6 +102,7 @@ const Profile: React.FC<Props> = () => {
                   },
                 },
                 (response) => {
+                  getProfile();
                   console.log(response);
                 }
               );
@@ -210,59 +212,102 @@ const Profile: React.FC<Props> = () => {
           </Formik>
         </div>
         <div className="profile-content-teaminfo">
-          <h1>隊伍資訊</h1>
+          <h1>隊伍報名資訊</h1>
           <Formik
             enableReinitialize={true}
             initialValues={teamInfoData}
             onSubmit={(values) => {
-              console.log(values);
+              const formData = new FormData();
+              formData.append("teamName", values.teamName);
 
-              // uploadRequest(
-              //   {
-              //     url: api.updateUser.url(),
-              //     method: api.updateUser.method,
-              //     data: {
-              //       email: values.email,
-              //       phone: values.phone,
-              //       username: values.username,
-              //       password: values.password,
-              //     },
-              //   },
-              //   (response) => {
-              //     setCurrentUser({
-              //       email: response.data.data.email,
-              //       phone: response.data.data.phone,
-              //       username: response.data.data.username,
-              //       isUpload: response.data.data.isUpload,
-              //     });
-              //   }
-              // );
-              // console.log(values);
+              formData.append(
+                "teamMember",
+                JSON.stringify(
+                  values.teamMember
+                    .filter((member) => member != "")
+                    .map((member) => ({ name: member }))
+                )
+              );
+
+              for (let i = 0; i < values.teamSchoolCertificate.length; i++) {
+                formData.append(
+                  "teamSchoolCertificate[]",
+                  values.teamSchoolCertificate[i]
+                );
+              }
+              uploadRequest(
+                {
+                  url: api.teamApply.url(),
+                  method: api.teamApply.method,
+                  data: formData,
+                },
+                (response) => {
+                  getProfile();
+                  console.log(response);
+                }
+              );
             }}
             validate={(values) => {
               const errors: Partial<{
-                username: string;
-                email: string;
-                phone: string;
-                password: string;
-                confirmPassword: string;
+                teamName: string;
+                teamMember: string;
+                teamTeacher: string;
+                teamSchoolCertificate: string;
               }> = {};
-              console.log(values);
+
+              if (values.teamName === "") errors.teamName = "TeamName required";
+              if (values.teamMember.length < 1)
+                errors.teamMember = "TeamMember required";
+              if (values.teamSchoolCertificate.length < 1)
+                errors.teamSchoolCertificate = "TeamSchoolCertificate required";
 
               return errors;
             }}
           >
             {({ setFieldValue, submitForm, values, errors }) => (
               <form action="" className="profile-content-upload-form">
-                {/* <h1 className="profile-content-upload-form-header">已報名</h1> */}
+                <h1 className="profile-content-upload-form-header">
+                  {values.isApplyTeam ? "已報名" : "尚未報名"}
+                </h1>
                 <div className="profile-content-upload-form-link">
                   <input
                     type="text"
                     value={values.teamName}
-                    onChange={() => {}}
+                    onChange={(e) => {
+                      setFieldValue("teamName", e.target.value);
+                    }}
                   />
-                  <span>TeamName</span>
+                  <span>隊伍名稱</span>
                 </div>
+                <div className="profile-content-upload-form-row">
+                  <div className="profile-content-upload-form-link">
+                    <input
+                      type="text"
+                      value={values.teamTeacherName}
+                      onChange={(e) => {
+                        setFieldValue("teamTeacherName", e.target.value);
+                      }}
+                    />
+                    <span>指導老師</span>
+                    <p className="login-content-body-input-error">
+                      {errors.teamMember}
+                    </p>
+                  </div>
+                  <div className="profile-content-upload-form-link">
+                    <input
+                      type="text"
+                      value={values.teamTeacherName}
+                      onChange={(e) => {
+                        setFieldValue("teamTeacherName", e.target.value);
+                      }}
+                    />
+                    <span>老師職稱</span>
+                    <p className="login-content-body-input-error">
+                      {errors.teamMember}
+                    </p>
+                  </div>
+                </div>
+
                 <div className="profile-content-upload-form-link">
                   <input
                     type="text"
@@ -273,10 +318,10 @@ const Profile: React.FC<Props> = () => {
                       setFieldValue("teamMember", buffer);
                     }}
                   />
-                  <span>TeamMember1</span>
-                  {/* <p className="login-content-body-input-error">
-                      {errors.email}
-                    </p> */}
+                  <span>隊員1</span>
+                  <p className="login-content-body-input-error">
+                    {errors.teamMember}
+                  </p>
                 </div>
                 <div className="profile-content-upload-form-link">
                   <input
@@ -288,7 +333,7 @@ const Profile: React.FC<Props> = () => {
                       setFieldValue("teamMember", buffer);
                     }}
                   />
-                  <span>TeamMember2</span>
+                  <span>隊員2</span>
                   {/* <p className="login-content-body-input-error">
                       {errors.email}
                     </p> */}
@@ -303,7 +348,7 @@ const Profile: React.FC<Props> = () => {
                       setFieldValue("teamMember", buffer);
                     }}
                   />
-                  <span>TeamMember3</span>
+                  <span>隊員3</span>
                   {/* <p className="login-content-body-input-error">
                       {errors.email}
                     </p> */}
@@ -318,7 +363,7 @@ const Profile: React.FC<Props> = () => {
                       setFieldValue("teamMember", buffer);
                     }}
                   />
-                  <span>TeamMember4</span>
+                  <span>隊員4</span>
                   {/* <p className="login-content-body-input-error">
                       {errors.email}
                     </p> */}
@@ -333,63 +378,64 @@ const Profile: React.FC<Props> = () => {
                       setFieldValue("teamMember", buffer);
                     }}
                   />
-                  <span>TeamMember5</span>
+                  <span>隊員5</span>
                   {/* <p className="login-content-body-input-error">
                       {errors.email}
                     </p> */}
                 </div>
-                <div className="profile-content-upload-form-link">
-                  <div
-                    className={`profile-content-upload-form-fileimg ${
-                      fileDragState ? "upload-drag" : ""
-                    }`}
-                    onClick={() => {
-                      fileRef.current?.click();
-                    }}
-                    onDrop={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setFileDragState(false);
-
-                      const dt = e.dataTransfer;
-                      const files = dt.files;
-
-                      setFieldValue("teamSchoolCertificate", files);
-                    }}
-                    onDragEnter={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                    }}
-                    onDragOver={(e) => {
-                      setFileDragState(true);
-                      e.preventDefault();
-                      e.stopPropagation();
-                    }}
-                    onDragLeave={() => {
-                      setFileDragState(false);
-                    }}
-                  >
-                    <input
-                      type="file"
-                      ref={fileRef}
-                      name="pdfFile"
-                      hidden
-                      onChange={(e) => {
-                        setFieldValue(
-                          "teamSchoolCertificate",
-                          e.currentTarget.files
-                        );
+                {!values.isApplyTeam && (
+                  <div className="profile-content-upload-form-link">
+                    <div
+                      className={`profile-content-upload-form-fileimg ${
+                        fileDragState ? "upload-drag" : ""
+                      }`}
+                      onClick={() => {
+                        imgFileRef.current?.click();
                       }}
-                    />
-                    <UploadIcon className="upload-icon" />
-                    <p>上傳學生證正反面或在學證明</p>
-                    {/* <p className="error">{errors.pdfFile}</p> */}
-                  </div>
-                  {/* <p className="login-content-body-input-error">
+                      onDrop={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setFileDragState(false);
+
+                        const dt = e.dataTransfer;
+                        const files = dt.files;
+
+                        setFieldValue("teamSchoolCertificate", files);
+                      }}
+                      onDragEnter={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }}
+                      onDragOver={(e) => {
+                        setFileDragState(true);
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }}
+                      onDragLeave={() => {
+                        setFileDragState(false);
+                      }}
+                    >
+                      <input
+                        type="file"
+                        ref={imgFileRef}
+                        name="pdfFile"
+                        hidden
+                        onChange={(e) => {
+                          setFieldValue(
+                            "teamSchoolCertificate",
+                            e.currentTarget.files
+                          );
+                        }}
+                      />
+                      <UploadIcon className="upload-icon" />
+                      <p>上傳學生證正反面或在學證明</p>
+                      {/* <p className="error">{errors.pdfFile}</p> */}
+                    </div>
+                    {/* <p className="login-content-body-input-error">
                       {errors.email}
                     </p> */}
-                </div>
-
+                  </div>
+                )}
                 <div className="profile-content-upload-form-link">
                   <div className="profile-content-upload-form-img-preview-wrapper">
                     {values.teamSchoolCertificate &&
@@ -410,180 +456,40 @@ const Profile: React.FC<Props> = () => {
                               }}
                               key={localUrl}
                             >
-                              <p
-                                className="close"
-                                onClick={() => {
-                                  if (values.teamSchoolCertificate) {
-                                    const newFileList = Array.from(
-                                      values.teamSchoolCertificate
-                                    );
-                                    newFileList.splice(index, 1);
-                                    setFieldValue(
-                                      "teamSchoolCertificate",
-                                      newFileList
-                                    );
-                                  }
-                                }}
-                              >
-                                ×
-                              </p>
+                              {!values.isApplyTeam && (
+                                <p
+                                  className="close"
+                                  onClick={() => {
+                                    if (values.teamSchoolCertificate) {
+                                      const newFileList = Array.from(
+                                        values.teamSchoolCertificate
+                                      );
+                                      newFileList.splice(index, 1);
+                                      setFieldValue(
+                                        "teamSchoolCertificate",
+                                        newFileList
+                                      );
+                                    }
+                                  }}
+                                >
+                                  ×
+                                </p>
+                              )}
+
                               <img src={localUrl} alt="" />
                             </div>
                           );
                         }
                       )}
                   </div>
-
-                  {/* <p className="error">{errors.pdfFile}</p> */}
-
-                  {/* <p className="login-content-body-input-error">
-                      {errors.email}
-                    </p> */}
+                  <p className="login-content-body-input-error">
+                    {errors.teamSchoolCertificate}
+                  </p>
                 </div>
                 <p className="login-content-body-input-error">
                   {"報名後不可更改"}
                 </p>
-                {/* <div className="profile-content-upload-form-link">
-                  <input type="text" value={values.email} />
-                  <span>Email</span>
-                  <p className="login-content-body-input-error">
-                      {errors.email}
-                    </p> 
-                </div> */}
-
-                <button
-                  className="profile-content-upload-form-button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    submitForm();
-                  }}
-                >
-                  確認報名
-                </button>
-              </form>
-            )}
-          </Formik>
-        </div>
-        <div className="profile-content-upload">
-          <h1>檔案上傳</h1>
-          <Formik
-            enableReinitialize={true}
-            initialValues={uploadData}
-            onSubmit={(values) => {
-              const formData = new FormData();
-              formData.append("videoLink", values.workVideoLink);
-              formData.append("pdf", values.workPdf as File);
-
-              // uploadRequest(
-              //   {
-              //     url: api.uploadFile.url(),
-              //     method: api.uploadFile.method,
-              //     data: formData,
-              //   },
-              //   (response) => {
-              //     setCurrentUser({
-              //       email: response.data.data.email,
-              //       phone: response.data.data.phone,
-              //       username: response.data.data.username,
-              //       isUpload: response.data.data.isUpload,
-              //     });
-              //   },
-              //   (error) => {
-              //     console.log(error);
-              //   }
-              // );
-              console.log(values);
-            }}
-            validate={(values) => {
-              const errors: Partial<{
-                workPdf: string;
-                workVideoLink: string;
-              }> = {};
-              if (values.workPdf === null) {
-                errors.workPdf = "Please upload a pdf file";
-              }
-              if (values.workVideoLink === "") {
-                errors.workVideoLink = "Please enter a youtube link";
-              }
-
-              if (values.workVideoLink) {
-                const youtubeLinkRegex =
-                  /^(https?:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/;
-                if (!youtubeLinkRegex.test(values.workVideoLink))
-                  errors.workVideoLink = "Youtube link format error";
-              }
-              if (values.workPdf && values.workPdf.type !== "application/pdf")
-                errors.workPdf = "Please upload a pdf file";
-
-              return errors;
-            }}
-          >
-            {({ setFieldValue, submitForm, values, errors }) => (
-              <form action="" className="profile-content-upload-form">
-                <>
-                  <h1>
-                    {currentUser?.isUpload || values.isUpload ? "已上傳" : ""}
-                  </h1>
-                  <div className="profile-content-upload-form-link">
-                    <input
-                      type="text"
-                      value={values.workVideoLink}
-                      onChange={(e) => {
-                        setFieldValue("workVideoLink", e.target.value);
-                      }}
-                    />
-                    <span>Youtube 影片連結</span>
-                    <p className="login-content-body-input-error">
-                      {errors.workVideoLink}
-                    </p>
-                  </div>
-                  <div
-                    className={`profile-content-upload-form-file ${
-                      fileDragState ? "upload-drag" : ""
-                    }`}
-                    onClick={() => {
-                      fileRef.current?.click();
-                    }}
-                    onDrop={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setFileDragState(false);
-
-                      const dt = e.dataTransfer;
-                      const files = dt.files;
-
-                      setFieldValue("workPdf", files[0]);
-                    }}
-                    onDragEnter={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                    }}
-                    onDragOver={(e) => {
-                      setFileDragState(true);
-                      e.preventDefault();
-                      e.stopPropagation();
-                    }}
-                    onDragLeave={() => {
-                      setFileDragState(false);
-                    }}
-                  >
-                    <input
-                      type="file"
-                      ref={fileRef}
-                      name="workPdf"
-                      hidden
-                      onChange={(e) => {
-                        setFieldValue("workPdf", e.currentTarget.files?.[0]);
-                      }}
-                    />
-                    <UploadIcon className="upload-icon" />
-                    <p>
-                      {values.workPdf && !errors.workPdf
-                        ? values.workPdf.name
-                        : "Browse File to upload PDF"}
-                    </p>
-                    <p className="error">{errors.workPdf}</p>
-                  </div>
+                {!values.isApplyTeam && (
                   <button
                     className="profile-content-upload-form-button"
                     onClick={(e) => {
@@ -591,21 +497,161 @@ const Profile: React.FC<Props> = () => {
                       submitForm();
                     }}
                   >
-                    確認上傳
+                    確認報名
                   </button>
-                  {true && (
-                    <div className="profile-content-upload-form-pdf-preview">
-                      <h1>文件預覽</h1>
-                      <PdfPreviewer
-                        prfUrl={values.workPdf || values.workPdfUrl}
-                      />
-                    </div>
-                  )}
-                </>
+                )}
               </form>
             )}
           </Formik>
         </div>
+        {teamInfoData.isApplyTeam && (
+          <div className="profile-content-upload">
+            <h1>檔案上傳</h1>
+            <Formik
+              enableReinitialize={true}
+              initialValues={uploadData}
+              onSubmit={(values) => {
+                const formData = new FormData();
+                formData.append("workVideoLink", values.workVideoLink);
+                formData.append("workPdf", values.workPdf as File);
+
+                uploadRequest(
+                  {
+                    url: api.uploadFile.url(),
+                    method: api.uploadFile.method,
+                    data: formData,
+                  },
+                  (response) => {
+                    getProfile();
+                    console.log(response);
+                  },
+                  (error) => {
+                    console.log(error);
+                  }
+                );
+                console.log(values);
+              }}
+              validate={(values) => {
+                const errors: Partial<{
+                  workPdf: string;
+                  workVideoLink: string;
+                }> = {};
+                console.log(values.workPdf);
+
+                if (values.workPdf === null || values.workPdf === undefined) {
+                  errors.workPdf = "Please upload a pdf file";
+                }
+                if (values.workVideoLink === "") {
+                  errors.workVideoLink = "Please enter a youtube link";
+                }
+
+                if (values.workVideoLink) {
+                  const youtubeLinkRegex =
+                    /^(https?:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/;
+                  if (!youtubeLinkRegex.test(values.workVideoLink))
+                    errors.workVideoLink = "Youtube link format error";
+                }
+                if (values.workPdf && values.workPdf.type !== "application/pdf")
+                  errors.workPdf = "Please upload a pdf file";
+
+                return errors;
+              }}
+            >
+              {({ setFieldValue, submitForm, values, errors }) => (
+                <form action="" className="profile-content-upload-form">
+                  <>
+                    <h1>
+                      {currentUser?.isUpload || values.isUpload ? "已上傳" : ""}
+                    </h1>
+                    <div className="profile-content-upload-form-link">
+                      <input
+                        type="text"
+                        value={values.workVideoLink}
+                        onChange={(e) => {
+                          setFieldValue("workVideoLink", e.target.value);
+                        }}
+                      />
+                      <span>Youtube 影片連結</span>
+                      <p className="login-content-body-input-error">
+                        {errors.workVideoLink}
+                      </p>
+                    </div>
+                    <div
+                      className={`profile-content-upload-form-file ${
+                        fileDragState ? "upload-drag" : ""
+                      }`}
+                      onClick={() => {
+                        pdfFileRef.current?.click();
+                      }}
+                      onDrop={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setFileDragState(false);
+
+                        const dt = e.dataTransfer;
+                        const files = dt.files;
+
+                        setFieldValue("workPdf", files[0]);
+                      }}
+                      onDragEnter={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }}
+                      onDragOver={(e) => {
+                        setFileDragState(true);
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }}
+                      onDragLeave={() => {
+                        setFileDragState(false);
+                      }}
+                    >
+                      <input
+                        type="file"
+                        ref={pdfFileRef}
+                        name="workPdf"
+                        hidden
+                        onChange={(e) => {
+                          setFieldValue("workPdf", e.currentTarget.files?.[0]);
+                        }}
+                      />
+                      <UploadIcon className="upload-icon" />
+                      <p>
+                        {values.workPdf && !errors.workPdf
+                          ? values.workPdf.name
+                          : "Browse File to upload PDF"}
+                      </p>
+                      <p className="error">{errors.workPdf}</p>
+                    </div>
+                    <button
+                      className="profile-content-upload-form-button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        submitForm();
+                      }}
+                    >
+                      確認上傳
+                    </button>
+                    {true && (
+                      <div className="profile-content-upload-form-pdf-preview">
+                        <h1>文件預覽</h1>
+                        {values.workPdf || values.workPdfUrl ? (
+                          <PdfPreviewer
+                            prfUrl={values.workPdf || values.workPdfUrl}
+                          />
+                        ) : (
+                          <>
+                            <h3>尚未上傳PDF</h3>
+                          </>
+                        )}
+                      </div>
+                    )}
+                  </>
+                </form>
+              )}
+            </Formik>
+          </div>
+        )}
       </div>
     </div>
   );
