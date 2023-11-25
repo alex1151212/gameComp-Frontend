@@ -4,7 +4,8 @@ import { api } from "../../../api";
 import UploadIcon from "../../../assets/images/svg/upload-icon";
 import useAuth from "../../../hook/auth/useAuth";
 import useAxios from "../../../hook/useAxios";
-
+import { MdDeleteOutline } from "react-icons/md";
+import { IoMdAdd } from "react-icons/io";
 import PdfPreviewer from "../../pdf-preivewer";
 import { ProfileResponse, ProfileType, TeamInfoType, UploadType } from "./type";
 import { AxiosResponse } from "axios";
@@ -29,9 +30,8 @@ const Profile: React.FC<Props> = () => {
   });
   const [teamInfoData, setTeamInfoData] = useState<TeamInfoType>({
     teamName: "",
-    teamTeacherName: "",
-    teamTeacherJobTitle: "",
-    teamMember: ["", "", "", "", ""],
+    teamTeacher: [{ name: "", jobTitle: "" }],
+    teamMember: [""],
     teamSchoolCertificate: [],
 
     isApplyTeam: false,
@@ -68,8 +68,7 @@ const Profile: React.FC<Props> = () => {
         setTeamInfoData({
           teamName: data.teamName,
           teamMember: data.teamMember.map((member) => member.name),
-          teamTeacherName: data.teamTeacher.name,
-          teamTeacherJobTitle: data.teamTeacher.jobTitle,
+          teamTeacher: data.teamTeacher,
           teamSchoolCertificate: data.teamSchoolCertificate,
 
           isApplyTeam: data.isApplyTeam,
@@ -228,6 +227,10 @@ const Profile: React.FC<Props> = () => {
                     .map((member) => ({ name: member }))
                 )
               );
+              formData.append(
+                "teamTeacher",
+                JSON.stringify(values.teamTeacher)
+              );
 
               for (let i = 0; i < values.teamSchoolCertificate.length; i++) {
                 formData.append(
@@ -279,110 +282,126 @@ const Profile: React.FC<Props> = () => {
                   />
                   <span>隊伍名稱</span>
                 </div>
-                <div className="profile-content-upload-form-row">
-                  <div className="profile-content-upload-form-link">
-                    <input
-                      type="text"
-                      value={values.teamTeacherName}
-                      onChange={(e) => {
-                        setFieldValue("teamTeacherName", e.target.value);
-                      }}
-                    />
-                    <span>指導老師</span>
-                    <p className="login-content-body-input-error">
-                      {errors.teamMember}
-                    </p>
+                {values.teamTeacher.map((teacher, index) => (
+                  <div className="profile-content-upload-form-add-input">
+                    <div className="profile-content-upload-form-row">
+                      <div className="profile-content-upload-form-link">
+                        <input
+                          type="text"
+                          value={values.teamTeacher[index].name}
+                          onChange={(e) => {
+                            const buffer = [...values.teamTeacher];
+                            buffer[`${index}`].name = e.target.value;
+                            setFieldValue("teamTeacher", buffer);
+                          }}
+                        />
+                        <span>指導老師{index + 1}</span>
+                        <p className="login-content-body-input-error">
+                          {errors.teamMember}
+                        </p>
+                      </div>
+                      <div className="profile-content-upload-form-link">
+                        <input
+                          type="text"
+                          value={values.teamTeacher[index].jobTitle}
+                          onChange={(e) => {
+                            const buffer = [...values.teamTeacher];
+                            buffer[`${index}`].jobTitle = e.target.value;
+                            setFieldValue("teamTeacher", buffer);
+                          }}
+                        />
+                        <span>老師職稱</span>
+                        <p className="login-content-body-input-error">
+                          {errors.teamMember}
+                        </p>
+                      </div>
+                    </div>
+                    {!values.isApplyTeam && (
+                      <>
+                        {values.teamTeacher.length === index + 1 && (
+                          <p
+                            className="profile-content-upload-form-add-input-icon"
+                            data-action={"add"}
+                            onClick={() => {
+                              const buffer = [...values.teamTeacher];
+                              buffer.push({ name: "", jobTitle: "" });
+                              setFieldValue("teamTeacher", buffer);
+                            }}
+                          >
+                            <IoMdAdd />
+                          </p>
+                        )}
+                        {values.teamTeacher.length > 1 &&
+                          values.teamTeacher.length !== index + 1 && (
+                            <p
+                              className="profile-content-upload-form-add-input-icon"
+                              data-action={"delete"}
+                              onClick={() => {
+                                const buffer = [...values.teamTeacher];
+                                buffer.splice(index, 1);
+                                setFieldValue("teamTeacher", buffer);
+                              }}
+                            >
+                              <MdDeleteOutline />
+                            </p>
+                          )}
+                      </>
+                    )}
                   </div>
-                  <div className="profile-content-upload-form-link">
-                    <input
-                      type="text"
-                      value={values.teamTeacherName}
-                      onChange={(e) => {
-                        setFieldValue("teamTeacherName", e.target.value);
-                      }}
-                    />
-                    <span>老師職稱</span>
-                    <p className="login-content-body-input-error">
-                      {errors.teamMember}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="profile-content-upload-form-link">
-                  <input
-                    type="text"
-                    value={values.teamMember[0]}
-                    onChange={(e) => {
-                      const buffer = [...values.teamMember];
-                      buffer[0] = e.target.value;
-                      setFieldValue("teamMember", buffer);
-                    }}
-                  />
-                  <span>隊員1</span>
-                  <p className="login-content-body-input-error">
-                    {errors.teamMember}
-                  </p>
-                </div>
-                <div className="profile-content-upload-form-link">
-                  <input
-                    type="text"
-                    value={values.teamMember[1]}
-                    onChange={(e) => {
-                      const buffer = [...values.teamMember];
-                      buffer[1] = e.target.value;
-                      setFieldValue("teamMember", buffer);
-                    }}
-                  />
-                  <span>隊員2</span>
-                  {/* <p className="login-content-body-input-error">
-                      {errors.email}
-                    </p> */}
-                </div>
-                <div className="profile-content-upload-form-link">
-                  <input
-                    type="text"
-                    value={values.teamMember[2]}
-                    onChange={(e) => {
-                      const buffer = [...values.teamMember];
-                      buffer[2] = e.target.value;
-                      setFieldValue("teamMember", buffer);
-                    }}
-                  />
-                  <span>隊員3</span>
-                  {/* <p className="login-content-body-input-error">
-                      {errors.email}
-                    </p> */}
-                </div>
-                <div className="profile-content-upload-form-link">
-                  <input
-                    type="text"
-                    value={values.teamMember[3]}
-                    onChange={(e) => {
-                      const buffer = [...values.teamMember];
-                      buffer[3] = e.target.value;
-                      setFieldValue("teamMember", buffer);
-                    }}
-                  />
-                  <span>隊員4</span>
-                  {/* <p className="login-content-body-input-error">
-                      {errors.email}
-                    </p> */}
-                </div>
-                <div className="profile-content-upload-form-link">
-                  <input
-                    type="text"
-                    value={values.teamMember[4]}
-                    onChange={(e) => {
-                      const buffer = [...values.teamMember];
-                      buffer[4] = e.target.value;
-                      setFieldValue("teamMember", buffer);
-                    }}
-                  />
-                  <span>隊員5</span>
-                  {/* <p className="login-content-body-input-error">
-                      {errors.email}
-                    </p> */}
-                </div>
+                ))}
+                {values.teamMember.map((member, index) => {
+                  return (
+                    <div className="profile-content-upload-form-add-input">
+                      <div className="profile-content-upload-form-link">
+                        <input
+                          type="text"
+                          value={values.teamMember[`${index}`]}
+                          onChange={(e) => {
+                            const buffer = [...values.teamMember];
+                            buffer[`${index}`] = e.target.value;
+                            setFieldValue("teamMember", buffer);
+                          }}
+                        />
+                        <span>{index === 0 ? "領隊" : `隊員${index}`}</span>
+                        <p className="login-content-body-input-error">
+                          {errors.teamMember}
+                        </p>
+                      </div>
+                      {!values.isApplyTeam && (
+                        <>
+                          {" "}
+                          {values.teamMember.length === index + 1 && (
+                            <p
+                              className="profile-content-upload-form-add-input-icon"
+                              data-action={"add"}
+                              onClick={() => {
+                                const buffer = [...values.teamMember];
+                                buffer.push("");
+                                setFieldValue("teamMember", buffer);
+                              }}
+                            >
+                              <IoMdAdd />
+                            </p>
+                          )}
+                          {values.teamMember.length > 1 &&
+                            values.teamMember.length !== index + 1 && (
+                              <p
+                                className="profile-content-upload-form-add-input-icon"
+                                data-action={"delete"}
+                                onClick={() => {
+                                  const buffer = [...values.teamMember];
+                                  buffer.splice(index, 1);
+                                  setFieldValue("teamMember", buffer);
+                                }}
+                              >
+                                <MdDeleteOutline />
+                              </p>
+                            )}
+                        </>
+                      )}
+                    </div>
+                  );
+                })}
                 {!values.isApplyTeam && (
                   <div className="profile-content-upload-form-link">
                     <div

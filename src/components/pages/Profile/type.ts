@@ -14,7 +14,7 @@ export type ProfileResponse = Response<{
   phone: string;
   teamName: string;
   teamMember: TeamMemberType[];
-  teamTeacher: TeamTeacherType;
+  teamTeacher: TeamTeacherType[];
   teamSchoolCertificate: string[];
   workVideoLink: string;
   workPdf: string;
@@ -32,8 +32,7 @@ export interface ProfileType {
 }
 export interface TeamInfoType {
   teamName: string;
-  teamTeacherName: string;
-  teamTeacherJobTitle: string;
+  teamTeacher: TeamTeacherType /*  */[];
   teamMember: string[];
   teamSchoolCertificate: string[];
 

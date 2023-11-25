@@ -86,10 +86,42 @@
   position: relative;
   width: 50%;
 }
+.profile-content-upload-form-add-input {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.profile-content-upload-form-add-input > div {
+  flex: 1;
+}
+.profile-content-upload-form-add-input > p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 1rem;
+  height: 1rem;
+
+  cursor: pointer;
+}
+
+.profile-content-upload-form-add-input > p[data-action="add"] {
+  color: #00dfc4;
+}
+.profile-content-upload-form-add-input > p[data-action="delete"] {
+  color: #ff0000;
+}
+.profile-content-upload-form-add-input > p:hover {
+  opacity: 0.5;
+}
 .profile-content-upload-form-row {
   display: flex;
   width: 50%;
   gap: 1rem;
+}
+.profile-content-upload-form-row > div {
 }
 
 .profile-content-upload-form-img-preview-wrapper {

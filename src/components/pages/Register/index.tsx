@@ -17,7 +17,7 @@ const Register: React.FC<RegisterProps> = () => {
   const { isMobile } = useRwd();
   const { sendRequest: registerRequest } = useAxios();
   const { auth, saveAuth } = useAuth();
-  if (auth) return <Navigate to={"/auth/upload"} />;
+  if (auth) return <Navigate to={"/auth/profile"} />;
   return (
     <div className={`register ${isMobile && "mobile"}`}>
       <div className="register-content">
