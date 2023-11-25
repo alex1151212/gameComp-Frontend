@@ -1,4 +1,6 @@
 .register {
+  height: 100%;
+  width: 100%;
 }
 
 .register h1 {
@@ -28,8 +30,8 @@
   position: absolute;
 
   width: 55%;
-  min-height: 25rem;
-  height: 100%;
+  /* min-height: 25rem; */
+  /* height: 100%; */
   border-radius: 15px;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.9);
   background: rgba(0, 0, 0, 0.5);
