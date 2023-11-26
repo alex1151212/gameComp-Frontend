@@ -49,7 +49,7 @@ const Agenda: React.FC<AgendaProps> = () => {
               </ul>
             </li>
 
-            <li>活動日期：113年1月16日 星期六</li>
+            <li>活動日期：113年1月6日 星期六</li>
             <li>活動地點：國際大樓 IB-101</li>
           </ul>
         </div>

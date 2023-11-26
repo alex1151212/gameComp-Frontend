@@ -19,6 +19,9 @@
 
 .pdf-view .page-tool {
   position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
   bottom: 0;
   padding-left: 15px;
   padding-right: 15px;
@@ -28,6 +31,7 @@
   color: white;
   border-radius: 19px;
   z-index: 99;
+  overflow-x: auto;
 }
 
 .pdf-view .page-tool-item {
@@ -53,6 +57,6 @@
   -moz-appearance: textfield;
 }
 
-.pdf-view-error{
-    color: red;
+.pdf-view-error {
+  color: red;
 }

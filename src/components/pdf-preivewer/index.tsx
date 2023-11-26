@@ -23,7 +23,7 @@ const PdfPreviewer: React.FC<Props> = ({ prfUrl }) => {
     pageNumberInput: 1,
     pageNumberFocus: false,
     numPages: 1,
-    pageWidth: 503,
+    pageWidth: 794,
     fullscreen: false,
   });
 
@@ -82,7 +82,7 @@ const PdfPreviewer: React.FC<Props> = ({ prfUrl }) => {
     }
   };
   const pageZoomOut = () => {
-    if (pdfPreviewerState.pageWidth <= 503) {
+    if (pdfPreviewerState.pageWidth <= 794) {
       return;
     }
     const pageWidth = pdfPreviewerState.pageWidth * 0.8;
@@ -97,7 +97,7 @@ const PdfPreviewer: React.FC<Props> = ({ prfUrl }) => {
       setPdfPreviewerState({
         ...pdfPreviewerState,
         fullscreen: false,
-        pageWidth: 600,
+        pageWidth: 794,
       });
     } else {
       setPdfPreviewerState({
