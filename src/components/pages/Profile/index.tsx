@@ -276,6 +276,12 @@ const Profile: React.FC<Props> = () => {
                   <input
                     type="text"
                     value={values.teamName}
+                    onMouseDown={(e) => {
+                      if (values.isApplyTeam) e.preventDefault();
+                    }}
+                    onFocus={(e) => {
+                      if (values.isApplyTeam) e.target.blur();
+                    }}
                     onChange={(e) => {
                       setFieldValue("teamName", e.target.value);
                     }}
@@ -289,6 +295,12 @@ const Profile: React.FC<Props> = () => {
                         <input
                           type="text"
                           value={values.teamTeacher[index].name}
+                          onMouseDown={(e) => {
+                            if (values.isApplyTeam) e.preventDefault();
+                          }}
+                          onFocus={(e) => {
+                            if (values.isApplyTeam) e.target.blur();
+                          }}
                           onChange={(e) => {
                             const buffer = [...values.teamTeacher];
                             buffer[`${index}`].name = e.target.value;
@@ -304,6 +316,12 @@ const Profile: React.FC<Props> = () => {
                         <input
                           type="text"
                           value={values.teamTeacher[index].jobTitle}
+                          onMouseDown={(e) => {
+                            if (values.isApplyTeam) e.preventDefault();
+                          }}
+                          onFocus={(e) => {
+                            if (values.isApplyTeam) e.target.blur();
+                          }}
                           onChange={(e) => {
                             const buffer = [...values.teamTeacher];
                             buffer[`${index}`].jobTitle = e.target.value;
@@ -356,6 +374,12 @@ const Profile: React.FC<Props> = () => {
                         <input
                           type="text"
                           value={values.teamMember[`${index}`]}
+                          onMouseDown={(e) => {
+                            if (values.isApplyTeam) e.preventDefault();
+                          }}
+                          onFocus={(e) => {
+                            if (values.isApplyTeam) e.target.blur();
+                          }}
                           onChange={(e) => {
                             const buffer = [...values.teamMember];
                             buffer[`${index}`] = e.target.value;
@@ -402,59 +426,59 @@ const Profile: React.FC<Props> = () => {
                     </div>
                   );
                 })}
-                {!values.isApplyTeam && (
-                  <div className="profile-content-upload-form-link">
-                    <div
-                      className={`profile-content-upload-form-fileimg ${
-                        fileDragState ? "upload-drag" : ""
-                      }`}
-                      onClick={() => {
-                        imgFileRef.current?.click();
-                      }}
-                      onDrop={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        setFileDragState(false);
 
-                        const dt = e.dataTransfer;
-                        const files = dt.files;
+                <div className="profile-content-upload-form-link">
+                  <div
+                    className={`profile-content-upload-form-fileimg ${
+                      fileDragState ? "upload-drag" : ""
+                    }`}
+                    onClick={() => {
+                      imgFileRef.current?.click();
+                    }}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setFileDragState(false);
 
-                        setFieldValue("teamSchoolCertificate", files);
+                      const dt = e.dataTransfer;
+                      const files = dt.files;
+
+                      setFieldValue("teamSchoolCertificate", files);
+                    }}
+                    onDragEnter={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                    onDragOver={(e) => {
+                      setFileDragState(true);
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                    onDragLeave={() => {
+                      setFileDragState(false);
+                    }}
+                  >
+                    <input
+                      type="file"
+                      ref={imgFileRef}
+                      name="pdfFile"
+                      hidden
+                      multiple={true}
+                      onChange={(e) => {
+                        setFieldValue(
+                          "teamSchoolCertificate",
+                          e.currentTarget.files
+                        );
                       }}
-                      onDragEnter={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                      }}
-                      onDragOver={(e) => {
-                        setFileDragState(true);
-                        e.preventDefault();
-                        e.stopPropagation();
-                      }}
-                      onDragLeave={() => {
-                        setFileDragState(false);
-                      }}
-                    >
-                      <input
-                        type="file"
-                        ref={imgFileRef}
-                        name="pdfFile"
-                        hidden
-                        onChange={(e) => {
-                          setFieldValue(
-                            "teamSchoolCertificate",
-                            e.currentTarget.files
-                          );
-                        }}
-                      />
-                      <UploadIcon className="upload-icon" />
-                      <p>上傳學生證正反面或在學證明</p>
-                      {/* <p className="error">{errors.pdfFile}</p> */}
-                    </div>
-                    {/* <p className="login-content-body-input-error">
+                    />
+                    <UploadIcon className="upload-icon" />
+                    <p>上傳學生證正反面或在學證明</p>
+                    {/* <p className="error">{errors.pdfFile}</p> */}
+                  </div>
+                  {/* <p className="login-content-body-input-error">
                       {errors.email}
                     </p> */}
-                  </div>
-                )}
+                </div>
                 <div className="profile-content-upload-form-link">
                   <div className="profile-content-upload-form-img-preview-wrapper">
                     {values.teamSchoolCertificate &&
@@ -475,25 +499,23 @@ const Profile: React.FC<Props> = () => {
                               }}
                               key={localUrl}
                             >
-                              {!values.isApplyTeam && (
-                                <p
-                                  className="close"
-                                  onClick={() => {
-                                    if (values.teamSchoolCertificate) {
-                                      const newFileList = Array.from(
-                                        values.teamSchoolCertificate
-                                      );
-                                      newFileList.splice(index, 1);
-                                      setFieldValue(
-                                        "teamSchoolCertificate",
-                                        newFileList
-                                      );
-                                    }
-                                  }}
-                                >
-                                  ×
-                                </p>
-                              )}
+                              <p
+                                className="close"
+                                onClick={() => {
+                                  if (values.teamSchoolCertificate) {
+                                    const newFileList = Array.from(
+                                      values.teamSchoolCertificate
+                                    );
+                                    newFileList.splice(index, 1);
+                                    setFieldValue(
+                                      "teamSchoolCertificate",
+                                      newFileList
+                                    );
+                                  }
+                                }}
+                              >
+                                ×
+                              </p>
 
                               <img src={localUrl} alt="" />
                             </div>
@@ -505,20 +527,21 @@ const Profile: React.FC<Props> = () => {
                     {errors.teamSchoolCertificate}
                   </p>
                 </div>
-                <p className="login-content-body-input-error">
-                  {"報名後不可更改"}
-                </p>
                 {!values.isApplyTeam && (
-                  <button
-                    className="profile-content-upload-form-button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      submitForm();
-                    }}
-                  >
-                    確認報名
-                  </button>
+                  <p className="login-content-body-input-error">
+                    {"報名後不可更改"}
+                  </p>
                 )}
+
+                <button
+                  className="profile-content-upload-form-button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    submitForm();
+                  }}
+                >
+                  {values.isApplyTeam ? "修改身分證明文件" : "確認報名"}
+                </button>
               </form>
             )}
           </Formik>
@@ -642,6 +665,7 @@ const Profile: React.FC<Props> = () => {
                       </p>
                       <p className="error">{errors.workPdf}</p>
                     </div>
+
                     <button
                       className="profile-content-upload-form-button"
                       onClick={(e) => {
