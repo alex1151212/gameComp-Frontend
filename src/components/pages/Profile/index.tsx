@@ -9,6 +9,7 @@ import { IoMdAdd } from "react-icons/io";
 import PdfPreviewer from "../../pdf-preivewer";
 import { ProfileResponse, ProfileType, TeamInfoType, UploadType } from "./type";
 import { AxiosResponse } from "axios";
+import { toast } from "react-toastify";
 
 interface Props {}
 
@@ -100,12 +101,33 @@ const Profile: React.FC<Props> = () => {
                     password: values.password,
                   },
                 },
-                (response) => {
+                () => {
+                  toast.success("更新成功", {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                  });
                   getProfile();
-                  console.log(response);
+                },
+                (error) => {
+                  toast.error("更新失敗", {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                  });
+                  console.log(error);
                 }
               );
-              // console.log(values);
             }}
             validate={(values) => {
               const errors: Partial<{
@@ -245,8 +267,30 @@ const Profile: React.FC<Props> = () => {
                   data: formData,
                 },
                 (response) => {
+                  toast.success(values.isApplyTeam ? "修改成功" : "報名成功", {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                  });
                   getProfile();
                   console.log(response);
+                },
+                () => {
+                  toast.error("報名失敗", {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                  });
                 }
               );
             }}
@@ -563,12 +607,31 @@ const Profile: React.FC<Props> = () => {
                     method: api.uploadFile.method,
                     data: formData,
                   },
-                  (response) => {
+                  () => {
+                    toast.success("檔案上傳成功", {
+                      position: "bottom-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "dark",
+                    });
                     getProfile();
-                    console.log(response);
                   },
                   (error) => {
                     console.log(error);
+                    toast.error("檔案上傳失敗", {
+                      position: "bottom-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "dark",
+                    });
                   }
                 );
                 console.log(values);

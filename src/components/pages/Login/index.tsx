@@ -5,6 +5,7 @@ import { Formik } from "formik";
 import React, { useCallback } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { Navigate, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import { api } from "../../../api";
 import useAuth from "../../../hook/auth/useAuth";
 import useAxios from "../../../hook/useAxios";
@@ -97,6 +98,16 @@ const Login: React.FC<LoginProps> = () => {
                           },
                           (response: AxiosResponse<LoginResponse>) => {
                             const { data } = response;
+                            toast.success("登入成功", {
+                              position: "bottom-right",
+                              autoClose: 5000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                              theme: "dark",
+                            });
                             saveAuth(data.data.token);
                             navigate("/auth/profile");
                           },
@@ -106,6 +117,16 @@ const Login: React.FC<LoginProps> = () => {
                                 password: "Wrong password or username",
                                 email: "Wrong password or username",
                               });
+                            toast.error("登入失敗", {
+                              position: "bottom-right",
+                              autoClose: 5000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                              theme: "dark",
+                            });
                           }
                         );
                       }
@@ -164,6 +185,7 @@ const Login: React.FC<LoginProps> = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

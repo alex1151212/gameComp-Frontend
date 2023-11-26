@@ -9,6 +9,7 @@ import Cube from "../../cube3d";
 import { RegisterResponse } from "./type";
 import { Navigate, useNavigate } from "react-router-dom";
 import { ICommonError } from "../../../api/axios";
+import { toast } from "react-toastify";
 
 interface RegisterProps {}
 
@@ -61,11 +62,31 @@ const Register: React.FC<RegisterProps> = () => {
                   },
                   (response: AxiosResponse<RegisterResponse>) => {
                     const { data } = response;
+                    toast.success("註冊成功", {
+                      position: "bottom-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "dark",
+                    });
                     saveAuth(data.data.token);
                     navigate("/auth/profile");
                   },
                   (error: AxiosError) => {
                     const { response } = error;
+                    toast.error("註冊失敗", {
+                      position: "bottom-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "dark",
+                    });
                     response &&
                       errors.setErrors({
                         confirmPassword:
