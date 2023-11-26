@@ -21,6 +21,11 @@ const router = [
     name: "Posts",
   },
   {
+    path: "/posts/detail",
+    name: "Posts",
+    inVisible: true,
+  },
+  {
     path: "/info",
     name: "info",
   },
@@ -35,7 +40,7 @@ const router = [
   {
     path: "/register",
     name: "register",
-    visible: true,
+    inVisible: true,
   },
   {
     path: "/auth/profile",

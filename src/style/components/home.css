@@ -35,6 +35,10 @@
   text-align: center;
 }
 
+.mobile .home-content {
+  margin-top: 10rem;
+}
+
 .home-content .text {
   font-family: Cubic;
   font-size: 3rem;

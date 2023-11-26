@@ -29,7 +29,7 @@ const AppRoutes: FC = () => {
           <Route path="/post" element={<Info />} />
           <Route path="/sponsors" element={<Sponsors />} />
           <Route path="/posts" element={<Posts />} />
-          <Route path="/posts/detail/:postId" element={<PostDetail />} />
+          <Route path="/posts/detail" element={<PostDetail />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -47,4 +47,3 @@ const AppRoutes: FC = () => {
 };
 
 export { AppRoutes };
-

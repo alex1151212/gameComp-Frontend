@@ -66,9 +66,10 @@ a:hover {
   border-bottom: none;
   transition-duration: 0.3s;
 }
+
 .content-body.mobile {
   flex-grow: 1;
-  padding-top: 20rem;
+  padding-top: 15rem;
   border: 5px solid blue;
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
