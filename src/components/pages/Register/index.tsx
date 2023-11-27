@@ -28,19 +28,16 @@ const Register: React.FC<RegisterProps> = () => {
               initialValues={{
                 email: "",
                 password: "",
-                username: "",
                 confirmPassword: "",
               }}
               validate={(values) => {
                 const errors: Partial<{
                   email: string;
                   password: string;
-                  username: string;
                   confirmPassword: string;
                 }> = {};
                 if (values.email === "") errors.email = "Email is required";
-                if (values.username === "")
-                  errors.username = "Username is required";
+
                 if (values.password === "")
                   errors.password = "Password is required";
                 if (!(values.password === values.confirmPassword)) {
@@ -56,7 +53,6 @@ const Register: React.FC<RegisterProps> = () => {
                     method: api.register.method,
                     data: {
                       email: values.email,
-                      username: values.username,
                       password: values.password,
                     },
                   },
@@ -115,19 +111,7 @@ const Register: React.FC<RegisterProps> = () => {
                       {errors.email}
                     </p>
                   </div>
-                  <div className="register-content-body-input">
-                    <input
-                      type="text"
-                      // required
-                      onChange={(e) => {
-                        setFieldValue("username", e.target.value);
-                      }}
-                    />
-                    <span>Username</span>
-                    <p className="register-content-body-input-error">
-                      {errors.username}
-                    </p>
-                  </div>
+
                   <div className="register-content-body-input">
                     <input
                       type="password"
