@@ -25,7 +25,6 @@ export type ProfileResponse = Response<{
 
 export interface ProfileType {
   email: string;
-  username: string;
   phone: string;
   password?: string;
   confirmPassword?: string;

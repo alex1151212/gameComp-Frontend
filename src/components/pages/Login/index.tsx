@@ -147,7 +147,7 @@ const Login: React.FC<LoginProps> = () => {
                           setFieldValue("email", e.target.value);
                         }}
                       />
-                      <span>Username</span>
+                      <span>Email</span>
                       <p className="login-content-body-input-error">
                         {errors.email}
                       </p>

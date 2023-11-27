@@ -16,7 +16,6 @@ interface Props {}
 const Profile: React.FC<Props> = () => {
   const { currentUser } = useAuth();
   const [profileData, setProfileData] = useState<ProfileType>({
-    username: "",
     email: "",
     phone: "",
     password: undefined,
@@ -53,7 +52,6 @@ const Profile: React.FC<Props> = () => {
       (response: AxiosResponse<ProfileResponse>) => {
         const { data } = response.data;
         setProfileData({
-          username: data.username,
           email: data.email,
           phone: data.phone,
           password: "",
@@ -97,7 +95,6 @@ const Profile: React.FC<Props> = () => {
                   data: {
                     email: values.email,
                     phone: values.phone,
-                    username: values.username,
                     password: values.password,
                   },
                 },
@@ -131,14 +128,12 @@ const Profile: React.FC<Props> = () => {
             }}
             validate={(values) => {
               const errors: Partial<{
-                username: string;
                 email: string;
                 phone: string;
                 password: string;
                 confirmPassword: string;
               }> = {};
 
-              if (values.username === "") errors.username = "Username required";
               if (values.email === "") errors.email = "Email required";
               if (values.phone === "") errors.phone = "Phone required";
               if (values.phone) {
@@ -159,19 +154,6 @@ const Profile: React.FC<Props> = () => {
                   <input type="text" value={values.email} onChange={() => {}} />
                   <span>Email</span>
                   <p className="login-content-body-input-error">{"不可更改"}</p>
-                </div>
-                <div className="profile-content-upload-form-link">
-                  <input
-                    type="text"
-                    value={values.username}
-                    onChange={(e) => {
-                      setFieldValue("username", e.target.value);
-                    }}
-                  />
-                  <span>Username</span>
-                  {/* <p className="login-content-body-input-error">
-                      {errors.email}
-                    </p> */}
                 </div>
                 {/* <div className="profile-content-upload-form-link">
                   <input type="text" value={values.email} />
@@ -201,7 +183,7 @@ const Profile: React.FC<Props> = () => {
                       setFieldValue("password", e.target.value);
                     }}
                   />
-                  <span>password</span>
+                  <span>Password</span>
                   {/* <p className="login-content-body-input-error">
                       {errors.email}
                     </p> */}
