@@ -1,18 +1,16 @@
 import axios, { AxiosError } from "axios";
 import { camelCaseKeys } from "../utils/helper";
 
-interface ICommonError {
-  statusCode: number;
-  message: string;
+export interface ICommonError {
+  Code: number;
+  Data: string | null;
+  Msg: string | null;
+  Total: number | null;
 }
 
 const axiosInstance = axios.create({
   baseURL: `${import.meta.env.VITE_BACKEND_URL}`,
   timeout: 60 * 1000 * 60,
-  headers: {
-    // Authorization: "Bearer develop",
-    Authorization: `Bearer ${localStorage.getItem("igd-auth")}`,
-  },
 });
 
 axiosInstance.interceptors.request.use(
@@ -35,10 +33,9 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (error: AxiosError<ICommonError>) => {
-    console.log(error);
     let message = "";
     if (error && error.response) {
-      switch (error.response.data.statusCode) {
+      switch (error.response.status) {
         case 401:
           message = "請重新登入";
           localStorage.removeItem("igd-auth");

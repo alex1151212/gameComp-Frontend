@@ -5,6 +5,7 @@ import { Formik } from "formik";
 import React, { useCallback } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { Navigate, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import { api } from "../../../api";
 import useAuth from "../../../hook/auth/useAuth";
 import useAxios from "../../../hook/useAxios";
@@ -34,13 +35,32 @@ const Login: React.FC<LoginProps> = () => {
     return token;
     // Do whatever you want with the token
   }, [executeRecaptcha]);
-  if (auth) return <Navigate to={"/auth/upload"} />;
+
+  if (auth) return <Navigate to={"/auth/profile"} />;
+
   return (
     <div className={`login ${isMobile ? "mobile" : ""}`}>
       <div className="login-content">
         <div className="login-content-body-wrapper">
           <div className="login-content-body">
             {inProgress ? (
+              <div
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                  flexDirection: "column",
+                }}
+              >
+                <h1>工作中</h1>
+                <FontAwesomeIcon
+                  icon={faWrench}
+                  style={{ fontSize: "2.8rem" }}
+                />
+              </div>
+            ) : (
               <Formik
                 initialValues={{ email: "", password: "" }}
                 validate={(values) => {
@@ -78,8 +98,18 @@ const Login: React.FC<LoginProps> = () => {
                           },
                           (response: AxiosResponse<LoginResponse>) => {
                             const { data } = response;
+                            toast.success("登入成功", {
+                              position: "bottom-right",
+                              autoClose: 5000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                              theme: "dark",
+                            });
                             saveAuth(data.data.token);
-                            navigate("/auth/upload");
+                            navigate("/auth/profile");
                           },
                           (error) => {
                             error.response?.status === 401 &&
@@ -87,6 +117,16 @@ const Login: React.FC<LoginProps> = () => {
                                 password: "Wrong password or username",
                                 email: "Wrong password or username",
                               });
+                            toast.error("登入失敗", {
+                              position: "bottom-right",
+                              autoClose: 5000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                              theme: "dark",
+                            });
                           }
                         );
                       }
@@ -107,7 +147,7 @@ const Login: React.FC<LoginProps> = () => {
                           setFieldValue("email", e.target.value);
                         }}
                       />
-                      <span>Username</span>
+                      <span>Email</span>
                       <p className="login-content-body-input-error">
                         {errors.email}
                       </p>
@@ -138,23 +178,6 @@ const Login: React.FC<LoginProps> = () => {
                   </form>
                 )}
               </Formik>
-            ) : (
-              <div
-                style={{
-                  height: "100%",
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "space-around",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <h1>工作中</h1>
-                <FontAwesomeIcon
-                  icon={faWrench}
-                  style={{ fontSize: "2.8rem" }}
-                />
-              </div>
             )}
           </div>
           <div className="login-content-cube">
@@ -162,6 +185,7 @@ const Login: React.FC<LoginProps> = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

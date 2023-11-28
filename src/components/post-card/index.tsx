@@ -12,7 +12,7 @@ const PostCard: React.FC<PostCardProps> = ({ data }) => {
     <div
       className="post-card"
       onClick={() => {
-        navigate("/posts/detail/" + data.id);
+        navigate({ pathname: `/posts/detail`, search: `?postId=${data.id}` });
       }}
     >
       <div className="post-card-left-wrapper">

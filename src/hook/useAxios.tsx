@@ -16,6 +16,10 @@ const useAxios = () => {
       try {
         res = await axiosInstance.request({
           ...requestConfig,
+          headers: {
+            // Authorization: "Bearer develop",
+            Authorization: `Bearer ${localStorage.getItem("igd-auth")}`,
+          },
         });
       } catch (error) {
         failed && failed(error as AxiosError);

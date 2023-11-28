@@ -1,4 +1,6 @@
 .login {
+  width: 100%;
+  height: 100%;
 }
 
 .login h1 {
@@ -29,7 +31,7 @@
 
   width: 55%;
   min-height: 18rem;
-  height: 100%;
+  /* height: 100%; */
   border-radius: 15px;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.9);
   background: rgba(0, 0, 0, 0.5);
@@ -54,7 +56,7 @@
 }
 .login-content-body:focus-within {
   filter: blur(0);
-  background: rgba(38, 25, 25, 0.8);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .login-content-body-form {
@@ -140,6 +142,7 @@
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 2px;
+  margin-top: 1rem;
   transition: 0.6s;
 }
 

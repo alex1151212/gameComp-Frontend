@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { PostType } from "../../post-card/type";
 interface PostDetailProps {}
 
 const PostDetail: React.FC<PostDetailProps> = () => {
-  const { postId } = useParams();
+  const [param] = useSearchParams();
   const navigate = useNavigate();
   const [post, setPost] = useState<PostType>();
 
@@ -16,6 +16,8 @@ const PostDetail: React.FC<PostDetailProps> = () => {
   };
 
   useEffect(() => {
+    const postId = param.get("postId");
+
     if (postId)
       getPost(Number(postId)).then((postData) => {
         setPost(postData);

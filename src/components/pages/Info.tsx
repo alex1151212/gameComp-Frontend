@@ -15,7 +15,7 @@ const Info: React.FC<InfoProps> = () => {
               <div>
                 <p>112臺灣大專院校創意遊戲設計競賽規程(總則)</p>
                 <a
-                  href="assets/files/112IGD_MAIN.pdf"
+                  href="assets/files/112IGD_main.pdf"
                   target="_blank"
                   style={{
                     fontSize: "42px",
@@ -36,7 +36,7 @@ const Info: React.FC<InfoProps> = () => {
               <div>
                 <p>112臺灣大專院校創意遊戲設計競賽(贊助企劃書)</p>
                 <a
-                  href="assets/files/112IGD_SPONSOR.pdf"
+                  href="assets/files/112IGD_sponsor.pdf"
                   target="_blank"
                   style={{
                     fontSize: "42px",
@@ -57,7 +57,7 @@ const Info: React.FC<InfoProps> = () => {
               <div>
                 <p>112臺灣大專院校創意遊戲設計競賽(活動企劃書)</p>
                 <a
-                  href="assets/files/112IGD_ACTIVITY.pdf"
+                  href="assets/files/112IGD_active.pdf"
                   target="_blank"
                   style={{
                     fontSize: "42px",

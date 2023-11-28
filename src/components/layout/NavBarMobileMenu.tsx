@@ -40,10 +40,10 @@ const NavBarMobileMenu: React.FC<NavBarMobileMenuProps> = () => {
               if (auth && router.name == "login") return false;
               else if (
                 !auth &&
-                (router.name == "logout" || router.name == "upload")
+                (router.name == "logout" || router.name == "profile")
               )
                 return false;
-              else if (router.visible) return false;
+              else if (router.inVisible) return false;
               else return true;
             })
             .map((item) => (

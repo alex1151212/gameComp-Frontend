@@ -11,10 +11,12 @@
 @import "./sponsor-card-tier-a.css";
 @import "./sponsors.css";
 @import "./login.css";
+@import "./register.css";
 @import "./cube-3d.css";
 @import "./info.css";
 @import "./info-card.css";
-@import "./upload.css";
+@import "./profile.css";
 @import "./post-card.css";
 @import "./posts.css";
 @import "./post-detail.css";
+@import "./pdf-prviewer.css";

@@ -11,6 +11,8 @@ library.add(fas, faTwitter, faFontAwesome);
 
 import { AppRoutes } from "./AppRouter.tsx";
 import { AuthProvider } from "./hook/auth/useAuth.tsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -20,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         language="zh-TW"
       >
         <AppRoutes />
+        <ToastContainer />
       </GoogleReCaptchaProvider>
     </AuthProvider>
   </React.StrictMode>

@@ -19,4 +19,8 @@ export const api = {
   recaptcha: { url: () => "/recaptcha", method: Method.POST },
 
   uploadFile: { url: () => "/auth/upload", method: Method.POST },
+  updateUser: { url: () => "/auth/user", method: Method.PUT },
+
+  teamApply: { url: () => "/auth/team", method: Method.POST },
+  getProfile: { url: () => "/auth/profile", method: Method.GET },
 };
