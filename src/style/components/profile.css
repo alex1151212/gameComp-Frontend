@@ -221,20 +221,18 @@
   color: #1d2b3c;
   border-radius: 2px;
 }
-/* .profile-content-upload-form-link.disabled input:valid ~ span,
-.profile-content-upload-form-link.disabled input:focus ~ span {
-  background: #005b50;
-  color: #1d2b3cb2;
-  border-radius: 2px;
-} */
 
 .profile-content-upload-form-button {
   border: none;
   transition: 0.5s;
 }
 
-.profile-content-upload-form-button:hover {
+.profile-content-upload-form-button:not(:disabled):hover {
   color: #00dfc4;
+}
+.profile-content-upload-form-button:disabled {
+  cursor: not-allowed;
+  color: gray;
 }
 
 .profile-content-upload-form-file .error {

@@ -7,19 +7,16 @@ const useAxios = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { executeRecaptcha } = useGoogleReCaptcha();
 
-  const handleReCaptchaVerify = useCallback(
-    async (action?: string) => {
-      if (!executeRecaptcha) {
-        console.log("Execute recaptcha not yet available");
-        return;
-      }
+  const handleReCaptchaVerify = async (action?: string) => {
+    if (!executeRecaptcha) {
+      console.log("Execute recaptcha not yet available");
+      return;
+    }
 
-      const token = await executeRecaptcha(action);
+    const token = await executeRecaptcha(action);
 
-      return token;
-    },
-    [executeRecaptcha]
-  );
+    return token;
+  };
 
   const sendRequest = useCallback(
     async (

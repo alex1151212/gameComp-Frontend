@@ -36,6 +36,12 @@ const Profile: React.FC<Props> = () => {
 
     isApplyTeam: false,
   });
+  const [buttonControllerUser, setButtonControllerUser] =
+    useState<boolean>(false);
+  const [buttonControllerApply, setButtonControllerApply] =
+    useState<boolean>(false);
+  const [buttonControllerFile, setButtonControllerFile] =
+    useState<boolean>(false);
 
   const { sendRequest: uploadRequest } = useAxios();
   const { sendRequest: getProfileRequest } = useAxios();
@@ -120,9 +126,10 @@ const Profile: React.FC<Props> = () => {
                     progress: undefined,
                     theme: "dark",
                   });
+                  setButtonControllerUser(false);
                   getProfile();
                 },
-                "UPDATE USER",
+                "UPDATE_USER",
                 (error) => {
                   toast.error("更新失敗", {
                     position: "bottom-right",
@@ -167,19 +174,13 @@ const Profile: React.FC<Props> = () => {
                   <span>Email</span>
                   <p className="login-content-body-input-error">{"不可更改"}</p>
                 </div>
-                {/* <div className="profile-content-upload-form-link">
-                  <input type="text" value={values.email} />
-                  <span>Email</span>
-                  <p className="login-content-body-input-error">
-                      {errors.email}
-                    </p> 
-                </div> */}
                 <div className="profile-content-upload-form-link">
                   <input
                     type="text"
                     value={values.phone}
                     onChange={(e) => {
                       setFieldValue("phone", e.target.value);
+                      setButtonControllerUser(true);
                     }}
                   />
                   <span>Phone</span>
@@ -193,6 +194,7 @@ const Profile: React.FC<Props> = () => {
                     value={values.password}
                     onChange={(e) => {
                       setFieldValue("password", e.target.value);
+                      setButtonControllerUser(true);
                     }}
                   />
                   <span>Password</span>
@@ -206,6 +208,7 @@ const Profile: React.FC<Props> = () => {
                     value={values.confirmPassword}
                     onChange={(e) => {
                       setFieldValue("confirmPassword", e.target.value);
+                      setButtonControllerUser(true);
                     }}
                   />
                   <span>confirm password</span>
@@ -215,6 +218,7 @@ const Profile: React.FC<Props> = () => {
                 </div>
                 <button
                   className="profile-content-upload-form-button"
+                  disabled={!buttonControllerUser}
                   onClick={(e) => {
                     e.preventDefault();
                     submitForm();
@@ -284,7 +288,7 @@ const Profile: React.FC<Props> = () => {
                   });
                   getProfile();
                 },
-                "TEAM APPLY",
+                "TEAM_APPLY",
                 () => {
                   toast.error("報名失敗", {
                     position: "bottom-right",
@@ -315,10 +319,16 @@ const Profile: React.FC<Props> = () => {
 
               Array.from(values.teamSchoolCertificate).forEach((file) => {
                 if (typeof file === "object") {
-                  if (file.type !== "application/pdf") {
-                    errors.teamSchoolCertificate =
-                      "身分證明文件 格式為pdf, jpg, png";
-                    values.teamSchoolCertificate = [];
+                  switch (file.type) {
+                    case "application/pdf":
+                    case "image/png":
+                    case "image/jpg":
+                    case "image/jpeg":
+                      break;
+                    default:
+                      errors.teamSchoolCertificate =
+                        "身分證明文件 格式為pdf, jpg, png";
+                      values.teamSchoolCertificate = [];
                   }
                 }
               });
@@ -343,6 +353,7 @@ const Profile: React.FC<Props> = () => {
                     }}
                     onChange={(e) => {
                       setFieldValue("teamName", e.target.value);
+                      setButtonControllerApply(true);
                     }}
                   />
                   <span>隊伍名稱</span>
@@ -367,6 +378,7 @@ const Profile: React.FC<Props> = () => {
                             const buffer = [...values.teamTeacher];
                             buffer[`${index}`].name = e.target.value;
                             setFieldValue("teamTeacher", buffer);
+                            setButtonControllerApply(true);
                           }}
                         />
                         <span>指導老師{index + 1}</span>
@@ -388,6 +400,7 @@ const Profile: React.FC<Props> = () => {
                             const buffer = [...values.teamTeacher];
                             buffer[`${index}`].jobTitle = e.target.value;
                             setFieldValue("teamTeacher", buffer);
+                            setButtonControllerApply(true);
                           }}
                         />
                         <span>老師職稱</span>
@@ -406,6 +419,7 @@ const Profile: React.FC<Props> = () => {
                               const buffer = [...values.teamTeacher];
                               buffer.push({ name: "", jobTitle: "" });
                               setFieldValue("teamTeacher", buffer);
+                              setButtonControllerApply(true);
                             }}
                           >
                             <IoMdAdd />
@@ -420,6 +434,7 @@ const Profile: React.FC<Props> = () => {
                                 const buffer = [...values.teamTeacher];
                                 buffer.splice(index, 1);
                                 setFieldValue("teamTeacher", buffer);
+                                setButtonControllerApply(true);
                               }}
                             >
                               <MdDeleteOutline />
@@ -449,6 +464,7 @@ const Profile: React.FC<Props> = () => {
                             const buffer = [...values.teamMember];
                             buffer[`${index}`] = e.target.value;
                             setFieldValue("teamMember", buffer);
+                            setButtonControllerApply(true);
                           }}
                         />
                         <span>{index === 0 ? "領隊" : `隊員${index}`}</span>
@@ -467,6 +483,7 @@ const Profile: React.FC<Props> = () => {
                                 const buffer = [...values.teamMember];
                                 buffer.push("");
                                 setFieldValue("teamMember", buffer);
+                                setButtonControllerApply(true);
                               }}
                             >
                               <IoMdAdd />
@@ -481,6 +498,7 @@ const Profile: React.FC<Props> = () => {
                                   const buffer = [...values.teamMember];
                                   buffer.splice(index, 1);
                                   setFieldValue("teamMember", buffer);
+                                  setButtonControllerApply(true);
                                 }}
                               >
                                 <MdDeleteOutline />
@@ -509,6 +527,7 @@ const Profile: React.FC<Props> = () => {
                       const files = dt.files;
 
                       setFieldValue("teamSchoolCertificate", files);
+                      setButtonControllerApply(true);
                     }}
                     onDragEnter={(e) => {
                       e.preventDefault();
@@ -626,6 +645,7 @@ const Profile: React.FC<Props> = () => {
                 )}
                 <button
                   className="profile-content-upload-form-button"
+                  disabled={!buttonControllerApply}
                   onClick={(e) => {
                     e.preventDefault();
                     submitForm();
@@ -731,6 +751,7 @@ const Profile: React.FC<Props> = () => {
                         value={values.workVideoLink}
                         onChange={(e) => {
                           setFieldValue("workVideoLink", e.target.value);
+                          setButtonControllerFile(true);
                         }}
                       />
                       <span>Youtube 影片連結</span>
@@ -754,6 +775,7 @@ const Profile: React.FC<Props> = () => {
                         const files = dt.files;
 
                         setFieldValue("workPdf", files[0]);
+                        setButtonControllerFile(true);
                       }}
                       onDragEnter={(e) => {
                         e.preventDefault();
@@ -775,6 +797,7 @@ const Profile: React.FC<Props> = () => {
                         hidden
                         onChange={(e) => {
                           setFieldValue("workPdf", e.currentTarget.files?.[0]);
+                          setButtonControllerFile(true);
                         }}
                       />
                       <UploadIcon className="upload-icon" />
@@ -788,6 +811,7 @@ const Profile: React.FC<Props> = () => {
 
                     <button
                       className="profile-content-upload-form-button"
+                      disabled={!buttonControllerFile}
                       onClick={(e) => {
                         e.preventDefault();
                         submitForm();
