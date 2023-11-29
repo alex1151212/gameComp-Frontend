@@ -71,6 +71,7 @@ const Register: React.FC<RegisterProps> = () => {
                     saveAuth(data.data.token);
                     navigate("/auth/profile");
                   },
+                  "REGISTER",
                   (error: AxiosError) => {
                     const { response } = error;
                     toast.error("註冊失敗", {
