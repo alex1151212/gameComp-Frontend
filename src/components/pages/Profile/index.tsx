@@ -504,7 +504,7 @@ const Profile: React.FC<Props> = () => {
                       {errors.email}
                     </p> */}
                 </div>
-                <div className="profile-content-upload-form-link-80">
+                <div className="profile-content-upload-form-link">
                   <div className="profile-content-upload-form-img-preview-wrapper">
                     {values.teamSchoolCertificate &&
                       Array.from(values.teamSchoolCertificate).map(
@@ -547,11 +547,16 @@ const Profile: React.FC<Props> = () => {
                                 </p>
                               )}
                               {suffix === "pdf" ? (
-                                <PdfPreviewer prfUrl={localUrl} />
+                                <a
+                                  href={localUrl}
+                                  key={localUrl}
+                                  className="profile-content-upload-form-img-preview-link"
+                                >
+                                  身分證明文件
+                                </a>
                               ) : (
-                                ""
+                                <img src={localUrl} alt="" key={localUrl} />
                               )}
-                              <img src={localUrl} alt="" />
                             </div>
                           );
                         }

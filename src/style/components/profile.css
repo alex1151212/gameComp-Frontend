@@ -144,6 +144,9 @@
   border: 2px dashed #fff;
   border-radius: 20px;
 }
+.profile-content-upload-form-img-preview-link {
+  color: #03bcf4;
+}
 .profile-content-upload-form-img-preview .close {
   position: absolute;
   cursor: pointer;
