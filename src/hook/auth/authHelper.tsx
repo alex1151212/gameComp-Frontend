@@ -21,9 +21,6 @@ const setAuth = (auth: AuthModel) => {
   }
 
   try {
-    // const lsValue = JSON.stringify(auth);
-    // console.log(auth);
-
     localStorage.setItem(AUTH_LOCAL_STORAGE_KEY, auth);
     console.log("AUTH LOCAL STORAGE SAVED");
   } catch (error) {
@@ -38,7 +35,7 @@ const removeAuth = () => {
 
   try {
     localStorage.removeItem(AUTH_LOCAL_STORAGE_KEY);
-    console.log("AUTH LOCAL STORAGE REMOVED");
+    // console.log("AUTH LOCAL STORAGE REMOVED");
   } catch (error) {
     console.error("AUTH LOCAL STORAGE REMOVE ERROR", error);
   }

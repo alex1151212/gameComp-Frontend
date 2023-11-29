@@ -631,14 +631,12 @@ const Profile: React.FC<Props> = () => {
                     });
                   }
                 );
-                console.log(values);
               }}
               validate={(values) => {
                 const errors: Partial<{
                   workPdf: string;
                   workVideoLink: string;
                 }> = {};
-                console.log(values.workPdf);
 
                 if (values.workPdf === null || values.workPdf === undefined) {
                   errors.workPdf = "Please upload a pdf file";
