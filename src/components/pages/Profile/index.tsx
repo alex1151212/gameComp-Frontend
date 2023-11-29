@@ -283,11 +283,11 @@ const Profile: React.FC<Props> = () => {
                 teamSchoolCertificate: string;
               }> = {};
 
-              if (values.teamName === "") errors.teamName = "TeamName required";
+              if (values.teamName === "") errors.teamName = "隊伍名稱 必填";
               if (values.teamMember.length < 1)
-                errors.teamMember = "TeamMember required";
+                errors.teamMember = "隊伍成員 必填";
               if (values.teamSchoolCertificate.length < 1)
-                errors.teamSchoolCertificate = "TeamSchoolCertificate required";
+                errors.teamSchoolCertificate = "身分證明文件 必填";
 
               return errors;
             }}
@@ -504,14 +504,17 @@ const Profile: React.FC<Props> = () => {
                       {errors.email}
                     </p> */}
                 </div>
-                <div className="profile-content-upload-form-link">
+                <div className="profile-content-upload-form-link-80">
                   <div className="profile-content-upload-form-img-preview-wrapper">
                     {values.teamSchoolCertificate &&
                       Array.from(values.teamSchoolCertificate).map(
                         (file, index) => {
                           let localUrl;
+                          let suffix;
                           if (typeof file === "string") {
                             localUrl = file;
+
+                            suffix = file.split(".").pop();
                           } else {
                             localUrl = URL.createObjectURL(file);
                           }
@@ -543,7 +546,11 @@ const Profile: React.FC<Props> = () => {
                                   ×
                                 </p>
                               )}
-
+                              {suffix === "pdf" ? (
+                                <PdfPreviewer prfUrl={localUrl} />
+                              ) : (
+                                ""
+                              )}
                               <img src={localUrl} alt="" />
                             </div>
                           );
@@ -559,7 +566,6 @@ const Profile: React.FC<Props> = () => {
                     {"報名後不可更改"}
                   </p>
                 )}
-
                 <button
                   className="profile-content-upload-form-button"
                   onClick={(e) => {

@@ -86,6 +86,10 @@
   position: relative;
   width: 50%;
 }
+.profile-content-upload-form-link-80 {
+  position: relative;
+  width: 80%;
+}
 .profile-content-upload-form-add-input {
   width: 50%;
   display: flex;
@@ -120,8 +124,6 @@
   display: flex;
   width: 50%;
   gap: 1rem;
-}
-.profile-content-upload-form-row > div {
 }
 
 .profile-content-upload-form-img-preview-wrapper {
