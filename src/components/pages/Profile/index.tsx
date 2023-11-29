@@ -122,6 +122,7 @@ const Profile: React.FC<Props> = () => {
                   });
                   getProfile();
                 },
+                "UPDATE USER",
                 (error) => {
                   toast.error("更新失敗", {
                     position: "bottom-right",
@@ -283,6 +284,7 @@ const Profile: React.FC<Props> = () => {
                   });
                   getProfile();
                 },
+                "TEAM APPLY",
                 () => {
                   toast.error("報名失敗", {
                     position: "bottom-right",
@@ -676,6 +678,7 @@ const Profile: React.FC<Props> = () => {
                     });
                     getProfile();
                   },
+                  "UPLOAD_FILE",
                   (error) => {
                     console.log(error);
                     toast.error("檔案上傳失敗", {

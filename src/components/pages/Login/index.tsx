@@ -2,8 +2,7 @@ import { faWrench } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AxiosResponse } from "axios";
 import { Formik } from "formik";
-import React, { useCallback } from "react";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import React from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { api } from "../../../api";
@@ -17,24 +16,10 @@ interface LoginProps {}
 
 const Login: React.FC<LoginProps> = () => {
   const inProgress = false;
-  const { executeRecaptcha } = useGoogleReCaptcha();
   const navigate = useNavigate();
   const { isMobile } = useRwd();
-  const { sendRequest: loginRequest, sendRequest: recaptchaRequest } =
-    useAxios();
+  const { sendRequest: loginRequest } = useAxios();
   const { auth, saveAuth } = useAuth();
-
-  const handleReCaptchaVerify = useCallback(async () => {
-    if (!executeRecaptcha) {
-      console.log("Execute recaptcha not yet available");
-      return;
-    }
-
-    const token = await executeRecaptcha("LOGIN");
-
-    return token;
-    // Do whatever you want with the token
-  }, [executeRecaptcha]);
 
   if (auth) return <Navigate to={"/auth/profile"} />;
 
@@ -74,62 +59,47 @@ const Login: React.FC<LoginProps> = () => {
                   return errors;
                 }}
                 onSubmit={async (values, errors) => {
-                  const token = await handleReCaptchaVerify();
-                  recaptchaRequest(
+                  loginRequest(
                     {
-                      url: api.recaptcha.url(),
-                      method: api.recaptcha.method,
+                      url: api.login.url(),
+                      method: api.login.method,
                       data: {
-                        secret: import.meta.env.VITE_RECAPTCHA_SECRET_KEY,
-                        response: token,
+                        email: values.email,
+                        password: values.password,
                       },
                     },
-                    (response: AxiosResponse<{ success: boolean }>) => {
+                    (response: AxiosResponse<LoginResponse>) => {
                       const { data } = response;
-                      if (data.success) {
-                        loginRequest(
-                          {
-                            url: api.login.url(),
-                            method: api.login.method,
-                            data: {
-                              email: values.email,
-                              password: values.password,
-                            },
-                          },
-                          (response: AxiosResponse<LoginResponse>) => {
-                            const { data } = response;
-                            toast.success("登入成功", {
-                              position: "bottom-right",
-                              autoClose: 5000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              pauseOnHover: true,
-                              draggable: true,
-                              progress: undefined,
-                              theme: "dark",
-                            });
-                            saveAuth(data.data.token);
-                            navigate("/auth/profile");
-                          },
-                          (error) => {
-                            error.response?.status === 401 &&
-                              errors.setErrors({
-                                password: "Wrong password or username",
-                                email: "Wrong password or username",
-                              });
-                            toast.error("登入失敗", {
-                              position: "bottom-right",
-                              autoClose: 5000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              pauseOnHover: true,
-                              draggable: true,
-                              progress: undefined,
-                              theme: "dark",
-                            });
-                          }
-                        );
-                      }
+                      toast.success("登入成功", {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                      });
+                      saveAuth(data.data.token);
+                      navigate("/auth/profile");
+                    },
+                    "LOGIN",
+                    (error) => {
+                      error.response?.status === 401 &&
+                        errors.setErrors({
+                          password: "Wrong password or username",
+                          email: "Wrong password or username",
+                        });
+                      toast.error("登入失敗", {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                      });
                     }
                   );
                 }}
