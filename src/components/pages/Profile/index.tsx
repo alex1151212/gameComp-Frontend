@@ -511,11 +511,13 @@ const Profile: React.FC<Props> = () => {
                         (file, index) => {
                           let localUrl;
                           let suffix;
+                          let fileType;
                           if (typeof file === "string") {
                             localUrl = file;
 
                             suffix = file.split(".").pop();
                           } else {
+                            fileType = file.type;
                             localUrl = URL.createObjectURL(file);
                           }
 
@@ -546,7 +548,8 @@ const Profile: React.FC<Props> = () => {
                                   ×
                                 </p>
                               )}
-                              {suffix === "pdf" ? (
+                              {suffix === "pdf" ||
+                              fileType == "application/pdf" ? (
                                 <a
                                   href={localUrl}
                                   key={localUrl}

@@ -33,7 +33,7 @@ export interface TeamInfoType {
   teamName: string;
   teamTeacher: TeamTeacherType /*  */[];
   teamMember: string[];
-  teamSchoolCertificate: string[];
+  teamSchoolCertificate: (string | File)[];
 
   isApplyTeam: boolean;
 }
