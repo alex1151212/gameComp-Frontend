@@ -86,10 +86,7 @@
   position: relative;
   width: 50%;
 }
-.profile-content-upload-form-link-80 {
-  position: relative;
-  width: 80%;
-}
+
 .profile-content-upload-form-add-input {
   width: 50%;
   display: flex;
@@ -147,13 +144,17 @@
 .profile-content-upload-form-img-preview-link {
   color: #03bcf4;
 }
+.profile-content-upload-form-img-preview-link > span {
+  margin-right: 10px;
+  color: yellow;
+}
 .profile-content-upload-form-img-preview .close {
   position: absolute;
   cursor: pointer;
 
-  font-size: 28px;
+  font-size: 32px;
   color: black;
-  top: 20px;
+  top: 1%;
   right: 20px;
 }
 .profile-content-upload-form-pdf-preview {
@@ -174,7 +175,6 @@
   width: 50%;
   justify-content: start;
 }
-
 .profile-content-upload-form-link input {
   font-family: Cubic;
   width: 100%;
@@ -186,7 +186,7 @@
   font-size: 0.8em;
   transition: 0.3s;
 }
-.profile-content-upload-form-link span {
+.profile-content-upload-form-link > span {
   position: absolute;
   left: 0;
   padding: 10px;
@@ -207,7 +207,10 @@
   border-right: 1px solid #00dfc4;
   letter-spacing: 0.2em;
 }
-.profile-content-upload-form-link input:valid,
+.profile-content-upload-form-img-preview-link
+  > spa
+  .profile-content-upload-form-link
+  input:valid,
 .profile-content-upload-form-link input:focus {
   border: 1px solid #00dfc4;
 }

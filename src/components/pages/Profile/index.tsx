@@ -66,8 +66,8 @@ const Profile: React.FC<Props> = () => {
         });
         setTeamInfoData({
           teamName: data.teamName,
-          teamMember: data.teamMember.map((member) => member.name),
-          teamTeacher: data.teamTeacher,
+          teamMember: data.teamMember?.map((member) => member.name) || [""],
+          teamTeacher: data.teamTeacher || [{ name: "", jobTitle: "" }],
           teamSchoolCertificate: data.teamSchoolCertificate,
 
           isApplyTeam: data.isApplyTeam,
@@ -233,15 +233,15 @@ const Profile: React.FC<Props> = () => {
             onSubmit={(values) => {
               const formData = new FormData();
               formData.append("teamName", values.teamName);
-
-              formData.append(
-                "teamMember",
-                JSON.stringify(
-                  values.teamMember
-                    .filter((member) => member != "")
-                    .map((member) => ({ name: member }))
-                )
-              );
+              values.teamMember != null &&
+                formData.append(
+                  "teamMember",
+                  JSON.stringify(
+                    values.teamMember
+                      .filter((member) => member != "")
+                      .map((member) => ({ name: member }))
+                  )
+                );
               formData.append(
                 "teamTeacher",
                 JSON.stringify(values.teamTeacher)
@@ -306,10 +306,20 @@ const Profile: React.FC<Props> = () => {
               }> = {};
 
               if (values.teamName === "") errors.teamName = "隊伍名稱 必填";
-              if (values.teamMember.length < 1)
+              if (values.teamMember && values.teamMember.length < 1)
                 errors.teamMember = "隊伍成員 必填";
               if (values.teamSchoolCertificate.length < 1)
                 errors.teamSchoolCertificate = "身分證明文件 必填";
+
+              Array.from(values.teamSchoolCertificate).forEach((file) => {
+                if (typeof file === "object") {
+                  if (file.type !== "application/pdf") {
+                    errors.teamSchoolCertificate =
+                      "身分證明文件 格式為pdf, jpg, png";
+                    values.teamSchoolCertificate = [];
+                  }
+                }
+              });
 
               return errors;
             }}
@@ -335,8 +345,11 @@ const Profile: React.FC<Props> = () => {
                   />
                   <span>隊伍名稱</span>
                 </div>
-                {values.teamTeacher.map((_, index) => (
-                  <div className="profile-content-upload-form-add-input">
+                {values.teamTeacher.map((teacher, index) => (
+                  <div
+                    key={`${teacher.name}`}
+                    className="profile-content-upload-form-add-input"
+                  >
                     <div className="profile-content-upload-form-row">
                       <div className="profile-content-upload-form-link">
                         <input
@@ -414,9 +427,12 @@ const Profile: React.FC<Props> = () => {
                     )}
                   </div>
                 ))}
-                {values.teamMember.map((_, index) => {
+                {values.teamMember.map((member, index) => {
                   return (
-                    <div className="profile-content-upload-form-add-input">
+                    <div
+                      key={member}
+                      className="profile-content-upload-form-add-input"
+                    >
                       <div className="profile-content-upload-form-link">
                         <input
                           type="text"
@@ -520,7 +536,6 @@ const Profile: React.FC<Props> = () => {
                     />
                     <UploadIcon className="upload-icon" />
                     <p>上傳學生證正反面或在學證明</p>
-                    {/* <p className="error">{errors.pdfFile}</p> */}
                   </div>
                   {/* <p className="login-content-body-input-error">
                       {errors.email}
@@ -534,6 +549,7 @@ const Profile: React.FC<Props> = () => {
                           let localUrl;
                           let suffix;
                           let fileType;
+                          let isNew = true;
                           if (typeof file === "string") {
                             localUrl = file;
 
@@ -541,6 +557,7 @@ const Profile: React.FC<Props> = () => {
                           } else {
                             fileType = file.type;
                             localUrl = URL.createObjectURL(file);
+                            isNew = true;
                           }
 
                           return (
@@ -575,8 +592,12 @@ const Profile: React.FC<Props> = () => {
                                 <a
                                   href={localUrl}
                                   key={localUrl}
+                                  target="_blank"
                                   className="profile-content-upload-form-img-preview-link"
                                 >
+                                  {isNew && (
+                                    <span className="new-pdf">New</span>
+                                  )}
                                   身分證明文件
                                 </a>
                               ) : (
@@ -592,9 +613,14 @@ const Profile: React.FC<Props> = () => {
                   </p>
                 </div>
                 {!values.isApplyTeam && (
-                  <p className="login-content-body-input-error">
-                    {"報名後不可更改"}
-                  </p>
+                  <>
+                    <p className="login-content-body-input-error">
+                      {"#請注意上傳後無法修改"}
+                    </p>
+                    <p className="login-content-body-input-error">
+                      {"#請不要上傳陳菊的裸照"}
+                    </p>
+                  </>
                 )}
                 <button
                   className="profile-content-upload-form-button"
@@ -619,6 +645,7 @@ const Profile: React.FC<Props> = () => {
                 const formData = new FormData();
                 formData.append("workVideoLink", values.workVideoLink);
                 formData.append("workPdf", values.workPdf as File);
+
                 toastId.current = toast.warning("檔案上傳中", {
                   position: "bottom-right",
                   autoClose: false,
