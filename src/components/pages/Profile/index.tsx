@@ -248,7 +248,7 @@ const Profile: React.FC<Props> = () => {
                   method: api.teamApply.method,
                   data: formData,
                 },
-                (response) => {
+                () => {
                   toast.success(values.isApplyTeam ? "修改成功" : "報名成功", {
                     position: "bottom-right",
                     autoClose: 5000,
@@ -260,7 +260,6 @@ const Profile: React.FC<Props> = () => {
                     theme: "dark",
                   });
                   getProfile();
-                  console.log(response);
                 },
                 () => {
                   toast.error("報名失敗", {
@@ -525,23 +524,25 @@ const Profile: React.FC<Props> = () => {
                               }}
                               key={localUrl}
                             >
-                              <p
-                                className="close"
-                                onClick={() => {
-                                  if (values.teamSchoolCertificate) {
-                                    const newFileList = Array.from(
-                                      values.teamSchoolCertificate
-                                    );
-                                    newFileList.splice(index, 1);
-                                    setFieldValue(
-                                      "teamSchoolCertificate",
-                                      newFileList
-                                    );
-                                  }
-                                }}
-                              >
-                                ×
-                              </p>
+                              {!values.isApplyTeam && (
+                                <p
+                                  className="close"
+                                  onClick={() => {
+                                    if (values.teamSchoolCertificate) {
+                                      const newFileList = Array.from(
+                                        values.teamSchoolCertificate
+                                      );
+                                      newFileList.splice(index, 1);
+                                      setFieldValue(
+                                        "teamSchoolCertificate",
+                                        newFileList
+                                      );
+                                    }
+                                  }}
+                                >
+                                  ×
+                                </p>
+                              )}
 
                               <img src={localUrl} alt="" />
                             </div>
@@ -566,7 +567,7 @@ const Profile: React.FC<Props> = () => {
                     submitForm();
                   }}
                 >
-                  {values.isApplyTeam ? "修改身分證明文件" : "確認報名"}
+                  {values.isApplyTeam ? "再次上傳" : "確認報名"}
                 </button>
               </form>
             )}
@@ -718,7 +719,7 @@ const Profile: React.FC<Props> = () => {
                         submitForm();
                       }}
                     >
-                      確認上傳
+                      {values.isUpload ? "再次上傳" : "確認上傳"}
                     </button>
                     {true && (
                       <div className="profile-content-upload-form-pdf-preview">
