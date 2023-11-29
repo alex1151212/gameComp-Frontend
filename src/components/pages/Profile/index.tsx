@@ -570,7 +570,7 @@ const Profile: React.FC<Props> = () => {
                           let localUrl;
                           let suffix;
                           let fileType;
-                          let isNew = true;
+                          let isNew = false;
                           if (typeof file === "string") {
                             localUrl = file;
 
@@ -802,9 +802,14 @@ const Profile: React.FC<Props> = () => {
                       />
                       <UploadIcon className="upload-icon" />
                       <p>
-                        {values.workPdf && !errors.workPdf
-                          ? values.workPdf.name
-                          : "Browse File to upload PDF"}
+                        {values.workPdf && !errors.workPdf ? (
+                          <>
+                            <span className="new">{"New"}</span>
+                            <span>{values.workPdf.name}</span>
+                          </>
+                        ) : (
+                          "Browse File to upload PDF"
+                        )}
                       </p>
                       <p className="error">{errors.workPdf}</p>
                     </div>

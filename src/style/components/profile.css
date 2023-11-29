@@ -241,3 +241,7 @@
 .login-content-body-input-error {
   text-align: start;
 }
+.profile-content-upload-form .new {
+  color: yellow;
+  margin: 10px;
+}
