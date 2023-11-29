@@ -9,7 +9,7 @@ import { IoMdAdd } from "react-icons/io";
 import PdfPreviewer from "../../pdf-preivewer";
 import { ProfileResponse, ProfileType, TeamInfoType, UploadType } from "./type";
 import { AxiosResponse } from "axios";
-import { toast } from "react-toastify";
+import { Id, toast } from "react-toastify";
 
 interface Props {}
 
@@ -42,7 +42,7 @@ const Profile: React.FC<Props> = () => {
   const imgFileRef = useRef<HTMLInputElement>(null);
   const pdfFileRef = useRef<HTMLInputElement>(null);
   const [fileDragState, setFileDragState] = useState<boolean>(false);
-
+  const toastId = React.useRef<Id>("");
   const getProfile = () => {
     getProfileRequest(
       {
@@ -88,6 +88,16 @@ const Profile: React.FC<Props> = () => {
             enableReinitialize={true}
             initialValues={profileData}
             onSubmit={(values) => {
+              toastId.current = toast.warning("檔案上傳中", {
+                position: "bottom-right",
+                autoClose: false,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+              });
               uploadRequest(
                 {
                   url: api.updateUser.url(),
@@ -99,6 +109,7 @@ const Profile: React.FC<Props> = () => {
                   },
                 },
                 () => {
+                  toast.done(toastId.current);
                   toast.success("更新成功", {
                     position: "bottom-right",
                     autoClose: 5000,
@@ -242,6 +253,16 @@ const Profile: React.FC<Props> = () => {
                   values.teamSchoolCertificate[i]
                 );
               }
+              toastId.current = toast.warning("檔案上傳中", {
+                position: "bottom-right",
+                autoClose: false,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+              });
               uploadRequest(
                 {
                   url: api.teamApply.url(),
@@ -249,6 +270,7 @@ const Profile: React.FC<Props> = () => {
                   data: formData,
                 },
                 () => {
+                  toast.done(toastId.current);
                   toast.success(values.isApplyTeam ? "修改成功" : "報名成功", {
                     position: "bottom-right",
                     autoClose: 5000,
@@ -597,7 +619,16 @@ const Profile: React.FC<Props> = () => {
                 const formData = new FormData();
                 formData.append("workVideoLink", values.workVideoLink);
                 formData.append("workPdf", values.workPdf as File);
-
+                toastId.current = toast.warning("檔案上傳中", {
+                  position: "bottom-right",
+                  autoClose: false,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "dark",
+                });
                 uploadRequest(
                   {
                     url: api.uploadFile.url(),
@@ -605,6 +636,7 @@ const Profile: React.FC<Props> = () => {
                     data: formData,
                   },
                   () => {
+                    toast.done(toastId.current);
                     toast.success("檔案上傳成功", {
                       position: "bottom-right",
                       autoClose: 5000,
