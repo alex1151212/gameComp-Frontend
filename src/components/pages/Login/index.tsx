@@ -63,7 +63,6 @@ const Login: React.FC<LoginProps> = () => {
                 onSubmit={async (values, errors) => {
                   const token =
                     recaptchaRef.current && recaptchaRef.current.getValue();
-                  console.log(token);
 
                   loginRequest(
                     {
