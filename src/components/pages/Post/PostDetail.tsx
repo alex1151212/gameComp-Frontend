@@ -48,7 +48,7 @@ const PostDetail: React.FC<PostDetailProps> = () => {
           </div>
           <div className="posts-detail-content-body-linklist">
             {post &&
-              post.link.map((link) => (
+              post.link?.map((link) => (
                 <a key={link.url} href={link.url} target="_blank">
                   {link.title}
                 </a>

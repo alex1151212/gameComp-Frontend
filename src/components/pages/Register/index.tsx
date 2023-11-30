@@ -38,8 +38,12 @@ const Register: React.FC<RegisterProps> = () => {
                   password: string;
                   confirmPassword: string;
                 }> = {};
-                if (values.email === "") errors.email = "Email is required";
 
+                const emailRegex =
+                  /^[\w!#$%&'*+/=?^_`{|}~-]+(\.[\w!#$%&'*+/=?^_`{|}~-]+)*@[\w\d]+(\.[\w\d-]+)*\.[\w]+$/;
+                if (values.email === "") errors.email = "Email is required";
+                if (!emailRegex.test(values.email))
+                  errors.email = "Email is invalid";
                 if (values.password === "")
                   errors.password = "Password is required";
                 if (!(values.password === values.confirmPassword)) {
