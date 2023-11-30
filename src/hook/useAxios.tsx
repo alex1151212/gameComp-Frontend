@@ -31,6 +31,7 @@ const useAxios = () => {
           ...requestConfig,
           headers: {
             // Authorization: "Bearer develop",
+            ...requestConfig.headers,
             Authorization: `Bearer ${localStorage.getItem("igd-auth")}`,
           },
         });

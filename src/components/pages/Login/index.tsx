@@ -61,8 +61,9 @@ const Login: React.FC<LoginProps> = () => {
                   return errors;
                 }}
                 onSubmit={async (values, errors) => {
-                  const recaptchaValue =
+                  const token =
                     recaptchaRef.current && recaptchaRef.current.getValue();
+                  console.log(token);
 
                   loginRequest(
                     {
@@ -73,7 +74,7 @@ const Login: React.FC<LoginProps> = () => {
                         password: values.password,
                       },
                       headers: {
-                        CaptchaResponse: recaptchaValue,
+                        CaptchaResponse: token,
                       },
                     },
                     (response: AxiosResponse<LoginResponse>) => {
