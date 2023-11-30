@@ -216,11 +216,14 @@ const Profile: React.FC<Props> = () => {
                     {errors.confirmPassword}
                   </p>
                 </div>
-                <ReCAPTCHA
-                  ref={recaptchaRefProfile}
-                  size="normal"
-                  sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                />
+                <div className="captcha">
+                  <ReCAPTCHA
+                    ref={recaptchaRefProfile}
+                    size="normal"
+                    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                  />
+                </div>
+
                 <button
                   className="profile-content-upload-form-button"
                   disabled={!buttonControllerUser}
@@ -663,11 +666,13 @@ const Profile: React.FC<Props> = () => {
                     </>
                   )}
                 </div>
-                <ReCAPTCHA
-                  ref={recaptchaRefTeam}
-                  size="normal"
-                  sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                />
+                <div className="captcha">
+                  <ReCAPTCHA
+                    ref={recaptchaRefTeam}
+                    size="normal"
+                    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                  />
+                </div>
                 <button
                   className="profile-content-upload-form-button"
                   disabled={!buttonControllerApply}
@@ -843,11 +848,14 @@ const Profile: React.FC<Props> = () => {
                       </p>
                       <p className="error">{errors.workPdf}</p>
                     </div>
-                    <ReCAPTCHA
-                      ref={recaptchaRefUpload}
-                      size="normal"
-                      sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                    />
+                    <div className="captcha">
+                      <ReCAPTCHA
+                        ref={recaptchaRefUpload}
+                        size="normal"
+                        sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                      />
+                    </div>
+
                     <button
                       className="profile-content-upload-form-button"
                       disabled={!buttonControllerFile}

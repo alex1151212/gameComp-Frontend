@@ -150,11 +150,13 @@ const Login: React.FC<LoginProps> = () => {
                     >
                       register
                     </div>
-                    <ReCAPTCHA
-                      ref={recaptchaRef}
-                      size="normal"
-                      sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                    />
+                    <div className="captcha">
+                      <ReCAPTCHA
+                        ref={recaptchaRef}
+                        sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                      />
+                    </div>
+
                     <button type="submit" className="login-content-body-button">
                       Login
                     </button>

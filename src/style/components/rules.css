@@ -138,6 +138,13 @@
   .rules-content-schedule-wrapper {
     margin-bottom: 2rem;
   }
+  .rules-content-schedule {
+    padding-top: 9rem;
+  }
+  .rules-content-schedule-date > p {
+    transform: rotate(70deg) translateY(4rem) translateX(-6rem);
+  }
+
   .rules-content {
     font-size: 2rem;
   }
@@ -147,5 +154,7 @@
   .rules-content-reward-table tr td {
     width: 50%;
     padding: 2px 8px;
+  }
+  .rules-content-schedule-date > p {
   }
 }

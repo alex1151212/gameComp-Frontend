@@ -92,21 +92,21 @@ const PdfPreviewer: React.FC<Props> = ({ prfUrl }) => {
     const pageWidth = pdfPreviewerState.pageWidth * 1.2;
     setPdfPreviewerState({ ...pdfPreviewerState, pageWidth: pageWidth });
   };
-  const pageFullscreen = () => {
-    if (pdfPreviewerState.fullscreen) {
-      setPdfPreviewerState({
-        ...pdfPreviewerState,
-        fullscreen: false,
-        pageWidth: 794,
-      });
-    } else {
-      setPdfPreviewerState({
-        ...pdfPreviewerState,
-        fullscreen: true,
-        pageWidth: window.screen.width - 40,
-      });
-    }
-  };
+  // const pageFullscreen = () => {
+  //   if (pdfPreviewerState.fullscreen) {
+  //     setPdfPreviewerState({
+  //       ...pdfPreviewerState,
+  //       fullscreen: false,
+  //       pageWidth: 794,
+  //     });
+  //   } else {
+  //     setPdfPreviewerState({
+  //       ...pdfPreviewerState,
+  //       fullscreen: true,
+  //       pageWidth: window.screen.width - 40,
+  //     });
+  //   }
+  // };
 
   // if (pdfLoadError)
   //   return <h1 className="pdf-view-error">Pdf Preview載入錯誤</h1>;
@@ -161,9 +161,6 @@ const PdfPreviewer: React.FC<Props> = ({ prfUrl }) => {
         <div className="page-tool-item" onClick={pageZoomOut}>
           {" "}
           縮小
-        </div>
-        <div className="page-tool-item" onClick={pageFullscreen}>
-          {pdfPreviewerState.fullscreen ? "恢復默認" : "適合窗口"}
         </div>
       </div>
     </div>
