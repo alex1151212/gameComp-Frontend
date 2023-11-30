@@ -100,7 +100,7 @@ const Profile: React.FC<Props> = () => {
             enableReinitialize={true}
             initialValues={profileData}
             onSubmit={(values) => {
-              const recaptchaValue =
+              const token =
                 recaptchaRefProfile.current &&
                 recaptchaRefProfile.current.getValue();
               uploadRequest(
@@ -113,7 +113,7 @@ const Profile: React.FC<Props> = () => {
                     password: values.password,
                   },
                   headers: {
-                    CaptchaResponse: recaptchaValue,
+                    CaptchaResponse: token,
                   },
                 },
                 () => {
@@ -263,9 +263,8 @@ const Profile: React.FC<Props> = () => {
                   values.teamSchoolCertificate[i]
                 );
               }
-              const recaptchaValue =
-                recaptchaRefProfile.current &&
-                recaptchaRefProfile.current.getValue();
+              const token =
+                recaptchaRefTeam.current && recaptchaRefTeam.current.getValue();
 
               toastId.current = toast.warning("檔案上傳中", {
                 position: "bottom-right",
@@ -284,7 +283,7 @@ const Profile: React.FC<Props> = () => {
                   method: api.teamApply.method,
                   data: formData,
                   headers: {
-                    CaptchaResponse: recaptchaValue,
+                    CaptchaResponse: token,
                   },
                 },
                 () => {
@@ -690,9 +689,9 @@ const Profile: React.FC<Props> = () => {
               enableReinitialize={true}
               initialValues={uploadData}
               onSubmit={(values) => {
-                const recaptchaValue =
-                  recaptchaRefProfile.current &&
-                  recaptchaRefProfile.current.getValue();
+                const token =
+                  recaptchaRefUpload.current &&
+                  recaptchaRefUpload.current.getValue();
                 const formData = new FormData();
                 formData.append("workVideoLink", values.workVideoLink);
                 formData.append("workPdf", values.workPdf as File);
@@ -713,7 +712,7 @@ const Profile: React.FC<Props> = () => {
                     method: api.uploadFile.method,
                     data: formData,
                     headers: {
-                      CaptchaResponse: recaptchaValue,
+                      CaptchaResponse: token,
                     },
                   },
                   () => {
