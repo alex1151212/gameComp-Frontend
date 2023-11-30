@@ -51,7 +51,6 @@ const Register: React.FC<RegisterProps> = () => {
               onSubmit={async (values, errors) => {
                 const recaptchaValue =
                   recaptchaRef.current && recaptchaRef.current.getValue();
-                console.log(recaptchaValue);
 
                 registerRequest(
                   {
