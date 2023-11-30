@@ -86,6 +86,9 @@
   position: relative;
   width: 50%;
 }
+.profile-content-upload-form-add-input-wrapper {
+  width: 50%;
+}
 
 .profile-content-upload-form-add-input {
   width: 50%;
@@ -240,6 +243,7 @@
 }
 .login-content-body-input-error {
   text-align: start;
+  width: 100%;
 }
 .profile-content-upload-form .new {
   color: yellow;

@@ -312,8 +312,16 @@ const Profile: React.FC<Props> = () => {
               }> = {};
 
               if (values.teamName === "") errors.teamName = "隊伍名稱 必填";
-              if (values.teamMember && values.teamMember.length < 1)
+              if (
+                !values.teamTeacher.every(
+                  (teacher) => teacher.name !== "" && teacher.jobTitle !== ""
+                )
+              ) {
+                errors.teamTeacher = "指導老師 必填";
+              }
+              if (!values.teamMember.every((member) => member !== "")) {
                 errors.teamMember = "隊伍成員 必填";
+              }
               if (values.teamSchoolCertificate.length < 1)
                 errors.teamSchoolCertificate = "身分證明文件 必填";
 
@@ -383,7 +391,8 @@ const Profile: React.FC<Props> = () => {
                         />
                         <span>指導老師{index + 1}</span>
                         <p className="login-content-body-input-error">
-                          {errors.teamMember}
+                          {typeof errors.teamTeacher === "string" &&
+                            errors.teamTeacher}
                         </p>
                       </div>
                       <div className="profile-content-upload-form-link">
@@ -404,11 +413,9 @@ const Profile: React.FC<Props> = () => {
                           }}
                         />
                         <span>老師職稱</span>
-                        <p className="login-content-body-input-error">
-                          {errors.teamMember}
-                        </p>
                       </div>
                     </div>
+
                     {!values.isApplyTeam && (
                       <>
                         {values.teamTeacher.length === index + 1 && (
@@ -444,6 +451,7 @@ const Profile: React.FC<Props> = () => {
                     )}
                   </div>
                 ))}
+
                 {values.teamMember.map((_, index) => {
                   return (
                     <div
