@@ -15,7 +15,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   place-items: start center;
-  grid-gap: 30px;
+  grid-gap: 100px;
 }
 @media screen and (max-width: 480px) {
   .info-content > h1 {
