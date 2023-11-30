@@ -572,70 +572,68 @@ const Profile: React.FC<Props> = () => {
                 </div>
                 <div className="profile-content-upload-form-link">
                   <div className="profile-content-upload-form-img-preview-wrapper">
-                    {values.teamSchoolCertificate &&
-                      Array.from(values.teamSchoolCertificate).map(
-                        (file, index) => {
-                          let localUrl;
-                          let suffix;
-                          let fileType;
-                          let isNew = false;
-                          if (typeof file === "string") {
-                            localUrl = file;
+                    {Array.from(values.teamSchoolCertificate).map(
+                      (file, index) => {
+                        let localUrl;
+                        let suffix;
+                        let fileType;
+                        let isNew = false;
+                        if (typeof file === "string") {
+                          localUrl = file;
 
-                            suffix = file.split(".").pop();
-                          } else {
-                            fileType = file.type;
-                            localUrl = URL.createObjectURL(file);
-                            isNew = true;
-                          }
-
-                          return (
-                            <div
-                              className={`profile-content-upload-form-img-preview`}
-                              onClick={() => {
-                                // fileRef.current?.click();
-                              }}
-                              key={localUrl}
-                            >
-                              {!values.isApplyTeam && (
-                                <p
-                                  className="close"
-                                  onClick={() => {
-                                    if (values.teamSchoolCertificate) {
-                                      const newFileList = Array.from(
-                                        values.teamSchoolCertificate
-                                      );
-                                      newFileList.splice(index, 1);
-                                      setFieldValue(
-                                        "teamSchoolCertificate",
-                                        newFileList
-                                      );
-                                    }
-                                  }}
-                                >
-                                  ×
-                                </p>
-                              )}
-                              {suffix === "pdf" ||
-                              fileType == "application/pdf" ? (
-                                <a
-                                  href={localUrl}
-                                  key={localUrl}
-                                  target="_blank"
-                                  className="profile-content-upload-form-img-preview-link"
-                                >
-                                  {isNew && (
-                                    <span className="new-pdf">New</span>
-                                  )}
-                                  身分證明文件
-                                </a>
-                              ) : (
-                                <img src={localUrl} alt="" key={localUrl} />
-                              )}
-                            </div>
-                          );
+                          suffix = file.split(".").pop();
+                        } else {
+                          fileType = file.type;
+                          localUrl = URL.createObjectURL(file);
+                          isNew = true;
                         }
-                      )}
+                        console.log(1);
+
+                        return (
+                          <div
+                            className={`profile-content-upload-form-img-preview`}
+                            onClick={() => {
+                              // fileRef.current?.click();
+                            }}
+                            key={localUrl}
+                          >
+                            {!values.isApplyTeam && (
+                              <p
+                                className="close"
+                                onClick={() => {
+                                  if (values.teamSchoolCertificate) {
+                                    const newFileList = Array.from(
+                                      values.teamSchoolCertificate
+                                    );
+                                    newFileList.splice(index, 1);
+                                    setFieldValue(
+                                      "teamSchoolCertificate",
+                                      newFileList
+                                    );
+                                  }
+                                }}
+                              >
+                                ×
+                              </p>
+                            )}
+                            {suffix === "pdf" ||
+                            fileType == "application/pdf" ? (
+                              <a
+                                href={localUrl}
+                                key={localUrl}
+                                target="_blank"
+                                className="profile-content-upload-form-img-preview-link"
+                              >
+                                {isNew && <span className="new-pdf">New</span>}
+                                身分證明文件
+                              </a>
+                            ) : (
+                              <img src={localUrl} alt="" key={localUrl} />
+                            )}
+                          </div>
+                        );
+                      }
+                    )}
                     <p className="login-content-body-input-error">
                       {errors.teamSchoolCertificate}
                     </p>
