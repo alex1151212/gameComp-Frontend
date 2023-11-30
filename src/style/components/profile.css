@@ -241,6 +241,10 @@
 .profile-content-upload-form-file .error {
   color: #ff0000;
 }
+.login-content-body-input-warning {
+  text-align: start;
+  width: 50%;
+}
 .login-content-body-input-error {
   text-align: start;
   width: 100%;

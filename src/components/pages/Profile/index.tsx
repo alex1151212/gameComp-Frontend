@@ -636,21 +636,24 @@ const Profile: React.FC<Props> = () => {
                           );
                         }
                       )}
+                    <p className="login-content-body-input-error">
+                      {errors.teamSchoolCertificate}
+                    </p>
                   </div>
-                  <p className="login-content-body-input-error">
-                    {errors.teamSchoolCertificate}
-                  </p>
                 </div>
-                {!values.isApplyTeam && (
-                  <>
-                    <p className="login-content-body-input-error">
-                      {"#請注意上傳後無法修改"}
-                    </p>
-                    <p className="login-content-body-input-error">
-                      {"#請勿上傳違反善良風俗之檔案"}
-                    </p>
-                  </>
-                )}
+                <div className="login-content-body-input-warning">
+                  {!values.isApplyTeam && (
+                    <>
+                      <p className="login-content-body-input-error">
+                        {"#請注意上傳後無法修改"}
+                      </p>
+                      <p className="login-content-body-input-error">
+                        {"#請勿上傳違反善良風俗之檔案"}
+                      </p>
+                    </>
+                  )}
+                </div>
+
                 <button
                   className="profile-content-upload-form-button"
                   disabled={!buttonControllerApply}
