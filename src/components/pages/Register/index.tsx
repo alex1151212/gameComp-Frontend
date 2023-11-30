@@ -150,12 +150,14 @@ const Register: React.FC<RegisterProps> = () => {
                       {errors.confirmPassword}
                     </p>
                   </div>
-                  <ReCAPTCHA
-                    style={{ marginTop: "20px" }}
-                    ref={recaptchaRef}
-                    size="normal"
-                    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                  />
+                  <div className="captcha" style={{ marginTop: "20px" }}>
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      size="normal"
+                      sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                    />
+                  </div>
+
                   <button
                     type="submit"
                     className="register-content-body-button"

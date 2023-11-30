@@ -95,8 +95,8 @@ const Login: React.FC<LoginProps> = () => {
                     (error) => {
                       error.response?.status === 401 &&
                         errors.setErrors({
-                          password: "Wrong password or username",
-                          email: "Wrong password or username",
+                          password: "Wrong email or password",
+                          email: "Wrong email or password",
                         });
                       toast.error("登入失敗", {
                         position: "bottom-right",
