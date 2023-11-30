@@ -639,7 +639,7 @@ const Profile: React.FC<Props> = () => {
                       {"#請注意上傳後無法修改"}
                     </p>
                     <p className="login-content-body-input-error">
-                      {"#請不要上傳陳菊的裸照"}
+                      {"#請勿上傳違反善良風俗之檔案"}
                     </p>
                   </>
                 )}
