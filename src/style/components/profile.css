@@ -180,6 +180,7 @@
 }
 .profile-content-upload-form-link input {
   font-family: Cubic;
+  color: white;
   width: 100%;
   padding: 10px;
   border: 1px solid rgba(255, 255, 255, 0.25);
@@ -189,6 +190,7 @@
   font-size: 0.8em;
   transition: 0.3s;
 }
+
 .profile-content-upload-form-link > span {
   position: absolute;
   left: 0;
@@ -226,6 +228,7 @@
 }
 
 .profile-content-upload-form-button {
+  background-color: #1A1A1A;
   border: none;
   transition: 0.5s;
 }
