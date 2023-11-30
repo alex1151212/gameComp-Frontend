@@ -14,7 +14,7 @@
   margin-bottom: 1.5rem;
 }
 .posts-content-card-wrapper {
-  font-size: 28px;
+  font-size: 20px;
   /* grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
   grid-gap: 30px; */
 }
@@ -26,4 +26,13 @@
   .posts-content {
     font-size: 2rem;
   }
+}
+
+@media screen and (max-width: 960px) {
+  /* .posts div > h1 {
+    font-size: 5rem;
+  }
+  .posts-content {
+    font-size: 2rem;
+  } */
 }
