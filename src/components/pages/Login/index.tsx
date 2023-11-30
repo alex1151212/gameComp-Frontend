@@ -142,14 +142,17 @@ const Login: React.FC<LoginProps> = () => {
                         {errors.password}
                       </p>
                     </div>
-                    <div
-                      className="login-content-body-register"
-                      onClick={() => {
-                        navigate("/register");
-                      }}
-                    >
-                      register
+                    <div className="login-content-body-register-wrapper">
+                      <div
+                        className="login-content-body-register"
+                        onClick={() => {
+                          navigate("/register");
+                        }}
+                      >
+                        SIGN UP
+                      </div>
                     </div>
+
                     <div className="captcha">
                       <ReCAPTCHA
                         ref={recaptchaRef}

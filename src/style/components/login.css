@@ -137,11 +137,26 @@
   color: #1d2b3c;
   border-radius: 2px;
 }
-
-.login-content-body-register {
+.login-content-body-register-wrapper {
+  margin: 20px 20px;
+  display: flex;
+  justify-content: flex-end;
   width: 50%;
-  padding-left: 0.6rem;
+}
+.login-content-body-register {
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.3s;
+  background: #333;
+  border-radius: 5px;
+  padding: 5px 10px;
   cursor: pointer;
+}
+.login-content-body-register:hover {
+  color: grey;
 }
 
 .login-content-body-button {
