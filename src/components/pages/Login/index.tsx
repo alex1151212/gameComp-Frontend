@@ -11,6 +11,7 @@ import useAxios from "../../../hook/useAxios";
 import useRwd from "../../../hook/useRwd";
 import Cube from "../../cube3d";
 import { LoginResponse } from "./type";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface LoginProps {}
 
@@ -20,6 +21,7 @@ const Login: React.FC<LoginProps> = () => {
   const { isMobile } = useRwd();
   const { sendRequest: loginRequest } = useAxios();
   const { auth, saveAuth } = useAuth();
+  const recaptchaRef = React.createRef<ReCAPTCHA>();
 
   if (auth) return <Navigate to={"/auth/profile"} />;
 
@@ -59,6 +61,9 @@ const Login: React.FC<LoginProps> = () => {
                   return errors;
                 }}
                 onSubmit={async (values, errors) => {
+                  const recaptchaValue =
+                    recaptchaRef.current && recaptchaRef.current.getValue();
+
                   loginRequest(
                     {
                       url: api.login.url(),
@@ -66,6 +71,9 @@ const Login: React.FC<LoginProps> = () => {
                       data: {
                         email: values.email,
                         password: values.password,
+                      },
+                      headers: {
+                        CaptchaResponse: recaptchaValue,
                       },
                     },
                     (response: AxiosResponse<LoginResponse>) => {
@@ -80,10 +88,10 @@ const Login: React.FC<LoginProps> = () => {
                         progress: undefined,
                         theme: "dark",
                       });
+
                       saveAuth(data.data.token);
                       navigate("/auth/profile");
                     },
-                    "LOGIN",
                     (error) => {
                       error.response?.status === 401 &&
                         errors.setErrors({
@@ -142,6 +150,11 @@ const Login: React.FC<LoginProps> = () => {
                     >
                       register
                     </div>
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      size="normal"
+                      sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                    />
                     <button type="submit" className="login-content-body-button">
                       Login
                     </button>

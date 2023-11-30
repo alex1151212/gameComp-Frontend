@@ -46,6 +46,10 @@
   /* width: 100px; */
   /* height: 100px; */
 }
+.posts-detail-content-body-linklist {
+  display: flex;
+  flex-direction: column;
+}
 .posts-detail-content-body-imglist-item > img {
   width: 100%;
   height: 100%;

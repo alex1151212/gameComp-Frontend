@@ -10,6 +10,7 @@ import PdfPreviewer from "../../pdf-preivewer";
 import { ProfileResponse, ProfileType, TeamInfoType, UploadType } from "./type";
 import { AxiosResponse } from "axios";
 import { Id, toast } from "react-toastify";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface Props {}
 
@@ -48,6 +49,11 @@ const Profile: React.FC<Props> = () => {
   const imgFileRef = useRef<HTMLInputElement>(null);
   const pdfFileRef = useRef<HTMLInputElement>(null);
   const [fileDragState, setFileDragState] = useState<boolean>(false);
+
+  const recaptchaRefProfile = React.createRef<ReCAPTCHA>();
+  const recaptchaRefTeam = React.createRef<ReCAPTCHA>();
+  const recaptchaRefUpload = React.createRef<ReCAPTCHA>();
+
   const toastId = React.useRef<Id>("");
   const getProfile = () => {
     getProfileRequest(
@@ -94,16 +100,9 @@ const Profile: React.FC<Props> = () => {
             enableReinitialize={true}
             initialValues={profileData}
             onSubmit={(values) => {
-              toastId.current = toast.warning("檔案上傳中", {
-                position: "bottom-right",
-                autoClose: false,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-              });
+              const recaptchaValue =
+                recaptchaRefProfile.current &&
+                recaptchaRefProfile.current.getValue();
               uploadRequest(
                 {
                   url: api.updateUser.url(),
@@ -113,9 +112,11 @@ const Profile: React.FC<Props> = () => {
                     phone: values.phone,
                     password: values.password,
                   },
+                  headers: {
+                    CaptchaResponse: recaptchaValue,
+                  },
                 },
                 () => {
-                  toast.done(toastId.current);
                   toast.success("更新成功", {
                     position: "bottom-right",
                     autoClose: 5000,
@@ -129,7 +130,6 @@ const Profile: React.FC<Props> = () => {
                   setButtonControllerUser(false);
                   getProfile();
                 },
-                "UPDATE_USER",
                 (error) => {
                   toast.error("更新失敗", {
                     position: "bottom-right",
@@ -216,6 +216,11 @@ const Profile: React.FC<Props> = () => {
                     {errors.confirmPassword}
                   </p>
                 </div>
+                <ReCAPTCHA
+                  ref={recaptchaRefProfile}
+                  size="normal"
+                  sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                />
                 <button
                   className="profile-content-upload-form-button"
                   disabled={!buttonControllerUser}
@@ -258,6 +263,10 @@ const Profile: React.FC<Props> = () => {
                   values.teamSchoolCertificate[i]
                 );
               }
+              const recaptchaValue =
+                recaptchaRefProfile.current &&
+                recaptchaRefProfile.current.getValue();
+
               toastId.current = toast.warning("檔案上傳中", {
                 position: "bottom-right",
                 autoClose: false,
@@ -268,14 +277,19 @@ const Profile: React.FC<Props> = () => {
                 progress: undefined,
                 theme: "dark",
               });
+              setButtonControllerApply(false);
               uploadRequest(
                 {
                   url: api.teamApply.url(),
                   method: api.teamApply.method,
                   data: formData,
+                  headers: {
+                    CaptchaResponse: recaptchaValue,
+                  },
                 },
                 () => {
                   toast.done(toastId.current);
+
                   toast.success(values.isApplyTeam ? "修改成功" : "報名成功", {
                     position: "bottom-right",
                     autoClose: 5000,
@@ -288,7 +302,6 @@ const Profile: React.FC<Props> = () => {
                   });
                   getProfile();
                 },
-                "TEAM_APPLY",
                 () => {
                   toast.error("報名失敗", {
                     position: "bottom-right",
@@ -525,6 +538,7 @@ const Profile: React.FC<Props> = () => {
                     }`}
                     onClick={() => {
                       imgFileRef.current?.click();
+                      setButtonControllerApply(true);
                     }}
                     onDrop={(e) => {
                       e.preventDefault();
@@ -587,7 +601,6 @@ const Profile: React.FC<Props> = () => {
                           localUrl = URL.createObjectURL(file);
                           isNew = true;
                         }
-                        console.log(1);
 
                         return (
                           <div
@@ -651,7 +664,11 @@ const Profile: React.FC<Props> = () => {
                     </>
                   )}
                 </div>
-
+                <ReCAPTCHA
+                  ref={recaptchaRefTeam}
+                  size="normal"
+                  sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                />
                 <button
                   className="profile-content-upload-form-button"
                   disabled={!buttonControllerApply}
@@ -673,6 +690,9 @@ const Profile: React.FC<Props> = () => {
               enableReinitialize={true}
               initialValues={uploadData}
               onSubmit={(values) => {
+                const recaptchaValue =
+                  recaptchaRefProfile.current &&
+                  recaptchaRefProfile.current.getValue();
                 const formData = new FormData();
                 formData.append("workVideoLink", values.workVideoLink);
                 formData.append("workPdf", values.workPdf as File);
@@ -692,6 +712,9 @@ const Profile: React.FC<Props> = () => {
                     url: api.uploadFile.url(),
                     method: api.uploadFile.method,
                     data: formData,
+                    headers: {
+                      CaptchaResponse: recaptchaValue,
+                    },
                   },
                   () => {
                     toast.done(toastId.current);
@@ -707,7 +730,6 @@ const Profile: React.FC<Props> = () => {
                     });
                     getProfile();
                   },
-                  "UPLOAD_FILE",
                   (error) => {
                     console.log(error);
                     toast.error("檔案上傳失敗", {
@@ -822,7 +844,11 @@ const Profile: React.FC<Props> = () => {
                       </p>
                       <p className="error">{errors.workPdf}</p>
                     </div>
-
+                    <ReCAPTCHA
+                      ref={recaptchaRefUpload}
+                      size="normal"
+                      sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                    />
                     <button
                       className="profile-content-upload-form-button"
                       disabled={!buttonControllerFile}

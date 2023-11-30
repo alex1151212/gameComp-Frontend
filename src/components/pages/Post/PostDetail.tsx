@@ -47,12 +47,12 @@ const PostDetail: React.FC<PostDetailProps> = () => {
             {post?.content}
           </div>
           <div className="posts-detail-content-body-linklist">
-            {/* {post &&
-              post.link.map((link, index) => (
-                <a key={link.url} href={post.link}>
-                  {}
+            {post &&
+              post.link.map((link) => (
+                <a key={link.url} href={link.url} target="_blank">
+                  {link.title}
                 </a>
-              ))} */}
+              ))}
           </div>
           <div className="posts-detail-content-body-imglist">
             {post?.imgSrc.map((img, index) => (

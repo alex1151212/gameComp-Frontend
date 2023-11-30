@@ -10,6 +10,7 @@ import { RegisterResponse } from "./type";
 import { Navigate, useNavigate } from "react-router-dom";
 import { ICommonError } from "../../../api/axios";
 import { toast } from "react-toastify";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface RegisterProps {}
 
@@ -18,6 +19,7 @@ const Register: React.FC<RegisterProps> = () => {
   const { isMobile } = useRwd();
   const { sendRequest: registerRequest } = useAxios();
   const { auth, saveAuth } = useAuth();
+  const recaptchaRef = React.createRef<ReCAPTCHA>();
   if (auth) return <Navigate to={"/auth/profile"} />;
   return (
     <div className={`register ${isMobile && "mobile"}`}>
@@ -47,6 +49,10 @@ const Register: React.FC<RegisterProps> = () => {
                 return errors;
               }}
               onSubmit={async (values, errors) => {
+                const recaptchaValue =
+                  recaptchaRef.current && recaptchaRef.current.getValue();
+                console.log(recaptchaValue);
+
                 registerRequest(
                   {
                     url: api.register.url(),
@@ -54,6 +60,9 @@ const Register: React.FC<RegisterProps> = () => {
                     data: {
                       email: values.email,
                       password: values.password,
+                    },
+                    headers: {
+                      CaptchaResponse: recaptchaValue,
                     },
                   },
                   (response: AxiosResponse<RegisterResponse>) => {
@@ -71,7 +80,6 @@ const Register: React.FC<RegisterProps> = () => {
                     saveAuth(data.data.token);
                     navigate("/auth/profile");
                   },
-                  "REGISTER",
                   (error: AxiosError) => {
                     const { response } = error;
                     toast.error("註冊失敗", {
@@ -139,6 +147,12 @@ const Register: React.FC<RegisterProps> = () => {
                       {errors.confirmPassword}
                     </p>
                   </div>
+                  <ReCAPTCHA
+                    style={{ marginTop: "20px" }}
+                    ref={recaptchaRef}
+                    size="normal"
+                    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                  />
                   <button
                     type="submit"
                     className="register-content-body-button"
