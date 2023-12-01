@@ -27,12 +27,3 @@
     font-size: 2rem;
   }
 }
-
-@media screen and (max-width: 960px) {
-  /* .posts div > h1 {
-    font-size: 5rem;
-  }
-  .posts-content {
-    font-size: 2rem;
-  } */
-}

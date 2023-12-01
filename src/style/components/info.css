@@ -13,13 +13,13 @@
 
 .info-content-card-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   place-items: start center;
   grid-gap: 100px;
 }
 @media screen and (max-width: 480px) {
   .info-content > h1 {
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     font-size: 5rem;
   }
 }
