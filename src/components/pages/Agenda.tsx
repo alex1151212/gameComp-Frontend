@@ -28,7 +28,7 @@ const Agenda: React.FC<AgendaProps> = () => {
             </li>
             <li>POSTER會有專門區域可以貼海報</li>
             <li>
-              特別注意：複賽上台報告不可於台上實機DEMO(撥放影片可)，違者直接棄權。實機DEMO請在攤位上進行
+              特別注意：複賽上台報告不可於台上實機DEMO(播放影片可)，違者直接棄權。實機DEMO請在攤位上進行
             </li>
           </ol>
         </div>
