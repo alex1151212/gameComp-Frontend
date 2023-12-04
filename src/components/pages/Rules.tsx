@@ -24,7 +24,7 @@ const Rules: React.FC<RulesProps> = () => {
             <div className="rules-content-schedule-date">
               <p>2023/11/29</p>
               <p>2023/12/20</p>
-              <p>2024/12/25</p>
+              <p>2023/12/25</p>
               <p>2024/01/06</p>
             </div>
             <div className="rules-content-schedule-bar">
