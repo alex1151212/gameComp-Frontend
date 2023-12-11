@@ -13,6 +13,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
   title,
   content,
   link,
+  textSize,
 }) => {
   const tierhandler = (
     tier: SponsorCardTier,
@@ -24,6 +25,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
       case "S":
         return (
           <CardTierS
+            textSize={textSize}
             tier={tier}
             color={color}
             image={image}
@@ -35,6 +37,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
       case "A":
         return (
           <CardTierS
+            textSize={textSize}
             tier={tier}
             color={color}
             image={image}
@@ -46,6 +49,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
       case "B":
         return (
           <CardTierS
+            textSize={textSize}
             tier={tier}
             color={color}
             image={image}
@@ -57,6 +61,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
       case "C":
         return (
           <CardTierA
+            textSize={textSize}
             tier={tier}
             color={color}
             image={image}

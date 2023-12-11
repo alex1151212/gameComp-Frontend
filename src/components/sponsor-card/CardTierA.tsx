@@ -10,6 +10,7 @@ const CardTierA: React.FC<CardTierAProps> = ({
   content,
   link,
   image,
+  textSize,
 }) => {
   return (
     <a
@@ -26,7 +27,12 @@ const CardTierA: React.FC<CardTierAProps> = ({
           </div>
           <p className="sponsor-card-tier-a-content-title-text">{title}</p>
         </h2>
-        <p className="sponsor-card-tier-a-content-body">{content}</p>
+        <p
+          className="sponsor-card-tier-a-content-body"
+          style={{ fontSize: textSize }}
+        >
+          {content}
+        </p>
         {/* <a href={link} target="_blank">
           <FontAwesomeIcon icon={faLink} />
         </a> */}

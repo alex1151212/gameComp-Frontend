@@ -22,8 +22,10 @@ const Sponsors: React.FC<SponsorsProps> = () => {
       <div className="sponsors-content">
         <h1>贊助商</h1>
         <div className="sponsors-content-card-wrapper">
-          {sponsors.map((sponsor) => (
+          {sponsors.map((sponsor, index) => (
             <SponsorCard
+              key={index}
+              textSize={sponsor.textSize}
               color={sponsor.color}
               tier={sponsor.tier as SponsorCardTier}
               image={sponsor.image}
