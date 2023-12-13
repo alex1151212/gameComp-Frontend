@@ -51,6 +51,53 @@
   animation-delay: -2s;
   transition-delay: 2s;
 }
+.sponsor-card-tier-s.SS::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background-image: conic-gradient(
+    transparent,
+    transparent,
+    transparent,
+    transparent,
+    transparent,
+    #602ce5,
+    #2ce597,
+    #e7bb18,
+    #ff7657,
+    #45c1ee,
+    #2ce597
+  );
+  transition-delay: 0.5s;
+  animation: borderAnimate 3.5s linear infinite;
+  z-index: 2;
+}
+.sponsor-card-tier-s.SS::after {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background-image: conic-gradient(
+    transparent,
+    transparent,
+    transparent,
+    transparent,
+    transparent,
+    #602ce5,
+    #2ce597,
+    #e7bb18,
+    #ff7657,
+    #45c1ee,
+    #2ce597
+  );
+  background: #11111100;
+  transition-delay: 0.5s;
+  transition-duration: 0.5s;
+  animation: borderAnimate 3.5s linear infinite;
+  animation-delay: -2s;
+  transition-delay: 2s;
+}
 .sponsor-card-tier-s:hover::before,
 .sponsor-card-tier-s:hover::after {
   background: #111;
@@ -116,6 +163,17 @@
   border-top-left-radius: 20px;
 }
 
+.sponsor-card-tier-s.SS .sponsor-card-tier-s-imgbox {
+  height: 50%;
+  transform-origin: bottom;
+
+  background-color: #fff;
+
+  z-index: 3;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
 .sponsor-card-tier-s:hover .sponsor-card-tier-s-imgbox {
   transform: translateY(-100%) rotateX(90deg);
 }
@@ -158,6 +216,89 @@
   background: #fff;
   border-bottom-left-radius: 80px;
   border-bottom-right-radius: 80px;
+
+  z-index: 3;
+}
+
+.sponsor-card-tier-s.SS .sponsor-card-tier-s-imgbox::after {
+  content: "";
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  background: conic-gradient(
+    from 270deg,
+    #602ce5 10%,
+    #2ce597 20%,
+    #e7bb18 30%,
+    #ff7657 40%,
+    #45c1ee 50%
+  );
+
+  background-repeat: no-repeat;
+  background-size: 1000px 1000px;
+  background-position: 50% 32%;
+  animation: breatheSS 3.5s linear infinite;
+
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+
+  z-index: 2;
+}
+.sponsor-card-tier-s.SS .sponsor-card-tier-s-imgbox::before {
+  content: "";
+  position: absolute;
+  bottom: -60%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 60%;
+
+  background: conic-gradient(
+    from 270deg,
+    #602ce5 10%,
+    #2ce597 20%,
+    #e7bb18 30%,
+    #ff7657 40%,
+    #45c1ee 50%
+  );
+  background-repeat: no-repeat;
+  background-size: 1000px 1000px;
+  background-position: 50% 41%;
+
+  border-bottom-left-radius: 80px;
+  border-bottom-right-radius: 80px;
+  z-index: 3;
+
+  animation: breatheSS 3.5s linear infinite;
+}
+.sponsor-card-tier-s.SS .sponsor-card-tier-s-imgbox::before::before {
+  content: "123";
+  position: absolute;
+  bottom: -60%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 60%;
+
+  background: conic-gradient(
+    from 270deg,
+    #602ce5 10%,
+    #2ce597 20%,
+    #e7bb18 30%,
+    #ff7657 40%,
+    #45c1ee 50%
+  );
+  background-repeat: no-repeat;
+  background-size: 1000px 1000px;
+  background-position: 50% 41%;
+
+  border-bottom-left-radius: 80px;
+  border-bottom-right-radius: 80px;
+  z-index: 3;
+
+  animation: breatheSS 3.5s linear infinite;
 }
 
 .sponsor-card-tier-s .sponsor-card-tier-s-imgbox img {
@@ -178,8 +319,29 @@
   border-bottom-left-radius: 200px;
   border-bottom-right-radius: 200px;
 }
+.sponsor-card-tier-s.SS .sponsor-card-tier-s-textbox::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  width: 55%;
+  height: 50%;
+  background: #111;
+  border-bottom-left-radius: 200px;
+  border-bottom-right-radius: 200px;
+}
+.sponsor-card-tier-s.SS .sponsor-card-tier-s-textbox::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  width: 50%;
+  height: 45%;
+  background: #fff;
+  border-bottom-left-radius: 200px;
+  border-bottom-right-radius: 200px;
+}
 
-.sponsor-card-tier-s.S {
+.sponsor-card-tier-s.S,
+.sponsor-card-tier-s.SS {
   animation: breatheS 0.75s infinite;
   animation-direction: alternate;
   box-shadow: 0 0 12px 1px var(--clr);
@@ -228,5 +390,17 @@
   }
   to {
     box-shadow: 0px 0px 30px var(--clr);
+  }
+}
+
+@keyframes breatheSS {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

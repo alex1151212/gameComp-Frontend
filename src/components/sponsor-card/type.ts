@@ -17,4 +17,4 @@ export type SponsorType = {
   color: string;
   textSize?: string;
 };
-export type SponsorCardTier = "S" | "A" | "B" | "C";
+export type SponsorCardTier = "SS" | "S" | "A" | "B" | "C";

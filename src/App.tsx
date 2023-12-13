@@ -94,10 +94,14 @@ function App() {
             </div>
           </div>
           <div>
-            <table>
+            <table style={{ textAlign: "start" }}>
               <tbody>
                 <tr>
                   <td>主辦單位：臺灣科技大學數位娛樂科技研究中心</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>協辦單位：鈊象電子股份有限公司</td>
                   <td></td>
                 </tr>
               </tbody>

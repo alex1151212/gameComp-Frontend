@@ -41,6 +41,12 @@ const Agenda: React.FC<AgendaProps> = () => {
             <li>
               協辦單位：
               <ul>
+                <li>鈊象電子股份有限公司</li>
+              </ul>
+            </li>
+            <li>
+              協辦學校：
+              <ul>
                 <li>國立台灣大學</li>
                 <li>國立清華大學</li>
                 <li>龍華科技大學</li>

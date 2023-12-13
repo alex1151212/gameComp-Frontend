@@ -22,6 +22,18 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
     content: string
   ) => {
     switch (tier) {
+      case "SS":
+        return (
+          <CardTierS
+            textSize={textSize}
+            tier={tier}
+            color={color}
+            image={image}
+            title={title}
+            content={content}
+            link={link}
+          />
+        );
       case "S":
         return (
           <CardTierS
