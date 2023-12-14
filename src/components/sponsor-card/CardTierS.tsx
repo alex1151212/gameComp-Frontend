@@ -24,7 +24,7 @@ const CardTierS: React.FC<CardTierSProps> = ({
       <div className="mask"></div>
       <div className="sponsor-card-tier-s-content">
         <h3 style={{ fontFamily: textFamily }}>{title}</h3>
-        <p style={{ fontSize: textSize }}>{content}</p>
+        <p style={{ fontSize: textSize, fontFamily: textFamily }}>{content}</p>
         <a href={link} target="_blank">
           <FontAwesomeIcon icon={faLink} />
         </a>
