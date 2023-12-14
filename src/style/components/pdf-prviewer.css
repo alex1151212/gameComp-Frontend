@@ -11,7 +11,7 @@
 
 .pdf-view .container {
   box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px 0px;
-  width: max-content;
+  width: fit-content;
   margin: 0 auto;
   overflow: scroll;
   box-sizing: border-box;

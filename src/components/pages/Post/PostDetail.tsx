@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { PostType } from "../../post-card/type";
+import PdfPreviewer from "../../pdf-preivewer";
 interface PostDetailProps {}
 
 const PostDetail: React.FC<PostDetailProps> = () => {
@@ -45,6 +46,9 @@ const PostDetail: React.FC<PostDetailProps> = () => {
           <h1 className="posts-detail-content-body-title">{post?.title}</h1>
           <div className="posts-detail-content-body-content">
             {post?.content}
+          </div>
+          <div className="posts-detail-content-body-pdf-preview">
+            {post?.pdfPreview && <PdfPreviewer prfUrl={post.pdfPreview} />}
           </div>
           <div className="posts-detail-content-body-linklist">
             {post &&

@@ -1,5 +1,6 @@
 export interface SponsorCardBaseProps {
   textSize?: string;
+  textFamily?: string;
   color: string;
   image: string;
   title: string;
@@ -16,5 +17,6 @@ export type SponsorType = {
   tier: string;
   color: string;
   textSize?: string;
+  textFamily?: string;
 };
 export type SponsorCardTier = "SS" | "S" | "A" | "B" | "C";

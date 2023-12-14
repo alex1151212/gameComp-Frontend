@@ -129,7 +129,10 @@ const PdfPreviewer: React.FC<Props> = ({ prfUrl }) => {
           />
         </Document>
       </div>
-      <div className="page-tool">
+      <div
+        className="page-tool"
+        style={{ maxWidth: pdfPreviewerState.pageWidth }}
+      >
         <div className="page-tool-item" onClick={lastPageHandler}>
           {" "}
           上一頁

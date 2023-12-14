@@ -7,6 +7,7 @@ export interface CardTierSProps extends SponsorCardBaseProps {
 }
 
 const CardTierS: React.FC<CardTierSProps> = ({
+  textFamily,
   color,
   image,
   title,
@@ -22,7 +23,7 @@ const CardTierS: React.FC<CardTierSProps> = ({
     >
       <div className="mask"></div>
       <div className="sponsor-card-tier-s-content">
-        <h3>{title}</h3>
+        <h3 style={{ fontFamily: textFamily }}>{title}</h3>
         <p style={{ fontSize: textSize }}>{content}</p>
         <a href={link} target="_blank">
           <FontAwesomeIcon icon={faLink} />
@@ -32,7 +33,7 @@ const CardTierS: React.FC<CardTierSProps> = ({
         <img src={image} alt="" />
       </div>
       <div className="sponsor-card-tier-s-textbox">
-        <h3>{title}</h3>
+        <h3 style={{ fontFamily: textFamily }}>{title}</h3>
       </div>
     </div>
   );

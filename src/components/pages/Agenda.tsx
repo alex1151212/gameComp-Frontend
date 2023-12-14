@@ -41,7 +41,7 @@ const Agenda: React.FC<AgendaProps> = () => {
             <li>
               協辦單位：
               <ul>
-                <li>鈊象電子股份有限公司</li>
+                <li style={{ fontFamily: "SpaceAge" }}>鈊象電子股份有限公司</li>
               </ul>
             </li>
             <li>

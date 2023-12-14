@@ -1,7 +1,7 @@
 import React from "react";
+import CardTierA from "./CardTierA";
 import CardTierS from "./CardTierS";
 import { SponsorCardBaseProps, SponsorCardTier } from "./type";
-import CardTierA from "./CardTierA";
 interface SponsorCardProps extends SponsorCardBaseProps {
   tier: SponsorCardTier;
 }
@@ -14,6 +14,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
   content,
   link,
   textSize,
+  textFamily,
 }) => {
   const tierhandler = (
     tier: SponsorCardTier,
@@ -25,6 +26,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
       case "SS":
         return (
           <CardTierS
+            textFamily={textFamily}
             textSize={textSize}
             tier={tier}
             color={color}

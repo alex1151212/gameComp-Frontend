@@ -5,6 +5,7 @@ export interface PostType {
     title: string;
     url: string;
   }[];
+  pdfPreview?: string;
   type: string;
   title: string;
   content: string;

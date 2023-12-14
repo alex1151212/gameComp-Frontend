@@ -101,7 +101,12 @@ function App() {
                   <td></td>
                 </tr>
                 <tr>
-                  <td>協辦單位：鈊象電子股份有限公司</td>
+                  <td>
+                    協辦單位：
+                    <span style={{ fontFamily: "SpaceAge" }}>
+                      鈊象電子股份有限公司
+                    </span>
+                  </td>
                   <td></td>
                 </tr>
               </tbody>

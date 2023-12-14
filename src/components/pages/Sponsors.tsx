@@ -25,6 +25,7 @@ const Sponsors: React.FC<SponsorsProps> = () => {
           {sponsors.map((sponsor, index) => (
             <SponsorCard
               key={index}
+              textFamily={sponsor.textFamily}
               textSize={sponsor.textSize}
               color={sponsor.color}
               tier={sponsor.tier as SponsorCardTier}
