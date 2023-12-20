@@ -16,7 +16,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 interface LoginProps {}
 
 const Login: React.FC<LoginProps> = () => {
-  const inProgress = false;
+  const inProgress = true;
   const navigate = useNavigate();
   const { isMobile } = useRwd();
   const { sendRequest: loginRequest } = useAxios();
@@ -41,7 +41,7 @@ const Login: React.FC<LoginProps> = () => {
                   flexDirection: "column",
                 }}
               >
-                <h1>工作中</h1>
+                <h1>報名截止</h1>
                 <FontAwesomeIcon
                   icon={faWrench}
                   style={{ fontSize: "2.8rem" }}
