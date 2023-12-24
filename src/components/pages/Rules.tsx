@@ -44,6 +44,7 @@ const Rules: React.FC<RulesProps> = () => {
         <div className="rules-content-competition-rules">
           <h1>比賽規則</h1>
           <ol type="A">
+            <li>詳情請見總則INFO頁，遊戲設計競賽規程(總則)</li>
             <li>於本站註冊登入後報名</li>
             <li>
               每一組於UPLOAD區上傳遊戲展示影片(以五分鐘為限)以及說明文件(格式限制PDF)，最後入選組別由評審們審出
