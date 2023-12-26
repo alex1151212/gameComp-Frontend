@@ -1,5 +1,23 @@
 [
   {
+    "id": 6,
+    "type": "公告",
+    "title": "【臺灣大專院校創意遊戲設計競賽|初選名單公布!】",
+    "content": "恭喜下列組別通過初選<br />主辦單位會於今日結束前發送Mail通知給通過初選的同學!<br />期待各位於決賽舞台上相見 /ᐠ .ᆺ. ᐟﾉ<br />恭喜下列組別通過初選<br /><div style='display:flex;justify-content:center;margin-top:50px;gap:50px;'><img src='assets/images/post/nominee.jpg' alt='' style='width:50%;'/></div>",
+    "link": [],
+    "imgSrc": [],
+    "createdAt": "2023-12-25"
+  },
+  {
+    "id": 5,
+    "type": "公告",
+    "title": "【臺灣大專院校創意遊戲設計競賽報名截止】  ",
+    "content": "本次成功完成報名組數共71組!<br />名單如下，如有發現已報名卻不在名單上的同學 請於12/23 18:00 前聯絡主辦單位<br /> 感謝大家踴躍報名! 敬請期待決選名單公布!<br /><div style='display:flex;justify-content:center;margin-top:50px;gap:50px;'><img src='assets/images/post/applySuccess_1.jpg' alt='' style='width:50%;'/><img src='assets/images/post/applySuccess_2.jpg' alt='' style='width:50%;'/></div>",
+    "link": [],
+    "imgSrc": [],
+    "createdAt": "2023-12-25"
+  },
+  {
     "id": 4,
     "type": "支援",
     "title": "遊戲設計競賽報名系統操作失敗辦法",
