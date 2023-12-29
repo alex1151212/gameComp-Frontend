@@ -1,5 +1,14 @@
 [
   {
+    "id": 7,
+    "type": "公告",
+    "title": "【臺灣大專院校創意遊戲設計競賽 x IGS 鈊象電子股份有限公司 | 特別致謝 !】",
+    "content": "特別感謝鈊象電子對於這次比賽的大力協助 !<br /><br />遊戲開發是一個關於將故事、美術、音樂以及機制所整合的藝術。鈊象電子以自有品牌、自主開發為主軸，在具備堅強的技術研發與軟硬體整合能力的同時，致力投入產學合作以培養國內遊戲技術人員並提升產品品質，帶動國內外整體數位休閒遊戲產業發展!<br /><br />了解更多 :<a href='https://www.igs.com.tw/' target='_blank'> https://www.igs.com.tw/</a><br /><br />歡迎加入鈊象大家庭：<a href='https://www.104.com.tw/company/asz1lzk' target='_blank'> https://www.104.com.tw/company/asz1lzk</a><br/><div style='display:flex;justify-content:center;margin-top:50px;gap:50px;'><img src='assets/images/post/igs-thanks.png' alt=''/></div>",
+    "link": [],
+    "imgSrc": [],
+    "createdAt": "2023-12-30"
+  },
+  {
     "id": 6,
     "type": "公告",
     "title": "【臺灣大專院校創意遊戲設計競賽|初選名單公布!】",
