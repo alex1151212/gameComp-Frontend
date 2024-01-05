@@ -3,7 +3,7 @@ interface AgendaProps {}
 
 const Agenda: React.FC<AgendaProps> = () => {
   const isAnnounceResults = false;
-  const [agenda, setAgenda] = useState<string[]>([]); // [games, setGames
+  const [agenda, setAgenda] = useState<{ [key: string]: string }>({}); // [games, setGames
   const getAgenda = async () => {
     const response = await fetch("assets/data/awardList.json");
     const agendaData = await response.json();
@@ -63,7 +63,7 @@ const Agenda: React.FC<AgendaProps> = () => {
           <h1>比賽結果</h1>
           <div
             className="agenda-content-result-table"
-            style={{ minHeight: `${agenda.length * 1.5}rem` }}
+            style={{ minHeight: `${Object.keys(agenda).length * 1.5}rem` }}
           >
             {isAnnounceResults ? (
               <table>
@@ -74,12 +74,14 @@ const Agenda: React.FC<AgendaProps> = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {agenda.map((awardName) => (
-                    <tr key={awardName}>
-                      <td>{awardName}</td>
-                      <td>{"尚未公布"}</td>
-                    </tr>
-                  ))}
+                  {Object.entries(agenda).map(([awardName, teamName]) => {
+                    return (
+                      <tr key={awardName}>
+                        <td>{awardName}</td>
+                        <td>{teamName}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             ) : (
