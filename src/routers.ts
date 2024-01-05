@@ -34,8 +34,13 @@ const router = [
     name: "sponsors",
   },
   {
+    path: "/live",
+    name: "live",
+  },
+  {
     path: "/login",
     name: "login",
+    inVisible: true,
   },
   {
     path: "/register",

@@ -14,6 +14,7 @@ import Profile from "./components/pages/Profile";
 import Register from "./components/pages/Register";
 import Rules from "./components/pages/Rules";
 import Sponsors from "./components/pages/Sponsors";
+import LivePage from "./components/live";
 const { PUBLIC_URL } = import.meta.env;
 
 const AppRoutes: FC = () => {
@@ -28,6 +29,7 @@ const AppRoutes: FC = () => {
           <Route path="/info" element={<Info />} />
           <Route path="/post" element={<Info />} />
           <Route path="/sponsors" element={<Sponsors />} />
+          <Route path="/live" element={<LivePage />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/posts/detail" element={<PostDetail />} />
 
