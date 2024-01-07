@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 interface AgendaProps {}
 
 const Agenda: React.FC<AgendaProps> = () => {
-  const isAnnounceResults = false;
+  const isAnnounceResults = true;
   const [agenda, setAgenda] = useState<{ [key: string]: string }>({}); // [games, setGames
   const getAgenda = async () => {
     const response = await fetch("assets/data/awardList.json");
