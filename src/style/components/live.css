@@ -1,9 +1,24 @@
 .live {
+}
+
+.live-content {
+  height: 100%;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+.live-content > h1 {
+  margin-bottom: 1.5rem;
+  font-size: 3rem;
+}
+
+.live-content-iframe-wrapper {
   position: relative;
   padding-bottom: 56%;
   overflow: hidden;
+  margin-bottom: 50px;
 }
-.live iframe {
+.live-content-iframe-wrapper > iframe {
   position: absolute;
   top: 0;
   left: 0;
