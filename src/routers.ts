@@ -40,7 +40,6 @@ const router = [
   {
     path: "/login",
     name: "login",
-    inVisible: true,
   },
   {
     path: "/register",
