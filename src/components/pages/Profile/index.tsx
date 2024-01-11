@@ -217,25 +217,27 @@ const Profile: React.FC<Props> = () => {
                     {errors.confirmPassword}
                   </p>
                 </div>
-                <div className="captcha">
-                  <ReCAPTCHA
-                    ref={recaptchaRefProfile}
-                    size="normal"
-                    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                  />
-                </div>
 
                 {allowUpload && (
-                  <button
-                    className="profile-content-upload-form-button"
-                    disabled={!buttonControllerUser}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      submitForm();
-                    }}
-                  >
-                    確認更新
-                  </button>
+                  <>
+                    <div className="captcha">
+                      <ReCAPTCHA
+                        ref={recaptchaRefProfile}
+                        size="normal"
+                        sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                      />
+                    </div>
+                    <button
+                      className="profile-content-upload-form-button"
+                      disabled={!buttonControllerUser}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        submitForm();
+                      }}
+                    >
+                      確認更新
+                    </button>
+                  </>
                 )}
               </form>
             )}
@@ -855,24 +857,27 @@ const Profile: React.FC<Props> = () => {
                       </p>
                       <p className="error">{errors.workPdf}</p>
                     </div>
-                    <div className="captcha">
-                      <ReCAPTCHA
-                        ref={recaptchaRefUpload}
-                        size="normal"
-                        sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                      />
-                    </div>
+
                     {allowUpload && (
-                      <button
-                        className="profile-content-upload-form-button"
-                        disabled={!buttonControllerFile}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          submitForm();
-                        }}
-                      >
-                        {values.isUpload ? "再次上傳" : "確認上傳"}
-                      </button>
+                      <>
+                        <div className="captcha">
+                          <ReCAPTCHA
+                            ref={recaptchaRefUpload}
+                            size="normal"
+                            sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                          />
+                        </div>
+                        <button
+                          className="profile-content-upload-form-button"
+                          disabled={!buttonControllerFile}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            submitForm();
+                          }}
+                        >
+                          {values.isUpload ? "再次上傳" : "確認上傳"}
+                        </button>
+                      </>
                     )}
 
                     {true && (
