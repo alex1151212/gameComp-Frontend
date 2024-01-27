@@ -1,7 +1,7 @@
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons/faLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect } from "react";
+import React from "react";
 
 interface GameCardProps {
   name: string;
@@ -18,9 +18,7 @@ const GameCard: React.FC<GameCardProps> = ({
   pdfLink,
   youtubeLink,
 }) => {
-  useEffect(() => {
-    console.log(pdfLink);
-  }, []);
+  
   return (
     <div className="game-card">
       <div className="game-card-image">
