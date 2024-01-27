@@ -1,14 +1,14 @@
 [{
         "name": "Temporal Echo",
         "reward": "最佳創新獎優等",
-        "imgLink": "game2023/Temporal Echo.png",
+        "imgLink": "game2023/temporalEchoes.png",
         "pdfLink": "https://drive.google.com/file/d/1iJUYD4xoIL_XGkLIATnUScdiXvMiBcHj/view?usp=drive_link",
         "youtubeLink": "https://www.youtube.com/watch?v=7W-XxGY6h_4"
     },
     {
         "name": "張教授的Lab",
         "reward": "最佳創新獎佳作",
-        "imgLink": "game2023/張教授的Lab.png",
+        "imgLink": "game2023/timeFactory.png",
         "pdfLink": "https://drive.google.com/file/d/1GUG4Rqye25AHUFdOaCyFZt-GaPNf3yKq/view?usp=drive_link",
         "youtubeLink": "https://youtu.be/1XaujOtTVXw"
     },
@@ -43,56 +43,56 @@
     {
         "name": "六層派",
         "reward": "最佳視覺獎優等",
-        "imgLink": "game2023/六層派.png",
+        "imgLink": "game2023/BetweenTwins.png",
         "pdfLink": "https://drive.google.com/file/d/1-xxKlXPwuiPN7ZVZEikJy0OZuBXa9tiq/view?usp=drive_link",
         "youtubeLink": "https://youtu.be/EuXbf7LijYk"
     },
     {
         "name": "背叛者聯盟",
         "reward": "最佳視覺獎佳作",
-        "imgLink": "game2023/背叛者聯盟.png",
+        "imgLink": "game2023/dumi.png",
         "pdfLink": "https://drive.google.com/file/d/1mwR3VR1zb3dicbMrC7Vc3fCcuKrV_2iL/view?usp=drive_link",
         "youtubeLink": "https://youtu.be/qR1iPr6sZ7s"
     },
     {
         "name": "愛貓人士",
         "reward": "年度風雲獎",
-        "imgLink": "game2023/愛貓人士.png",
+        "imgLink": "game2023/catventure.png",
         "pdfLink": "https://drive.google.com/file/d/15HAT-AXtQ2vBWblT41RgU7J5i6A8h-o8/view?usp=drive_link",
         "youtubeLink": "https://youtu.be/-aOHsFUbYw4"
     },
     {
         "name": "阿格麗工作室",
         "reward": "酷碼未來之星獎",
-        "imgLink": "game2023/阿格麗工作室.png",
+        "imgLink": "game2023/witchOfLegends.png",
         "pdfLink": "https://drive.google.com/file/d/1klMyHhNBZu9ImXRp9qhllYQwCPEJBx7Z/view?usp=drive_link",
         "youtubeLink": "https://www.youtube.com/watch?v=lWvb4raLsN4&ab_channel=%E9%99%B3%E6%9F%8F%E7%9D%BF"
     },
     {
         "name": "沒人在乎",
         "reward": "",
-        "imgLink": "game2023/沒人在乎.png",
+        "imgLink": "game2023/noOneCare.png",
         "pdfLink": "https://drive.google.com/file/d/1liUe8C3VGF2lPSEJ0MJZPvughy8z71UH/view?usp=drive_link",
         "youtubeLink": "https://youtu.be/VkEu0wB8QM8"
     },
     {
         "name": "念念探險隊",
         "reward": "",
-        "imgLink": "game2023/念念探險隊.png",
+        "imgLink": "game2023/journeyOfBook.png",
         "pdfLink": "https://drive.google.com/file/d/1Rs1Z1P_LkEnjE5LDkKtfJunka-T-rCTI/view?usp=drive_link",
         "youtubeLink": "https://youtu.be/etbIyQgul04?si=gXizsfSn4iT01z2d"
     },
     {
         "name": "忍者大師",
         "reward": "",
-        "imgLink": "game2023/忍者大師.png",
+        "imgLink": "game2023/ninja.png",
         "pdfLink": "https://drive.google.com/file/d/1eBZJMNpM4d70rQyZaCBTqm223dM7u0bO/view?usp=drive_link",
         "youtubeLink": "https://youtu.be/91HCyw3K0co"
     },
     {
         "name": "銀杏神社",
         "reward": "",
-        "imgLink": "game2023/銀杏神社.png",
+        "imgLink": "game2023/soulKnight.png",
         "pdfLink": "https://drive.google.com/file/d/1dLT3_I-u2gHt0UFoSK8znbiSkzFb-f5Q/view?usp=drive_link",
         "youtubeLink": "https://www.youtube.com/watch?v=6_ljIyjaR8E"
     },
