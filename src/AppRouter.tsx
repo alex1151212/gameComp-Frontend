@@ -11,7 +11,7 @@ import Logout from "./components/pages/Logout";
 import PostDetail from "./components/pages/Post/PostDetail";
 import Posts from "./components/pages/Post/Posts";
 import Profile from "./components/pages/Profile";
-import Register from "./components/pages/Register";
+// import Register from "./components/pages/Register";
 import Rules from "./components/pages/Rules";
 import Sponsors from "./components/pages/Sponsors";
 import LivePage from "./components/live";
@@ -34,7 +34,7 @@ const AppRoutes: FC = () => {
           <Route path="/posts/detail" element={<PostDetail />} />
 
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          {/* <Route path="/register" element={<Register />} /> */}
 
           <Route path="/auth" element={<AuthLayout />}>
             <Route path="/auth/profile" element={<Profile />} />

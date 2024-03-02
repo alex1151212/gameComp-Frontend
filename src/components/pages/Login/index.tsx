@@ -142,7 +142,7 @@ const Login: React.FC<LoginProps> = () => {
                         {errors.password}
                       </p>
                     </div>
-                    <div className="login-content-body-register-wrapper">
+                    {/* <div className="login-content-body-register-wrapper">
                       <div
                         className="login-content-body-register"
                         onClick={() => {
@@ -151,7 +151,7 @@ const Login: React.FC<LoginProps> = () => {
                       >
                         SIGN UP
                       </div>
-                    </div>
+                    </div> */}
 
                     <div className="captcha">
                       <ReCAPTCHA
